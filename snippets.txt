@@ -1,0 +1,7 @@
+*** VUE SNIPPETS ***
+
+
+
+
+
+*** FastAPI SNIPPETS ***
