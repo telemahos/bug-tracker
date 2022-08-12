@@ -38,3 +38,10 @@ Cases:
 Issue -> 0
 Bug -> 1
 --------------
+Team:
+id, user_id, project_id, team_role, assign_date, active, note
+
+--------------
+
+
+--------------

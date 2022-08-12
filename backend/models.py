@@ -68,3 +68,14 @@ class Project(Base):
     priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
     team_id = Column(Integer)
     owner_id = Column(Integer, ForeignKey("users.id"))
+
+#---------------------------------------
+class Team(Base):
+    __tablename__ = 'team'
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    project_id = Column(Integer, ForeignKey("project.id"))
+    team_role = Column(Integer)
+    assign_date = Column(Date)
+    active = Column(Boolean, default=False)
+    note = Column(String)

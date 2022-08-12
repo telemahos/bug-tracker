@@ -146,3 +146,30 @@ class ShowProject(ProjectBase):
 
     class Config():
         orm_mode = True
+
+# Team
+# ------------------------------------
+class TeamBase(BaseModel):
+    id: int
+    user_id: Optional[int] = 0
+    project_id: Optional[int] = 0
+    team_role: Optional[int] = 0
+    assign_date: date
+    active:  Optional[bool] = False
+    note:  Optional[str] = None
+
+class Team(TeamBase):
+    class Config():
+        orm_mode = True
+
+class ShowTeam(TeamBase):
+    id: int
+    user_id: Optional[int] = 0
+    project_id: Optional[int] = 0
+    team_role: Optional[int] = 0
+    assign_date: date
+    active:  Optional[bool] = False
+    note:  Optional[str] = None
+
+    class Config():
+        orm_mode = True
