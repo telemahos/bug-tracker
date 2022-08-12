@@ -50,11 +50,13 @@ class User(BaseModel):
     name: str
     email: str
     password: str
+    user_role: int
 
 class ShowUser(BaseModel):
     id: int
     name: str
     email: str
+    user_role: int
     # Refers to the first class Blog
     the_blogs: List[Blog] = []
     class Config():

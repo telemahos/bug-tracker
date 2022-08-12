@@ -31,7 +31,7 @@ class User(Base):
     name = Column(String, index=True)
     email = Column(String, index=True)
     password = Column(String)
-
+    user_role = Column(Integer) # admin=?, Dev=1, QA=2, BA=3, PM=4, TM=5
     the_blogs = relationship("Blog", back_populates="owner")
 
 
