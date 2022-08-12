@@ -1,27 +1,5 @@
 --- My Python.FastAPI and Vuejs, Bug Tracker Project ---
 
-routers -> controller
-repository -> model
---------------
-User Roles:
-Admin -> 0
-Developer -> 1
-QA Analyst -> 2
-Business Analyst -> 3
-Product Manager -> 4
-Technology Manager -> 5
---------------
-Issue, Bug, Priority:
-Low -> 0
-Medium -> 1
-High -> 2
-Critical -> 3
---------------
-Cases:
-Issue -> 0
-Bug -> 1
---------------
+With this Web application, the User can track the progress of a Bug or an Issue, within a project.
 
---------------
-
---------------
+This Project is based on Python FASTAPI as Backend Solution, SQLlite for Data Storage and Frontend ??? maybe *Vue.js* or **Angular**,  ...will see!
