@@ -11,8 +11,6 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: Optional[str] = None
 
-
-
 class NotesIn(BaseModel):
     date: Optional[date]
     title: Optional[str] = None
@@ -78,11 +76,10 @@ class login(BaseModel):
     password: str
 
 
-# ISSUE
+# Case
 # ------------------------------------
-class IssueBase(BaseModel):
+class CaseBase(BaseModel):
     id: int
-    # date: Optional[date] = None
     date: date
     title: Optional[str] = None
     body: Optional[str] = None
@@ -93,11 +90,11 @@ class IssueBase(BaseModel):
     poject_id: Optional[int] = None
     owner_id: Optional[int] = None
 
-class Issue(IssueBase):
+class Case(CaseBase):
     class Config():
         orm_mode = True
 
-class ShowIssue(IssueBase):
+class ShowCase(CaseBase):
     id: int
     date: date
     title: Optional[str] = None
@@ -116,3 +113,36 @@ class ShowIssue(IssueBase):
     # pos: float = 0
     # shift_id: Optional[str]
     # the_shift: Optional[Shift] 
+    
+# Project
+# ------------------------------------
+class ProjectBase(BaseModel):
+    id: int
+    date: date
+    end_date : date
+    title: Optional[str] = None
+    description: Optional[str] = None
+    tags:  Optional[str] = None
+    active:  Optional[bool] = False
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
+
+class Project(ProjectBase):
+    class Config():
+        orm_mode = True
+
+class ShowProject(ProjectBase):
+    id: int
+    date: date
+    end_date: date
+    title: Optional[str] = None
+    description: Optional[str] = None
+    tags:  Optional[str] = None
+    active:  Optional[bool] = False
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
+
+    class Config():
+        orm_mode = True

@@ -37,8 +37,8 @@ class User(Base):
 
 
 #---------------------------------------
-class Issue(Base):
-    __tablename__ = 'issues'
+class Case(Base):
+    __tablename__ = 'cases'
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date)
     title = Column(String, index = True)
@@ -54,3 +54,17 @@ class Issue(Base):
     # the_shift = relationship("Shift", back_populates="the_income")
     # insurance = Column(Float)
     # outcome_id = Column(Integer, ForeignKey("outcome.id"), index=True, nullable=False)
+
+#---------------------------------------
+class Project(Base):
+    __tablename__ = 'project'
+    id = Column(Integer, primary_key=True, index=True)
+    date = Column(Date)
+    end_date = Column(Date)
+    title = Column(String, index = True)
+    description = Column(String) 
+    tags = Column(String)
+    active = Column(Boolean, default=False)
+    priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
+    team_id = Column(Integer)
+    owner_id = Column(Integer, ForeignKey("users.id"))

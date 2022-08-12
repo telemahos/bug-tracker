@@ -9,33 +9,33 @@ from sqlalchemy import desc
 
 
 # Show All issue ##.order_by(desc('date'))
-def issue_get_all(db: Session, limit: int = 10, offset: int = 0 ):
-    issue = db.query(models.Issue).offset(offset).limit(limit).all()
+def project_get_all(db: Session, limit: int = 10, offset: int = 0 ):
+    project = db.query(models.Project).offset(offset).limit(limit).all()
     # issue = db.query(models.Issue).filter(models.Issue.date >= "2021-09-01", models.Issue.date <= "2021-09-31").all()
-    return issue
+    return project
 
 # Show a Specific Income by date year: str, month: str,
-def issue_show_by_date(year:str, month:str, db: Session, limit: int = 10, offset: int = 0 ):
+def project_show_by_date(year:str, month:str, db: Session, limit: int = 10, offset: int = 0 ):
     # print(" TEST.....show_by_date22")
-    issue = db.query(models.Issue).filter(models.Issue.date >= f'{year}-{month}-01', models.Issue.date <= f'{year}-{month}-31').all()
-    return issue
+    project = db.query(models.Project).filter(models.Project.date >= f'{year}-{month}-01', models.Project.date <= f'{year}-{month}-31').all()
+    return project
 
 # Show a Specific Income by id
-def issue_show(id: int, db: Session):
-    issue = db.query(models.Issue).filter(models.Issue.id == id).first()
-    if not issue:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Issue with ID {id} is not found')
-    return issue
+def project_show(id: int, db: Session):
+    project = db.query(models.Project).filter(models.Project.id == id).first()
+    if not project:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Project with ID {id} is not found')
+    return project
 
 # Create and Post a new Income
-def issue_create(request: schemas.Issue, db: Session):
-    print("CREATE ISSUE..............")
-    new_issue = models.Issue(date=request.date, title = request.title, body = request.body, tags = request.tags, active = request.active, priority = request.priority, case_type = request.case_type, poject_id = request.poject_id, owner_id = request.owner_id)
-    db.add(new_issue)
+def project_create(request: schemas.Project, db: Session):
+    print("CREATE Project..............")
+    new_project = models.Project(date=request.date, end_date=request.end_date, title = request.title, description = request.description, tags = request.tags, active = request.active, priority = request.priority, team_id = request.team_id, owner_id = request.owner_id)
+    db.add(new_project)
     db.commit()
-    db.refresh(new_issue)
-    print("CREATE ISSUE..............222222222")
-    return new_issue
+    db.refresh(new_project)
+    print("CREATE Project..............1111111")
+    return new_project
 
 # Update an Issue
 # def issue_update(id: int, request: schemas.Issue, db: Session):
