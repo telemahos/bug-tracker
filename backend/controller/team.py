@@ -9,7 +9,7 @@ from ..mvc import case, user, project, team
 
 router = APIRouter(
     prefix="/api/team",
-    tags=['team']
+    tags=['Team']
 )
 
 get_db = database.get_db

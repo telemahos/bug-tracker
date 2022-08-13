@@ -14,20 +14,28 @@ def case_get_all(db: Session, limit: int = 10, offset: int = 0 ):
     # issue = db.query(models.Issue).filter(models.Issue.date >= "2021-09-01", models.Issue.date <= "2021-09-31").all()
     return case
 
-# Show a Specific Income by date year: str, month: str,
+# Show a Specific Case by date year: str, month: str,
 def case_show_by_date(year:str, month:str, db: Session, limit: int = 10, offset: int = 0 ):
     # print(" TEST.....show_by_date22")
     case = db.query(models.Case).filter(models.Case.date >= f'{year}-{month}-01', models.Case.date <= f'{year}-{month}-31').all()
     return case
 
-# Show a Specific Income by id
+# Show a Specific Case by project
+def case_show_by_project(project_id: int, db: Session, limit: int = 10, offset: int = 0 ):
+    # print(" TEST.....show_by_date22")
+    case = db.query(models.Case).filter(models.Case.project_id == project_id).first()
+    if not case:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Case from the Project with ID {project_id} is not found')
+    return case
+
+# Show a Specific Case by id
 def case_show(id: int, db: Session):
     case = db.query(models.Case).filter(models.Case.id == id).first()
     if not case:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Case with ID {id} is not found')
     return case
 
-# Create and Post a new Income
+# Create and Post a new Case
 def case_create(request: schemas.Case, db: Session):
     print("CREATE Case..............")
     new_case = models.Case(date=request.date, title = request.title, body = request.body, tags = request.tags, active = request.active, priority = request.priority, case_type = request.case_type, poject_id = request.poject_id, owner_id = request.owner_id)

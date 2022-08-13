@@ -8,7 +8,7 @@ from ..mvc import case, user, project
 
 router = APIRouter(
     prefix="/api/project",
-    tags=['project']
+    tags=['Project']
 )
 
 get_db = database.get_db

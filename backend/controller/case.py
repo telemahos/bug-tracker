@@ -8,7 +8,7 @@ from ..mvc import case, user, project
 
 router = APIRouter(
     prefix="/api/case",
-    tags=['case']
+    tags=['Case']
 )
 
 get_db = database.get_db
@@ -18,6 +18,10 @@ get_db = database.get_db
 async def all_case(db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     # return paginate(issue.get_all(db))
     return case.issue_get_all(db)
+
+@router.get('/{project_id}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_project(project_id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_project(project_id, db)
 
 # @router.get('/{year}/{month}/', response_model=Page[schemas.ShowIssue], status_code=200, dependencies=[Depends(pagination_params)])
 @router.get('/{year}/{month}/', response_model = List[schemas.ShowCase], status_code=200)
