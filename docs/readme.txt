@@ -1,7 +1,7 @@
 - python3 -m venv env_078 
 - ./ngrok http 8000 
 - ngrok http 8000 (on Windows)
-- .\env_066\Scripts\activate.bat (On windows)
+- .\env_078\Scripts\activate.bat (On windows)
 - source env_078/bin/activate
 - pip install --upgrade pip
 - pip install -r requirements.txt

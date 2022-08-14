@@ -6,6 +6,7 @@ __pycache__/
 # bugTracker Project
 .vscode
 /env_078
+/env_079
 /env_066
 /backup
 /frontend/cork/*
