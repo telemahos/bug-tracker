@@ -71,7 +71,7 @@ def case_create(request: schemas.Case, db: Session):
 
 
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update({'title': request.title})
+    db.query(models.Case).filter(models.Case.id == id).update({'title': request.title, 'body': request.body})
     # db.query(models.Case).filter(models.Case.id == id).update(dict({'date': request.date, 'title': request.title, 'body': request.body, 'tags': request.tags, 'active': request.active, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id}))
     # update = db.query(models.Case).filter(models.Case.id == id)
     # db.add(update)
