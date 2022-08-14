@@ -2,28 +2,6 @@ from sqlalchemy import Column, Boolean, Integer, String, ForeignKey, Date, Float
 from sqlalchemy.orm import relationship
 from .database import Base
 
-class Notes(Base):
-    __tablename__ = 'notes'
-    id = Column(Integer, primary_key=True, index=True)
-    date = Column(Date, index=True)
-    title = Column(String, index = True)
-    body = Column(String, index = True) 
-    tags = Column(String, index = True)
-    active = Column(Boolean, default=False)
-    author_id = Column(Integer,ForeignKey("users.id"))
-
-class Blog(Base):
-    __tablename__ = 'blogs'
-    id = Column(Integer, primary_key=True, index=True)
-    date = Column(Date, index=True)
-    title = Column(String, index = True)
-    body = Column(String, index = True) 
-    tags = Column(String, index = True)
-    active = Column(Boolean, default=False)
-    author_id = Column(Integer,ForeignKey("users.id"))
-    
-    owner = relationship("User", back_populates="the_blogs")
-    
 
 class User(Base):
     __tablename__ = 'users'
@@ -32,8 +10,7 @@ class User(Base):
     email = Column(String, index=True)
     password = Column(String)
     user_role = Column(Integer) # admin=?, Dev=1, QA=2, BA=3, PM=4, TM=5
-    the_blogs = relationship("Blog", back_populates="owner")
-
+    # the_blogs = relationship("Blog", back_populates="owner")
 
 
 #---------------------------------------
@@ -44,10 +21,10 @@ class Case(Base):
     title = Column(String, index = True)
     body = Column(String) 
     tags = Column(String)
-    active = Column(Boolean, default=False)
+    active = Column(Integer, default=0)
     priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
     case_type = Column(Integer) # Issue=0, Bug=1
-    poject_id = Column(Integer)
+    project_id = Column(Integer)
     owner_id = Column(Integer,ForeignKey("users.id"))
 
     # shift_id = Column( String, ForeignKey('shift.id'), nullable=False)
@@ -65,17 +42,17 @@ class Project(Base):
     description = Column(String) 
     tags = Column(String)
     active = Column(Boolean, default=False)
-    priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
-    team_id = Column(Integer)
-    owner_id = Column(Integer, ForeignKey("users.id"))
+    priority = Column(String) # Low=0, Medium=1, High=2, Critical=3
+    team_id = Column(String)
+    owner_id = Column(String, ForeignKey("users.id"))
 
 #---------------------------------------
 class Team(Base):
     __tablename__ = 'team'
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"))
-    project_id = Column(Integer, ForeignKey("project.id"))
-    team_role = Column(Integer)
+    user_id = Column(String, ForeignKey("users.id"))
+    project_id = Column(String, ForeignKey("project.id"))
+    team_role = Column(String)
     assign_date = Column(Date)
     active = Column(Boolean, default=False)
     note = Column(String)

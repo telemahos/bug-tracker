@@ -14,19 +14,31 @@ router = APIRouter(
 get_db = database.get_db
 
 @router.get('/', response_model=List[schemas.ShowCase]) 
-# @router.get('/', response_model=Page[schemas.ShowIssue], dependencies=[Depends(pagination_params)])
 async def all_case(db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    # return paginate(issue.get_all(db))
-    return case.issue_get_all(db)
+    return case.case_get_all(db)
 
-@router.get('/{project_id}', response_model = List[schemas.ShowCase], status_code=200)
+@router.get('/project/{project_id}', response_model = List[schemas.ShowCase], status_code=200)
 async def show_case_by_project(project_id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return case.case_show_by_project(project_id, db)
 
-# @router.get('/{year}/{month}/', response_model=Page[schemas.ShowIssue], status_code=200, dependencies=[Depends(pagination_params)])
+@router.get('/user/{owner_id}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_owner(owner_id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_owner(owner_id, db)
+
+@router.get('/case_type/{case_type}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_case_type(case_type: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_case_type(case_type, db)
+
+@router.get('/priority/{priority}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_priority(priority: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_priority(priority, db)
+
+@router.get('/active/{active}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_active(active: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_active(active, db)
+
 @router.get('/{year}/{month}/', response_model = List[schemas.ShowCase], status_code=200)
 async def show_case_by_date(year: str, month: str , db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    # return paginate(issue.show_by_date(year, month, db))
     return case.case_show_by_date(year, month, db)
 
 @router.get('/{id}', status_code=200, response_model=schemas.ShowCase)

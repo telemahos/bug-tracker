@@ -11,38 +11,8 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     email: Optional[str] = None
 
-class NotesIn(BaseModel):
-    date: Optional[date]
-    title: Optional[str] = None
-    body: Optional[str] = None
-    tags:  Optional[str] = None
-    active:  Optional[bool] = False
-    author_id: Optional[int]
-
-class NotesOut(BaseModel):
-    id: Optional[int]
-    date: Optional[date]
-    title: Optional[str]
-    body: Optional[str]
-    tags:  Optional[str] 
-    active:  Optional[bool]
-    author_id: Optional[int]
-    class Config():
-        orm_mode = True
-
-class BlogBase(BaseModel):
-    id: Optional[int] = None
-    date: Optional[date] 
-    title: Optional[str] = None
-    body: Optional[str] = None
-    tags:  Optional[str] = None
-    active:  Optional[bool] = False
-    # author_id: str
-
-class Blog(BlogBase):
-    class Config():
-        orm_mode = True
-
+# User
+# ------------------------------------
 class User(BaseModel):
     id: int
     name: str
@@ -56,24 +26,9 @@ class ShowUser(BaseModel):
     email: str
     user_role: int
     # Refers to the first class Blog
-    the_blogs: List[Blog] = []
+    # the_blogs: List[Blog] = []
     class Config():
         orm_mode = True
-
-class ShowBlog(BaseModel):
-    id: int
-    date: Optional[date] = None
-    title: Optional[str] = None
-    body: Optional[str] = None
-    tags: Optional[str] = None
-    active: Optional[bool] = False
-    owner: ShowUser
-    class Config():
-        orm_mode = True
-
-class login(BaseModel):
-    username: str
-    password: str
 
 
 # Case
@@ -84,10 +39,10 @@ class CaseBase(BaseModel):
     title: Optional[str] = None
     body: Optional[str] = None
     tags:  Optional[str] = None
-    active:  Optional[bool] = False
+    active:  Optional[int] = 0
     priority: Optional[int] = 0
     case_type: Optional[int] = 0
-    poject_id: Optional[int] = None
+    project_id: Optional[int] = None
     owner_id: Optional[int] = None
 
 class Case(CaseBase):
@@ -100,10 +55,10 @@ class ShowCase(CaseBase):
     title: Optional[str] = None
     body: Optional[str] = None
     tags:  Optional[str] = None
-    active:  Optional[bool] = False
+    active:  Optional[int] = 0
     priority: Optional[int] = 0
     case_type: Optional[int] = 0
-    poject_id: Optional[int] = None
+    project_id: Optional[int] = None
     owner_id: Optional[int] = None
 
     class Config():
@@ -124,9 +79,9 @@ class ProjectBase(BaseModel):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[int] = 0
-    team_id: Optional[int] = 0
-    owner_id: Optional[int] = None
+    priority: Optional[str] = 0
+    team_id: Optional[str] = 0
+    owner_id: Optional[str] = None
 
 class Project(ProjectBase):
     class Config():
@@ -140,9 +95,9 @@ class ShowProject(ProjectBase):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[int] = 0
-    team_id: Optional[int] = 0
-    owner_id: Optional[int] = None
+    priority: Optional[str] = 0
+    team_id: Optional[str] = 0
+    owner_id: Optional[str] = None
 
     class Config():
         orm_mode = True
@@ -151,9 +106,9 @@ class ShowProject(ProjectBase):
 # ------------------------------------
 class TeamBase(BaseModel):
     id: int
-    user_id: Optional[int] = 0
-    project_id: Optional[int] = 0
-    team_role: Optional[int] = 0
+    user_id: Optional[str] = 0
+    project_id: Optional[str] = 0
+    team_role: Optional[str] = 0
     assign_date: date
     active:  Optional[bool] = False
     note:  Optional[str] = None
@@ -164,9 +119,9 @@ class Team(TeamBase):
 
 class ShowTeam(TeamBase):
     id: int
-    user_id: Optional[int] = 0
-    project_id: Optional[int] = 0
-    team_role: Optional[int] = 0
+    user_id: Optional[str] = 0
+    project_id: Optional[str] = 0
+    team_role: Optional[str] = 0
     assign_date: date
     active:  Optional[bool] = False
     note:  Optional[str] = None

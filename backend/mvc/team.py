@@ -13,10 +13,19 @@ def team_get_all(db: Session, limit: int = 10, offset: int = 0 ):
     team = db.query(models.Team).offset(offset).limit(limit).all()
     return team
 
+# Show a Specific Team by project
+def team_show_by_date(project_id:int, db: Session, limit: int = 10, offset: int = 0 ):
+    team = db.query(models.Team).filter(models.Team.project_id == project_id).first()
+    if not team:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Team in Project ID: {project_id} is not found')
+    return team
+
 # Show a Specific Income by date year: str, month: str,
 def team_show_by_date(year:str, month:str, db: Session, limit: int = 10, offset: int = 0 ):
     # print(" TEST.....show_by_date22")
     team = db.query(models.Team).filter(models.Team.date >= f'{year}-{month}-01', models.Team.date <= f'{year}-{month}-31').all()
+    if not team:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Team by date: {year}-{month} is not found')
     return team
 
 # Show a Specific Income by id
