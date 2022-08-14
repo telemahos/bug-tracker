@@ -42,6 +42,12 @@ Team:
 id, user_id, project_id, team_role, assign_date, active, note
 
 --------------
+Git to work on Win10 with VS Code:
+Step 1 in your project folder run start-ssh-agent
+Step 2 add your id_rsa or whatever name of your private RSA key password
+Step 3 in the same directory open the cmd or power shell and run code
+--------------
 
+--------------
 
 --------------
