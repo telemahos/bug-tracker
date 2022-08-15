@@ -6,7 +6,6 @@ from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.sql import text
 from sqlalchemy import desc
-# from fastapi_pagination import Page, pagination_params, page_size
 
 
 # Show All issue ##.order_by(desc('date'))
