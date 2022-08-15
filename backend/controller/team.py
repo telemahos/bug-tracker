@@ -19,13 +19,13 @@ async def all_team(db: Session = Depends(get_db), current_user: schemas.User = D
     return team.team_get_all(db)
 
 
-@router.get('/{project_id}', response_model = List[schemas.ShowTeam], status_code=200)
+@router.get('/project/{project_id}', response_model = schemas.ShowTeam, status_code=200)
 async def show_team_by_project(project_id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return team.team_show_by_project(project_id, db)
 
-@router.get('/{year}/{month}/', response_model = List[schemas.ShowTeam], status_code=200)
-async def show_team_by_date(year: str, month: str , db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    return team.team_show_by_date(year, month, db)
+# @router.get('/{year}/{month}/', response_model = List[schemas.ShowTeam], status_code=200)
+# async def show_team_by_date(year: str, month: str , db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+#     return team.team_show_by_date(year, month, db)
 
 @router.get('/{id}', status_code=200, response_model=schemas.ShowTeam)
 async def show_team(id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):

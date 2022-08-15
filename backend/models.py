@@ -42,9 +42,9 @@ class Project(Base):
     description = Column(String) 
     tags = Column(String)
     active = Column(Boolean, default=False)
-    priority = Column(String) # Low=0, Medium=1, High=2, Critical=3
-    team_id = Column(String)
-    owner_id = Column(String, ForeignKey("users.id"))
+    priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
+    team_id = Column(Integer)
+    owner_id = Column(Integer, ForeignKey("users.id"))
 
 #---------------------------------------
 class Team(Base):

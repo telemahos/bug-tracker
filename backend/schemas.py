@@ -79,9 +79,9 @@ class ProjectBase(BaseModel):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[str] = 0
-    team_id: Optional[str] = 0
-    owner_id: Optional[str] = None
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
 
 class Project(ProjectBase):
     class Config():
@@ -95,9 +95,9 @@ class ShowProject(ProjectBase):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[str] = 0
-    team_id: Optional[str] = 0
-    owner_id: Optional[str] = None
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
 
     class Config():
         orm_mode = True
