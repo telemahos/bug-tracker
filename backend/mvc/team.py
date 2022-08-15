@@ -37,14 +37,14 @@ def team_show(id: int, db: Session):
 
 # Create and Post a new Team
 def team_create(request: schemas.Team, db: Session):
-    new_team = models.Team(user_id=request.user_id, project_id = request.project_id, team_role = request.team_role, assign_date = request.assign_date, active = request.active, note = request.note)
+    new_team = models.Team(project_id = request.project_id, active = request.active, note = request.note)
     db.add(new_team)
     db.commit()
     db.refresh(new_team)
     return new_team
 
 def team_update(id: int, request: schemas.Team, db: Session):
-    update = db.query(models.Team).filter(models.Team.id == id).update({'user_id': request.user_id,'project_id': request.project_id, 'team_role': request.team_role, 'assign_date': request.assign_date, 'active': request.active, 'note': request.note})
+    update = db.query(models.Team).filter(models.Team.id == id).update({'project_id': request.project_id, 'active': request.active, 'note': request.note})
     db.commit()
     return "Team updated!"
 
