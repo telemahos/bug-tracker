@@ -79,9 +79,9 @@ class ProjectBase(BaseModel):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[str] = 0
-    team_id: Optional[str] = 0
-    owner_id: Optional[str] = None
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
 
 class Project(ProjectBase):
     class Config():
@@ -95,9 +95,9 @@ class ShowProject(ProjectBase):
     description: Optional[str] = None
     tags:  Optional[str] = None
     active:  Optional[bool] = False
-    priority: Optional[str] = 0
-    team_id: Optional[str] = 0
-    owner_id: Optional[str] = None
+    priority: Optional[int] = 0
+    team_id: Optional[int] = 0
+    owner_id: Optional[int] = None
 
     class Config():
         orm_mode = True
@@ -106,10 +106,7 @@ class ShowProject(ProjectBase):
 # ------------------------------------
 class TeamBase(BaseModel):
     id: int
-    user_id: Optional[str] = 0
     project_id: Optional[str] = 0
-    team_role: Optional[str] = 0
-    assign_date: date
     active:  Optional[bool] = False
     note:  Optional[str] = None
 
@@ -119,9 +116,33 @@ class Team(TeamBase):
 
 class ShowTeam(TeamBase):
     id: int
-    user_id: Optional[str] = 0
     project_id: Optional[str] = 0
-    team_role: Optional[str] = 0
+    active:  Optional[bool] = False
+    note:  Optional[str] = None
+    the_team_members: Optional[Team] 
+    class Config():
+        orm_mode = True
+        
+# Team
+# ------------------------------------
+class TeamMemberBase(BaseModel):
+    id: int
+    team_id: int 
+    user_id: int
+    team_role: Optional[int] = 0
+    assign_date: date
+    active:  Optional[bool] = False
+    note:  Optional[str] = None
+    
+class TeamMember(TeamMemberBase):
+    class Config():
+        orm_mode = True
+        
+class ShowTeamMember(TeamMemberBase):
+    id: int
+    team_id: int 
+    user_id: int
+    team_role: Optional[int] = 0
     assign_date: date
     active:  Optional[bool] = False
     note:  Optional[str] = None

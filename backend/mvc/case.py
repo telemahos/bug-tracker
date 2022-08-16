@@ -6,7 +6,6 @@ from fastapi import HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from sqlalchemy.sql import text
 from sqlalchemy import desc
-# from fastapi_pagination import Page, pagination_params, page_size
 
 
 # Show All issue ##.order_by(desc('date'))
@@ -69,38 +68,20 @@ def case_create(request: schemas.Case, db: Session):
     db.refresh(new_case)
     return new_case
 
-
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update(request.dict)
+    db.query(models.Case).filter(models.Case.id == id).update(request.dict())
     # db.query(models.Case).filter(models.Case.id == id).update(dict({'date': request.date, 'title': request.title, 'body': request.body, 'tags': request.tags, 'active': request.active, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id}))
     # update = db.query(models.Case).filter(models.Case.id == id)
     # db.add(update)
     # update.update(request.dict())
     db.commit()
-    db.refresh()
-    return case_update
+    return "Case updated!"
 
-    # query = text("""UPDATE blogs SET date=:date, title=:title, body=:body, tags=:tags, active=:active  WHERE id = :id""").params(date=request.date, title=request.title, body=request.body, tags= request.tags, active= request.active, id=id)
-    # result = db.execute(query)
-    # if not result:
-    #     raise HTTPException(status_code=status.HTTP_202_ACCEPTED, detail=f'The post with id {id} is not found')
-    # db.commit()
-    # return request
-
-# Update an Case
-# def case_update(id: int, request: schemas.Case, db: Session):
-#     query = text("""UPDATE cases SET date=:date, service_income_1=:service_income_1, service_income_2=:service_income_2, bar_income_1=:bar_income_1, bar_income_2=:bar_income_2, pos=:pos, z_count=:z_count, vat=:vat, waitress_1=:waitress_1, waitress_2=:waitress_2, barman_1=:barman_1, barman_2=:barman_2, notes=:notes, shift_id=:shift_id WHERE id = :id""").params( date=request.date, service_income_1 = request.service_income_1, service_income_2 = request.service_income_2, bar_income_1=request.bar_income_1, bar_income_2=request.bar_income_2, pos=request.pos, z_count=request.z_count, vat=request.vat, waitress_1=request.waitress_1, waitress_2=request.waitress_2, barman_1=request.barman_1, barman_2=request.barman_2, notes=request.notes, shift_id=request.shift_id , id=id)
-#     result = db.execute(query)
-#     if not result:
-#         raise HTTPException(status_code=status.HTTP_202_ACCEPTED, detail=f'The income with id {id} is not found')
-#     db.commit()
-#     return request
-
-# Delete an Income
-def issue_destroy(id: int, db: Session):
-    income = db.query(models.Income).filter(models.Income.id == id)
-    if not income.first():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"The income with id {id} is not found") 
-    income.delete(synchronize_session=False)
+    
+def case_destroy(id: int, db: Session):
+    case = db.query(models.Case).filter(models.Case.id == id)
+    if not case.first():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"The Case with id {id} is not found") 
+    case.delete(synchronize_session=False)
     db.commit()
-    return "deleted!"
+    return "Case deleted!"

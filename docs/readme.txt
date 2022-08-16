@@ -1,7 +1,7 @@
 - python3 -m venv env_078 
 - ./ngrok http 8000 
 - ngrok http 8000 (on Windows)
-- .\env_066\Scripts\activate.bat (On windows)
+- .\env_078\Scripts\activate.bat (On windows)
 - source env_078/bin/activate
 - pip install --upgrade pip
 - pip install -r requirements.txt
@@ -42,6 +42,16 @@ Team:
 id, user_id, project_id, team_role, assign_date, active, note
 
 --------------
-
+Git to work on Win10 with VS Code:
+Step 1 in your project folder run start-ssh-agent
+Step 2 add your id_rsa or whatever name of your private RSA key password
+Step 3 in the same directory open the cmd or power shell and run code
+--------------
+FRONTEND:
+eslint Fehlemeldung -> Loesung fuer Windows:
+.\node_modules\.bin\eslint src\** --fix
+-> Loesung fuer Mac:
+./node_modules/.bin/eslint src --fix
+--------------
 
 --------------

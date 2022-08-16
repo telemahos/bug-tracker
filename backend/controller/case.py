@@ -3,8 +3,6 @@ from fastapi import APIRouter, Depends, status
 from .. import schemas, database, models, oauth2
 from sqlalchemy.orm import Session
 from ..mvc import case, user, project
-# from fastapi_pagination import pagination_params, Page, paginate
-# from fastapi_pagination.limit_offset import pagination_params
 
 router = APIRouter(
     prefix="/api/case",
@@ -47,7 +45,6 @@ async def show_case(id: int, db: Session = Depends(get_db), current_user: schema
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
 async def create_case(request: schemas.Case, db: Session=Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    print("CREATE CASE CONTROLLER..............")
     return case.case_create(request, db)
 
 @router.delete('/{id}', status_code=status.HTTP_404_NOT_FOUND)
