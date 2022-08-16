@@ -3,7 +3,6 @@ import json
 from sqlalchemy.orm import Session
 from .. import schemas, models
 from fastapi import HTTPException, status
-from fastapi.encoders import jsonable_encoder
 from sqlalchemy.sql import text
 from sqlalchemy import desc
 
@@ -69,11 +68,7 @@ def case_create(request: schemas.Case, db: Session):
     return new_case
 
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update(request.dict())
-    # db.query(models.Case).filter(models.Case.id == id).update(dict({'date': request.date, 'title': request.title, 'body': request.body, 'tags': request.tags, 'active': request.active, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id}))
-    # update = db.query(models.Case).filter(models.Case.id == id)
-    # db.add(update)
-    # update.update(request.dict())
+    db.query(models.Case).filter(models.Case.id == id).update({'date': request.date, 'title': request.title, 'body': request.body, 'tags': request.tags, 'active': request.active, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
     db.commit()
     return "Case updated!"
 
