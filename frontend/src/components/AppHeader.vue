@@ -20,6 +20,7 @@
         <CNavItem>
           <CNavLink href="#">Inbox</CNavLink>
         </CNavItem>
+        <AppHeaderDropdownNew />
       </CHeaderNav>
       <CHeaderNav>
         <CNavItem>
@@ -50,12 +51,14 @@
 <script>
 import AppBreadcrumb from './AppBreadcrumb'
 import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
+import AppHeaderDropdownNew from './AppHeaderDropdownNew'
 import { logo } from '@/assets/brand/logo'
 export default {
   name: 'AppHeader',
   components: {
     AppBreadcrumb,
     AppHeaderDropdownAccnt,
+    AppHeaderDropdownNew,
   },
   setup() {
     return {
