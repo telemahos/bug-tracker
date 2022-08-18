@@ -31,9 +31,9 @@ async def show_case_by_case_type(case_type: int, db: Session = Depends(get_db), 
 async def show_case_by_priority(priority: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return case.case_show_by_priority(priority, db)
 
-@router.get('/active/{active}', response_model = List[schemas.ShowCase], status_code=200)
-async def show_case_by_active(active: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
-    return case.case_show_by_active(active, db)
+@router.get('/status/{status}', response_model = List[schemas.ShowCase], status_code=200)
+async def show_case_by_status(status: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return case.case_show_by_status(status, db)
 
 @router.get('/{year}/{month}/', response_model = List[schemas.ShowCase], status_code=200)
 async def show_case_by_date(year: str, month: str , db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):

@@ -21,9 +21,9 @@ class Case(Base):
     id = Column(Integer, primary_key=True, index=True)
     date = Column(Date)
     title = Column(String, index = True)
-    body = Column(String) 
+    description = Column(String) 
     tags = Column(String)
-    active = Column(Integer, default=0)
+    status = Column(Integer, default=0)
     priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
     case_type = Column(Integer) # Issue=0, Bug=1
     project_id = Column(Integer)

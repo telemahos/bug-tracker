@@ -37,9 +37,9 @@ class CaseBase(BaseModel):
     id: int
     date: date
     title: Optional[str] = None
-    body: Optional[str] = None
+    description: Optional[str] = None
     tags:  Optional[str] = None
-    active:  Optional[int] = 0
+    status:  Optional[int] = 0
     priority: Optional[int] = 0
     case_type: Optional[int] = 0
     project_id: Optional[int] = None
@@ -53,9 +53,9 @@ class ShowCase(CaseBase):
     id: int
     date: date
     title: Optional[str] = None
-    body: Optional[str] = None
+    description: Optional[str] = None
     tags:  Optional[str] = None
-    active:  Optional[int] = 0
+    status:  Optional[int] = 0
     priority: Optional[int] = 0
     case_type: Optional[int] = 0
     project_id: Optional[int] = None

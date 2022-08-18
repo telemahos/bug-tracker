@@ -45,11 +45,11 @@ def case_show_by_priority(priority: int, db: Session, limit: int = 10, offset: i
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Case from the User with ID {priority} is not found')
     return case
 
-# Show Cases by active
-def case_show_by_active(active: int, db: Session, limit: int = 10, offset: int = 0 ):
-    case = db.query(models.Case).filter(models.Case.active == active).all()
+# Show Cases by status
+def case_show_by_status(status: int, db: Session, limit: int = 10, offset: int = 0 ):
+    case = db.query(models.Case).filter(models.Case.status == status).all()
     if not case:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Case withe the active ID: {active} is not found')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The Case withe the status ID: {status} is not found')
     return case
 
 # Show a Specific Case by id
@@ -61,14 +61,14 @@ def case_show(id: int, db: Session):
 
 # Create and Post a new Case
 def case_create(request: schemas.Case, db: Session):
-    new_case = models.Case(date=request.date, title = request.title, body = request.body, tags = request.tags, active = request.active, priority = request.priority, case_type = request.case_type, project_id = request.project_id, owner_id = request.owner_id)
+    new_case = models.Case(date=request.date, title = request.title, description = request.description, tags = request.tags, status = request.status, priority = request.priority, case_type = request.case_type, project_id = request.project_id, owner_id = request.owner_id)
     db.add(new_case)
     db.commit()
     db.refresh(new_case)
     return new_case
 
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update({'date': request.date, 'title': request.title, 'body': request.body, 'tags': request.tags, 'active': request.active, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
+    db.query(models.Case).filter(models.Case.id == id).update({'date': request.date, 'title': request.title, 'description': request.description, 'tags': request.tags, 'status': request.status, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
     db.commit()
     return "Case updated!"
 
