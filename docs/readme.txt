@@ -51,7 +51,7 @@ FRONTEND:
 eslint Fehlemeldung -> Loesung fuer Windows:
 .\node_modules\.bin\eslint src\** --fix
 -> Loesung fuer Mac:
-./node_modules/.bin/eslint src --fix
+npm run lint -- --fix
 --------------
 
 --------------

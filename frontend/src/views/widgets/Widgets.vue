@@ -59,7 +59,7 @@
                   inverse
                   :progress="{ value: 75 }"
                 >
-                  <template #text>Widget helper text</template>
+                  <template #text>Widget helper text1</template>
                   <template #title>Widget title</template>
                   <template #value>89.9%</template>
                 </CWidgetStatsB>
@@ -71,7 +71,7 @@
                   inverse
                   :progress="{ value: 75 }"
                   text="Widget helper text"
-                  title="Widget title"
+                  title="Widget title2"
                   value="12.124"
                 />
               </CCol>
@@ -82,7 +82,7 @@
                   inverse
                   :progress="{ value: 75 }"
                   text="Widget helper text"
-                  title="Widget title"
+                  title="Widget title3"
                   value="$98.111,00"
                 />
               </CCol>
@@ -93,7 +93,7 @@
                   inverse
                   :progress="{ value: 75 }"
                   text="Widget helper text"
-                  title="Widget title"
+                  title="Widget title4"
                   value="2TB"
                 />
               </CCol>
@@ -251,21 +251,21 @@
           <DocsExample href="">
             <CRow>
               <CCol :xs="3">
-                <CWidgetStatsF color="primary" title="Title" value="$1.999,50">
+                <CWidgetStatsF color="primary" title="Title1" value="$1.999,50">
                   <template #icon>
                     <CIcon icon="cil-settings" size="xl" />
                   </template>
                 </CWidgetStatsF>
               </CCol>
               <CCol :xs="3">
-                <CWidgetStatsF color="info" title="Title" value="$1.999,50">
+                <CWidgetStatsF color="info" title="Title2" value="$1.999,50">
                   <template #icon>
                     <CIcon icon="cil-user" size="xl" />
                   </template>
                 </CWidgetStatsF>
               </CCol>
               <CCol :xs="3">
-                <CWidgetStatsF color="warning" title="Title" value="$1.999,50">
+                <CWidgetStatsF color="warning" title="Title3" value="$1.999,50">
                   <template #icon>
                     <CIcon icon="cil-moon" size="xl" />
                   </template>
@@ -305,7 +305,7 @@
                 </CWidgetStatsF>
               </CCol>
               <CCol :xs="3">
-                <CWidgetStatsF color="info" title="Title" value="$1.999,50">
+                <CWidgetStatsF color="info" title="Title55" value="$1.999,50">
                   <template #icon>
                     <CIcon icon="cil-user" size="xl" />
                   </template>
@@ -378,7 +378,7 @@
                 <CWidgetStatsF
                   color="primary"
                   :padding="false"
-                  title="Title"
+                  title="Title73"
                   value="$1.999,50"
                 >
                   <template #icon>
@@ -565,7 +565,7 @@
                   color="info"
                   inverse
                   :progress="{ value: 75 }"
-                  title="Visitors"
+                  title="Visitors1"
                   value="87.500"
                 >
                   <template #icon
@@ -579,7 +579,7 @@
                   color="success"
                   inverse
                   :progress="{ value: 75 }"
-                  title="New Clients"
+                  title="New Clients2"
                   value="385"
                 >
                   <template #icon
@@ -593,7 +593,7 @@
                   color="warning"
                   inverse
                   :progress="{ value: 75 }"
-                  title="Products sold"
+                  title="Products sold3"
                   value="1238"
                 >
                   <template #icon

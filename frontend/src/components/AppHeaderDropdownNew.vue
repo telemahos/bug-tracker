@@ -16,7 +16,7 @@
         <!-- <CBadge color="success" class="ms-auto">{{ itemsCount }}</CBadge> -->
       </CDropdownItem>
       <CDropdownItem>
-        <CIcon icon="cil-user" /> New Team
+        <CIcon icon="cil-people" /> New Team
         <!-- <CBadge color="danger" class="ms-auto">{{ itemsCount }}</CBadge> -->
       </CDropdownItem>
       <CDropdownItem>

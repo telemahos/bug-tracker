@@ -16,8 +16,8 @@ export default [
   },
   {
     component: 'CNavItem',
-    name: 'Main',
-    to: '/theme/main',
+    name: 'Mydashboard',
+    to: '/theme/mydashboard',
     icon: 'cil-speedometer',
   },
   {

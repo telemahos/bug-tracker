@@ -35,9 +35,9 @@ const routes = [
         component: () => import('@/views/theme/Typography.vue'),
       },
       {
-        path: '/theme/main',
-        name: 'Main',
-        component: () => import('@/views/theme/Main.vue'),
+        path: '/theme/mydashboard',
+        name: 'mydashboard',
+        component: () => import('@/views/theme/Mydashboard.vue'),
       },
       {
         path: '/theme/project',
