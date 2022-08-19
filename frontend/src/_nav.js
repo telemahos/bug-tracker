@@ -32,11 +32,34 @@ export default [
     to: '/theme/project',
     icon: 'cil-puzzle',
   },
+  // {
+  //   component: 'CNavItem',
+  //   name: 'Tickets',
+  //   to: '/theme/ticket',
+  //   icon: 'cil-task',
+  // },
   {
-    component: 'CNavItem',
+    component: 'CNavGroup',
     name: 'Tickets',
-    to: '/theme/ticket',
+    to: '/theme',
     icon: 'cil-task',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Tickets',
+        to: '/theme/ticket',
+      },
+      {
+        component: 'CNavItem',
+        name: 'AddTicket',
+        to: '/theme/addticket',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Cards',
+        to: '/base/cards',
+      },
+    ],
   },
   // End Bug Traker
   {

@@ -54,6 +54,11 @@ const routes = [
         name: 'Inbox',
         component: () => import('@/views/theme/Inbox.vue'),
       },
+      {
+        path: '/theme/addticket',
+        name: 'AddTicket',
+        component: () => import('@/views/theme/AddTicket.vue'),
+      },
       // {
       //   path: '/theme/main',
       //   name: 'Main',

@@ -15,7 +15,7 @@
           <CNavLink href="#">Projects</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#">Tickets</CNavLink>
+          <CNavLink href="/theme/ticket">Tickets</CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink href="#">Inbox</CNavLink>
