@@ -91,19 +91,18 @@ export default {
   },
   methods: {
     submitTicket() {
-      const shift_data = {
-        // id: 0,
-        // service_id_1: waitressName1.value,
-        // service_id_2: waitressName2.value,
-        // barman_id_1: barmanName1.value,
-        // barman_id_2: barmanName2.value
-      }
-
-      const headers = {
-        // 'Authorization': `Bearer ${this.token}`,
-        // 'Content-Type': 'application/json',
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      }
+      // const shift_data = {
+      // id: 0,
+      // service_id_1: waitressName1.value,
+      // service_id_2: waitressName2.value,
+      // barman_id_1: barmanName1.value,
+      // barman_id_2: barmanName2.value
+      // }
+      // const headers = {
+      // 'Authorization': `Bearer ${this.token}`,
+      // 'Content-Type': 'application/json',
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+      // }
       // console.log("SHIFT DATA: ", shift_data)
       // await axios.post(
       //   `${this.apiURL}/shift`, shift_data, { headers })
@@ -114,7 +113,6 @@ export default {
       //   .finally(() =>
       //     this.setIncome(this.new_shift_id)
       // );
-
       // console.log("new_shift_id22: " + this.new_shift_id);
     },
   },
