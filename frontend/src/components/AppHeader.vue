@@ -12,14 +12,30 @@
           <CNavLink href="/dashboard"> Dashboard </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#">Projects</CNavLink>
+          <CNavLink href="#/theme/project">Projects</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="/theme/ticket">Tickets</CNavLink>
+          <!-- <router-link to="/theme/ticket">Tickets</router-link> -->
+          <CNavLink href="#/theme/ticket">Tickets</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#">Inbox</CNavLink>
+          <CNavLink href="#/theme/inbox">Inbox</CNavLink>
         </CNavItem>
+        <CNavItem>
+          <CNavLink
+            href="#/pages/Logout"
+            v-if="this.$store.state.isAuthenticated"
+            >Logout</CNavLink
+          >
+        </CNavItem>
+        <CNavItem>
+          <CNavLink
+            href="#/pages/Login"
+            v-if="!this.$store.state.isAuthenticated"
+            >Login</CNavLink
+          >
+        </CNavItem>
+        <!-- <Logout /> -->
         <AppHeaderDropdownNew />
       </CHeaderNav>
       <CHeaderNav>
@@ -53,12 +69,14 @@ import AppBreadcrumb from './AppBreadcrumb'
 import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
 import AppHeaderDropdownNew from './AppHeaderDropdownNew'
 import { logo } from '@/assets/brand/logo'
+// import Logout from '@/components/Logout'
 export default {
   name: 'AppHeader',
   components: {
     AppBreadcrumb,
     AppHeaderDropdownAccnt,
     AppHeaderDropdownNew,
+    // Logout,
   },
   setup() {
     return {

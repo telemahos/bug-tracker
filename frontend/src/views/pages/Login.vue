@@ -151,8 +151,9 @@ export default {
       const formData = new FormData()
       formData.append('username', this.username)
       formData.append('password', this.password)
-      console.log('this.username' + this.username)
-      console.log('this.password' + this.password)
+      console.log('this.username: ' + this.username)
+      console.log('this.password: ' + this.password)
+      console.log('this.apiURL: ' + this.apiURL)
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
         console.log(response)
         // handle success

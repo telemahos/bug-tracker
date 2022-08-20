@@ -5,7 +5,7 @@
       <AppHeader />
       <div class="body flex-grow-1 px-3">
         <CContainer lg>
-          <router-view />
+          <router-view v-if="this.$store.state.isAuthenticated" />
         </CContainer>
       </div>
       <AppFooter />
