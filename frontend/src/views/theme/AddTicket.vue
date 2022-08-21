@@ -13,37 +13,48 @@
         <CCardBody>
           <CForm @submit.prevent="submitTicket">
             <div class="mb-3">
-              <CFormLabel for="exampleFormControlInput1"
-                ><b>Title:</b></CFormLabel
-              >
+              <CFormLabel for="title"><b>Title:</b></CFormLabel>
               <CFormInput
-                id="exampleFormControlInput1"
+                id="title"
                 type="text"
-                placeholder="Title"
+                placeholder="Ticket Title"
+                name="title"
+                v-model="title"
               />
             </div>
             <div class="mb-3">
-              <CFormLabel for="exampleFormControlTextarea1"
-                ><b>Description:</b></CFormLabel
-              >
+              <CFormLabel for="description"><b>Description:</b></CFormLabel>
               <CFormTextarea
-                id="exampleFormControlTextarea1"
+                id="description"
                 rows="3"
+                v-model="description"
               ></CFormTextarea>
             </div>
             <div class="mb-3">
-              <CFormLabel for=""><b>Ticket Type:</b></CFormLabel>
-              <CFormSelect aria-label="Default select example">
-                <option>Type</option>
+              <CFormLabel for="ticketType"><b>Ticket Type:</b></CFormLabel>
+              <CFormSelect
+                aria-label="Ticket Type"
+                id="ticketType"
+                name="ticketType"
+                v-model="ticketType"
+              >
+                <option selected disabled>Type</option>
                 <option value="1">Issue</option>
                 <option value="2">Bug</option>
-                <option value="3">Three</option>
+                <option value="3">Note</option>
               </CFormSelect>
             </div>
             <div class="mb-3">
-              <CFormLabel for=""><b>Ticket Priority:</b></CFormLabel>
-              <CFormSelect aria-label="Default select example">
-                <option>Priority</option>
+              <CFormLabel for="ticketPriority"
+                ><b>Ticket Priority:</b></CFormLabel
+              >
+              <CFormSelect
+                aria-label="Ticket Priority"
+                id="ticketPriority"
+                name="ticketPriority"
+                v-model="ticketPriority"
+              >
+                <option selected disabled>Priority</option>
                 <option value="1">Normal</option>
                 <option value="2">Medium</option>
                 <option value="3">High</option>
@@ -51,9 +62,14 @@
               </CFormSelect>
             </div>
             <div class="mb-3">
-              <CFormLabel for=""><b>Ticket Status:</b></CFormLabel>
-              <CFormSelect aria-label="Default select example">
-                <option>Status</option>
+              <CFormLabel for="ticketStatus"><b>Ticket Status:</b></CFormLabel>
+              <CFormSelect
+                aria-label="Ticket Status"
+                id="ticketStatus"
+                name="ticketStatus"
+                v-model="ticketStatus"
+              >
+                <!-- <option selected disabled>Status</option> -->
                 <option value="1">New</option>
                 <option value="2">In Progress</option>
                 <option value="3">On Hold</option>
@@ -61,15 +77,42 @@
               </CFormSelect>
             </div>
             <div class="mb-3">
-              <CFormLabel for=""><b>Assign to:</b></CFormLabel>
-              <CFormSelect aria-label="Default select example">
-                <option>Unassigned</option>
-                <option value="1">Kostas Kakoulis</option>
-                <option value="2">Noula Kakouli</option>
-                <option value="3">Niki Kakouli</option>
-                <option value="4">Dev1</option>
+              <CFormLabel for="projectSelected"><b>Project:</b></CFormLabel>
+              <CFormSelect
+                aria-label="Project Selected"
+                id="projectSelected"
+                name="projectSelected"
+                v-model="projectSelected"
+              >
+                <option selected disabled>Project</option>
+                <option
+                  v-for="project in projects"
+                  v-bind:key="project.title"
+                  v-bind:value="project.id"
+                >
+                  {{ project.title }}
+                </option>
               </CFormSelect>
             </div>
+            <div class="mb-3">
+              <CFormLabel for="assigned"><b>Assign to:</b></CFormLabel>
+              <CFormSelect
+                aria-label="Assign"
+                id="assigned"
+                name="assigned"
+                v-model="assigned"
+              >
+                <option selected disabled>Unassigned</option>
+                <option v-for="user in users" :value="user.id">
+                  {{ user.name }} | {{ user.id }}
+                </option>
+                <!-- <option value="2">Kostas Kakoulis22</option>
+                <option value="3">Noula Kakouli33</option>
+                <option value="4">Niki Kakouli44</option>
+                <option value="5">Dev111</option> -->
+              </CFormSelect>
+            </div>
+            <hr />
             <CCol :xs="12">
               <CButton color="primary" type="submit">Submit Ticket</CButton>
 
@@ -83,37 +126,74 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'AddTicket',
   components: {},
   data() {
-    return {}
+    return {
+      // Store
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+
+      date: '',
+      title: '',
+      description: '',
+      ticketStatus: '',
+      ticketPriority: '',
+      ticketType: '',
+      projects: [],
+      users: [],
+      projectSelected: '',
+      assigned: '',
+    }
+  },
+  mounted() {
+    const headers = {
+      Authorization: `Bearer ${this.token}`,
+      'Content-Type': 'application/json',
+    }
+    axios
+      .get(`${this.apiURL}/project`, { headers })
+      .then((response) => {
+        this.projects = response.data
+        console.log('Projects', this.projects)
+      })
+      .catch((error) => console.log(`${error}`))
+    axios
+      .get(`${this.apiURL}/user`, { headers })
+      .then((response) => {
+        this.users = response.data
+        console.log('Users', this.users)
+      })
+      .catch((error) => console.log(`${error}`))
   },
   methods: {
-    submitTicket() {
-      // const shift_data = {
-      // id: 0,
-      // service_id_1: waitressName1.value,
-      // service_id_2: waitressName2.value,
-      // barman_id_1: barmanName1.value,
-      // barman_id_2: barmanName2.value
-      // }
-      // const headers = {
-      // 'Authorization': `Bearer ${this.token}`,
-      // 'Content-Type': 'application/json',
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-      // }
-      // console.log("SHIFT DATA: ", shift_data)
-      // await axios.post(
-      //   `${this.apiURL}/shift`, shift_data, { headers })
-      //   .then(response =>
-      //     this.new_shift_id = response.data.id,
-      //   )
-      //   .catch((error) => console.log(`${error}`))
-      //   .finally(() =>
-      //     this.setIncome(this.new_shift_id)
-      // );
-      // console.log("new_shift_id22: " + this.new_shift_id);
+    async submitTicket() {
+      const case_data = {
+        id: 0,
+        date: '2022-08-21',
+        title: this.title,
+        description: this.description,
+        tags: 'test Tag',
+        status: this.ticketStatus,
+        priority: this.ticketPriority,
+        case_type: this.ticketType,
+        project_id: projectSelected.value,
+        owner_id: assigned.value,
+      }
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      console.log('TICKET DATA: ', case_data)
+      await axios
+        .post(`${this.apiURL}/case`, case_data, { headers })
+        .then((response) =>
+          console.log('New Case: ' + JSON.stringify(response.data)),
+        )
+        .catch((error) => console.log(`${error}`))
     },
   },
 }
