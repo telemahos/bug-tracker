@@ -2,9 +2,6 @@
   <h1>New Ticket</h1>
 
   <CRow>
-    <!-- <CCol :xs="12">
-      <DocsCallout name="Form Control" href="forms/form-control.html" />
-    </CCol> -->
     <CCol :xs="12">
       <CCard class="mb-4">
         <CCardHeader>
@@ -69,7 +66,6 @@
                 name="ticketStatus"
                 v-model="ticketStatus"
               >
-                <!-- <option selected disabled>Status</option> -->
                 <option value="1">New</option>
                 <option value="2">In Progress</option>
                 <option value="3">On Hold</option>
@@ -103,19 +99,15 @@
                 v-model="assigned"
               >
                 <option selected disabled>Unassigned</option>
-                <option v-for="user in users" :value="user.id">
+                <option v-for="user in users" :key="user.name" :value="user.id">
                   {{ user.name }} | {{ user.id }}
                 </option>
-                <!-- <option value="2">Kostas Kakoulis22</option>
-                <option value="3">Noula Kakouli33</option>
-                <option value="4">Niki Kakouli44</option>
-                <option value="5">Dev111</option> -->
               </CFormSelect>
             </div>
             <hr />
             <CCol :xs="12">
               <CButton color="primary" type="submit">Submit Ticket</CButton>
-
+              <div class="vr"></div>
               <CButton color="secondary" type="submit">Cancel </CButton>
             </CCol>
           </CForm>
@@ -129,7 +121,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'AddTicket',
+  name: 'TicketNew',
   components: {},
   data() {
     return {
@@ -180,8 +172,8 @@ export default {
         status: this.ticketStatus,
         priority: this.ticketPriority,
         case_type: this.ticketType,
-        project_id: projectSelected.value,
-        owner_id: assigned.value,
+        project_id: this.projectSelected.value,
+        owner_id: this.assigned.value,
       }
       const headers = {
         Authorization: `Bearer ${this.token}`,
