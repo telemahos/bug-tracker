@@ -29,14 +29,15 @@ Product Manager -> 4
 Technology Manager -> 5
 --------------
 Issue, Bug, Priority:
-Low -> 0
-Medium -> 1
-High -> 2
-Critical -> 3
+Low -> 1
+Medium -> 2
+High -> 3
+Critical -> 4
 --------------
 Cases:
-Issue -> 0
-Bug -> 1
+Issue -> 1
+Bug -> 2
+Note -> 3
 --------------
 Team:
 id, user_id, project_id, team_role, assign_date, active, note

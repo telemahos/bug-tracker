@@ -54,7 +54,7 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>{{ the_case.title }}</div>
+                      <div>{{ the_case.title }} {{ ticketStatus[index] }}</div>
                       <div class="small text-medium-emphasis">
                         {{ the_case.description }}
                       </div>
@@ -220,22 +220,36 @@ export default {
       })
       .finally(() => {
         let y = 0,
-          z = 0
+          z = 0,
+          x = 0
         for (let i = 0; i < this.cases.length; i++) {
-          // Find the Project Title of each case
+          // Find the project title of each case
           for (let e = 0; e < this.projects.length; e++) {
             if (this.cases[i].project_id === this.projects[e].id) {
               this.projectTitle[y] = this.projects[e].title
               y++
             }
           }
-          // Find the Owners Name of each case
+          // Find the owners name of each case
           for (let f = 0; f < this.users.length; f++) {
             if (this.cases[i].owner_id === this.users[f].id) {
               this.userNames[z] = this.users[f].name
               z++
             }
           }
+          // Find the status of each case
+          // if (this.cases[i].status === 1) {
+          //   this.ticketStatus[i] = "Issue";
+          //   x++;
+          // }
+          // else if (this.cases[i].status === 2) {
+          //   this.ticketStatus[x] = "Bug";
+          //   x++;
+          // }
+          // else if (this.cases[i].status === 3) {
+          //   this.ticketStatus[x] = "Note";
+          //   x++;
+          // }
         }
       })
       .catch((error) => console.log(`${error}`))
