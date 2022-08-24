@@ -35,7 +35,10 @@
                       >Type</CTableHeaderCell
                     >
                     <CTableHeaderCell>Project</CTableHeaderCell>
-                    <CTableHeaderCell>Owner</CTableHeaderCell>
+                    <CTableHeaderCell class="text-center"
+                      >Owner</CTableHeaderCell
+                    >
+                    <CTableHeaderCell class="text-center">ToDo</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -91,34 +94,34 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell>
-                      <p
+                      <div
                         class="small text-secondary"
                         color="text-secondary"
                         v-if="the_case.priority === 1"
                       >
                         Normal
-                      </p>
-                      <p
+                      </div>
+                      <div
                         class="small text-info"
                         color="text-info"
                         v-if="the_case.priority === 2"
                       >
                         Medium
-                      </p>
-                      <p
+                      </div>
+                      <div
                         class="small text-warning"
                         color="text-warning"
                         v-if="the_case.priority === 3"
                       >
                         High
-                      </p>
-                      <p
+                      </div>
+                      <div
                         class="small text-danger"
                         color="text-danger"
                         v-if="the_case.priority === 4"
                       >
                         Critical
-                      </p>
+                      </div>
                       <!-- <div class="clearfix">
                         <div class="float-start">
                           <strong>{{ item.usage.value }}%</strong>
@@ -136,18 +139,18 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      <p
+                      <div
                         class="text-dark small"
                         v-if="the_case.case_type === 1"
                       >
                         Issue
-                      </p>
-                      <p
+                      </div>
+                      <div
                         class="text-danger small"
                         v-if="the_case.case_type === 2"
                       >
                         Bug
-                      </p>
+                      </div>
                       <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
                     </CTableDataCell>
                     <CTableDataCell>
@@ -159,6 +162,14 @@
                       <div>{{ userNames[index] }}</div>
                       <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
                     </CTableDataCell>
+                    <CTableDataCell class="text-center">
+                      
+                      <div>
+                        <AppOffcanvas />
+                      </div>
+                      
+                    </CTableDataCell>
+                    
                   </CTableRow>
                   <CTableRow> </CTableRow>
                 </CTableBody>
@@ -173,9 +184,13 @@
 
 <script>
 import axios from 'axios'
+import AppOffcanvas from '../../components/AppOffcanvas.vue'
 
 export default {
   name: 'Ticket',
+  components: {
+    AppOffcanvas
+  },
   data() {
     return {
       token: this.$store.state.token,
