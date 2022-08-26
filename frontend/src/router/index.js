@@ -317,6 +317,11 @@ const routes = [
         component: () => import('@/views/pages/Login'),
       },
       {
+        path: 'logout',
+        name: 'Logout',
+        component: () => import('@/views/pages/Logout'),
+      },
+      {
         path: 'register',
         name: 'Register',
         component: () => import('@/views/pages/Register'),

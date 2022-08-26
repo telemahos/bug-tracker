@@ -10,7 +10,7 @@ from .. import schemas
 # openssl rand -hex 32
 SECRET_KEY = "d94183b53dc8fb24a48a9b3ea932509627a673081d85c072f4c9b5fec3816402"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 300000
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
