@@ -1,5 +1,5 @@
 <template>
-  <!-- <h1>Ciao... we will miss YOU!!!</h1> -->
+  <h1>Ciao... we will miss YOU!!!</h1>
   <CNavLink href="#/pages/login" v-if="!this.$store.state.isAuthenticated"
     >Login</CNavLink
   >

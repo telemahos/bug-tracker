@@ -38,7 +38,9 @@
                     <CTableHeaderCell class="text-center"
                       >Owner</CTableHeaderCell
                     >
-                    <CTableHeaderCell class="text-center">ToDo</CTableHeaderCell>
+                    <CTableHeaderCell class="text-center"
+                      >ToDo</CTableHeaderCell
+                    >
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
@@ -163,13 +165,10 @@
                       <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      
                       <div>
                         <AppOffcanvas />
                       </div>
-                      
                     </CTableDataCell>
-                    
                   </CTableRow>
                   <CTableRow> </CTableRow>
                 </CTableBody>
@@ -189,7 +188,7 @@ import AppOffcanvas from '../../components/AppOffcanvas.vue'
 export default {
   name: 'Ticket',
   components: {
-    AppOffcanvas
+    AppOffcanvas,
   },
   data() {
     return {
@@ -235,8 +234,7 @@ export default {
       })
       .finally(() => {
         let y = 0,
-          z = 0,
-          x = 0
+          z = 0
         for (let i = 0; i < this.cases.length; i++) {
           // Find the project title of each case
           for (let e = 0; e < this.projects.length; e++) {
