@@ -166,7 +166,7 @@
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <AppOffcanvas />
+                        <AppOffcanvasProjectEdit />
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -183,12 +183,16 @@
 
 <script>
 import axios from 'axios'
-import AppOffcanvas from '../../components/AppOffcanvas.vue'
+import AppOffcanvasProjectEdit from '../../components/AppOffcanvasProjectEdit.vue'
 
 export default {
   name: 'Ticket',
   components: {
-    AppOffcanvas,
+    AppOffcanvasProjectEdit,
+  },
+  props: {
+    title: String,
+    likes: Number
   },
   data() {
     return {
