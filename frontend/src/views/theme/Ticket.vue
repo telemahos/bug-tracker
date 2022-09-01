@@ -166,7 +166,7 @@
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <AppOffcanvasProjectEdit />
+                        <AppOffcanvasTicketEdit v-bind:the_case="the_case"/>
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -182,17 +182,14 @@
 </template>
 
 <script>
+// import provide from 'vue'
 import axios from 'axios'
-import AppOffcanvasProjectEdit from '../../components/AppOffcanvasProjectEdit.vue'
+import AppOffcanvasTicketEdit from '../../components/AppOffcanvasTicketEdit.vue'
 
 export default {
   name: 'Ticket',
   components: {
-    AppOffcanvasProjectEdit,
-  },
-  props: {
-    title: String,
-    likes: Number
+    AppOffcanvasTicketEdit,
   },
   data() {
     return {
@@ -209,6 +206,7 @@ export default {
       users: [],
       userNames: [],
       projectTitle: [],
+      all_cases: [],
     }
   },
   mounted() {
@@ -271,5 +269,8 @@ export default {
       })
       .catch((error) => console.log(`${error}`))
   },
+  // provide: {
+  //   all_cases: this.cases,
+  // },
 }
 </script>
