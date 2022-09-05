@@ -18,7 +18,7 @@
     "
   >
     <COffcanvasHeader>
-      <COffcanvasTitle>Offcanvas731</COffcanvasTitle>
+      <COffcanvasTitle>Ticket</COffcanvasTitle>
       <CCloseButton
         class="text-reset"
         @click="
@@ -29,7 +29,7 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-    {{ the_case }}
+    <!-- {{ the_case }} -->
       <CForm @submit.prevent="submitTicket">
         <div class="mb-3">
           <CFormLabel for="title">Title:</CFormLabel>
@@ -90,15 +90,18 @@
             </option> 
           </CFormSelect>
         </div>
-        {# <div class="mb-3">
+        <div class="mb-3">
           <CFormLabel for="projectSelected"><b>Project:</b></CFormLabel>
           <CFormSelect
             aria-label="Project Selected"
             id="projectSelected"
             name="projectSelected"
-            v-model="the_case.projectSelected"
+            
           >
-            <option selected disabled>Project</option>
+            <option v-for="(projects ,index) in the_projects" :selected="the_case.project_id === projects.id">
+              {{ projects.title }}
+            </option> 
+
             <option
               v-for="project in projects"
               v-bind:key="project.title"
@@ -107,21 +110,19 @@
               {{ project.title }}
             </option>
           </CFormSelect>
-        </div> #}
-        {# <div class="mb-3">
+        </div> 
+        <div class="mb-3">
           <CFormLabel for="assigned"><b>Assign to:</b></CFormLabel>
           <CFormSelect
             aria-label="Assign"
             id="assigned"
             name="assigned"
-            v-model="assigned"
           >
-            <option selected disabled>Unassigned</option>
-            <option v-for="user in users" :key="user.name" :value="user.id">
-              {{ user.name }} | {{ user.id }}
-            </option>
+          <option v-for="(users ,index) in the_users" :selected="the_case.owner_id == users.id">
+              {{ users.name }}
+            </option> 
           </CFormSelect>
-        </div> #}
+        </div> 
         <hr />
         <CCol :xs="12">
           <CButton color="primary" type="submit">Submit Ticket</CButton>
@@ -139,6 +140,8 @@ export default {
   props: ['the_case'],
   data() {
     return {
+      the_projects: JSON.parse(this.$store.state.all_projects),
+      the_users: JSON.parse(this.$store.state.all_users),
       visibleEnd: false,
       case_type_options: {
         '1': 'Issue',

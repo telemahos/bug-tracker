@@ -1,6 +1,45 @@
 ############################# --- TODO --- ########################################
 
 *** GENERAL ***
+- Calender JS plugin
+- Correct date insertion
+- Logout correctly
+
+*** USER ***
+
+
+*** DASHBOARD ***
+
+
+*** PROJECTS ***
+
+
+*** TICKETS ***
+- Pagination in tickets table 
+- Case title should be clickable as a link, to view the case 
+- Offcanvas: Save on edit button, to work
+- Offcanvas: Cancel button, to work 
+- Offcanvas: Add Calender for date
+- Offcanvas: Small changes in CSS to beautify it
+- Nice to have: Table Head should be sortable
+- Search Filter for tickets
+ 
+
+*** BUG ***
+
+
+*** NOTES ***
+
+
+
+############################# +++ COMPLETED +++ #####################################
+
+*** TICKETS ***
+- Tickets can be listed in a Table
+- A single Ticket can be showed in an Offcanvas, for editing  
+- Tickets can be created 
+
+*** GENERAL ***
 
 
 *** USER ***
@@ -13,8 +52,3 @@
 
 
 *** NOTES ***
-
-
-
-############################# +++ COMPLETED +++ #####################################
-

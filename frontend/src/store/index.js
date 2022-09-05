@@ -9,6 +9,8 @@ export default createStore({
     isLoading: false,
     apiURL: 'http://127.0.0.1:8000/api',
     today: '',
+    all_projects: '',
+    all_users: '',
   },
   mutations: {
     toggleSidebar(state) {
@@ -51,6 +53,14 @@ export default createStore({
       state.token = ''
       state.isAuthenticated = false
       console.log('removeToken')
+    },
+    setProjects(state, projects) {
+      state.all_projects = JSON.stringify(projects)
+      console.log('STORE: all_projects' + state.all_projects)
+    },
+    setUsers(state, users) {
+      state.all_users = JSON.stringify(users)
+      console.log('STORE: all_users' + state.all_users)
     },
   },
   actions: {},

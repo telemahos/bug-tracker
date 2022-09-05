@@ -224,14 +224,16 @@ export default {
       .get(`${this.apiURL}/project`, { headers })
       .then((response) => {
         this.projects = response.data
-        console.log('projects: ', this.projects)
+        this.$store.commit('setProjects', this.projects)
+        // console.log('projects: ', this.projects)
       })
       .catch((error) => console.log(`${error}`))
     axios
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
-        console.log('User Names: ', this.users)
+        this.$store.commit('setUsers', this.users)
+        // console.log('User Names: ', this.users)
       })
       .catch((error) => console.log(`${error}`))
     axios
