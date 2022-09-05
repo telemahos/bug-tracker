@@ -29,13 +29,10 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-      Test 22 by... {{ the_case.id }}
-      <div>
-        <h3>hallooo</h3>
-      </div>
+    {{ the_case }}
       <CForm @submit.prevent="submitTicket">
         <div class="mb-3">
-          <CFormLabel for="title"><b>Title:</b></CFormLabel>
+          <CFormLabel for="title">Title:</CFormLabel>
           <CFormInput
             id="title"
             type="text"
@@ -58,12 +55,16 @@
             aria-label="Ticket Type"
             id="ticketType"
             name="ticketType"
-            v-model="the_case.ticketType"
           >
-            <option selected disabled>Type</option>
-            <option value="1">Issue</option>
+            <option v-for="(type_options,index) in case_type_options " :selected="the_case.case_type == index">
+              {{ type_options }}
+            </option>
+
+            <!--
+            v-model="the_case.case_type"
+             <option value="1">Issue</option>
             <option value="2">Bug</option>
-            <option value="3">Note</option>
+            <option value="3">Note</option>-->
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -76,11 +77,14 @@
             name="ticketPriority"
             v-model="the_case.ticketPriority"
           >
-            <option selected disabled>Priority</option>
+            <!--<option v-for="case_options in case_type_options ">
+              {# {{ case_options }} || {{ case_options }} #}
+            </option>
+             <option selected disabled>Priority</option>
             <option value="1">Normal</option>
             <option value="2">Medium</option>
             <option value="3">High</option>
-            <option value="4">Critical</option>
+            <option value="4">Critical</option> -->
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -147,6 +151,11 @@ export default {
   data() {
     return {
       visibleEnd: false,
+      case_type_options: {
+        '1': 'Issue',
+        '2': 'Bug',
+        '3': 'Note'      
+      }
     }
   },
 }

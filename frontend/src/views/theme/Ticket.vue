@@ -153,6 +153,12 @@
                       >
                         Bug
                       </div>
+                      <div
+                        class="text-warning small"
+                        v-if="the_case.case_type === 3"
+                      >
+                        Note
+                      </div>
                       <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
                     </CTableDataCell>
                     <CTableDataCell>
