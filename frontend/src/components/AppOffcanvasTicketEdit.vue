@@ -60,11 +60,7 @@
               {{ type_options }}
             </option>
 
-            <!--
-            v-model="the_case.case_type"
-             <option value="1">Issue</option>
-            <option value="2">Bug</option>
-            <option value="3">Note</option>-->
+            <!-- v-model="the_case.case_type"-->
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -77,14 +73,9 @@
             name="ticketPriority"
             v-model="the_case.ticketPriority"
           >
-            <!--<option v-for="case_options in case_type_options ">
-              {# {{ case_options }} || {{ case_options }} #}
+            <option v-for="(priority_option,index) in priority_options " :selected="the_case.priority == index">
+              {{ priority_option }}
             </option>
-             <option selected disabled>Priority</option>
-            <option value="1">Normal</option>
-            <option value="2">Medium</option>
-            <option value="3">High</option>
-            <option value="4">Critical</option> -->
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -93,12 +84,10 @@
             aria-label="Ticket Status"
             id="ticketStatus"
             name="ticketStatus"
-            v-model="the_case.ticketStatus"
           >
-            <option value="1">New</option>
-            <option value="2">In Progress</option>
-            <option value="3">On Hold</option>
-            <option value="4">Solved</option>
+            <option v-for="(status_option,index) in status_options" :selected="the_case.status == index">
+              {{ status_option }}
+            </option> 
           </CFormSelect>
         </div>
         {# <div class="mb-3">
@@ -155,6 +144,18 @@ export default {
         '1': 'Issue',
         '2': 'Bug',
         '3': 'Note'      
+      },
+      status_options: {
+        '1': 'New',
+        '2': 'In Progress',
+        '3': 'On Hold',
+        '4': 'Solved'
+      },
+      priority_options: {
+        '1': 'Normal',
+        '2': 'Medium',
+        '3': 'High',
+        '4': 'Critical'
       }
     }
   },
