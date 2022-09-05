@@ -4,6 +4,7 @@
 - Calender JS plugin
 - Correct date insertion
 - Logout correctly
+- Local or Session Storage?
 
 *** USER ***
 
@@ -23,7 +24,7 @@
 - Offcanvas: Small changes in CSS to beautify it
 - Nice to have: Table Head should be sortable
 - Search Filter for tickets
- 
+
 
 *** BUG ***
 
