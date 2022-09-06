@@ -167,13 +167,12 @@ export default {
          wrap: true, // set wrap to true only when using 'input-group'
          altFormat: 'd-m-Y',
          altInput: true,
-         dateFormat: 'd-m-Y',
+         dateFormat: 'Y-m-d',
         //  locale: Greek, // locale for this instance only          
       },
       // Store
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
-
       date: '',
       title: '',
       description: '',
@@ -187,6 +186,7 @@ export default {
     }
   },
   mounted() {
+    
     this.year = (this.today.getFullYear());
     this.day = (this.today.getDate());
     this.month = (this.today.getMonth() + 1);
@@ -215,7 +215,8 @@ export default {
     async submitTicket() {
       const case_data = {
         id: 0,
-        date: '2022-08-21',
+        today: this.today,
+        due_date: this.due_date,
         title: this.title,
         description: this.description,
         tags: 'test Tag',

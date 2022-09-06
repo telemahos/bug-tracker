@@ -61,14 +61,14 @@ def case_show(id: int, db: Session):
 
 # Create and Post a new Case
 def case_create(request: schemas.Case, db: Session):
-    new_case = models.Case(date=request.date, title = request.title, description = request.description, tags = request.tags, status = request.status, priority = request.priority, case_type = request.case_type, project_id = request.project_id, owner_id = request.owner_id)
+    new_case = models.Case(today=request.today, due_date=request.due_date,title = request.title, description = request.description, tags = request.tags, status = request.status, priority = request.priority, case_type = request.case_type, project_id = request.project_id, owner_id = request.owner_id)
     db.add(new_case)
     db.commit()
     db.refresh(new_case)
     return new_case
 
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update({'date': request.date, 'title': request.title, 'description': request.description, 'tags': request.tags, 'status': request.status, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
+    db.query(models.Case).filter(models.Case.id == id).update({'today': request.today, 'due_date': request.due_date, 'title': request.title, 'description': request.description, 'tags': request.tags, 'status': request.status, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
     db.commit()
     return "Case updated!"
 
