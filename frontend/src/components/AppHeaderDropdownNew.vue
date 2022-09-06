@@ -9,7 +9,7 @@
       </CDropdownHeader>
       <CDropdownItem>
         <CIcon icon="cil-task" />
-        <CNavLink href="#/theme/ticket">New Ticket</CNavLink>
+        <CNavLink href="#/theme/ticketlist">New Ticket</CNavLink>
         <!-- <CBadge color="info" class="ms-auto">+</CBadge> -->
       </CDropdownItem>
       <CDropdownItem>

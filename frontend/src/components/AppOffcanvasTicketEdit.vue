@@ -170,5 +170,32 @@ export default {
       }
     }
   },
+  methods: {
+    async submitTicket() {
+      const case_data = {
+        id: 0,
+        date: '2022-08-21',
+        title: this.title,
+        description: this.description,
+        tags: 'test Tag',
+        status: this.ticketStatus,
+        priority: this.ticketPriority,
+        case_type: this.ticketType,
+        project_id: this.projectSelected.value,
+        owner_id: this.assigned.value,
+      }
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      console.log('TICKET DATA: ', case_data)
+      await axios
+        .post(`${this.apiURL}/case`, case_data, { headers })
+        .then((response) =>
+          console.log('New Case: ' + JSON.stringify(response.data)),
+        )
+        .catch((error) => console.log(`${error}`))
+    },
+  },
 }
 </script>

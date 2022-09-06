@@ -16,7 +16,7 @@
         </CNavItem>
         <CNavItem>
           <!-- <router-link to="/theme/ticket">Tickets</router-link> -->
-          <CNavLink href="#/theme/ticket">Tickets</CNavLink>
+          <CNavLink href="#/theme/ticketlist">Tickets</CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink href="#/theme/inbox">Inbox</CNavLink>

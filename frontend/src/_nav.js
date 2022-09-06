@@ -47,7 +47,7 @@ export default [
       {
         component: 'CNavItem',
         name: 'Tickets',
-        to: '/theme/ticket',
+        to: '/theme/ticketList',
       },
       {
         component: 'CNavItem',

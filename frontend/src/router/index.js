@@ -45,9 +45,9 @@ const routes = [
         component: () => import('@/views/theme/Project.vue'),
       },
       {
-        path: '/theme/ticket',
-        name: 'Ticket',
-        component: () => import('@/views/theme/Ticket.vue'),
+        path: '/theme/ticketlist',
+        name: 'TicketList',
+        component: () => import('@/views/theme/TicketList.vue'),
       },
       {
         path: '/theme/inbox',
