@@ -127,7 +127,15 @@
         <CCol :xs="12">
           <CButton color="primary" type="submit">Submit Ticket</CButton>
           <div class="vr"></div>
-          <CButton color="secondary" type="submit">Cancel </CButton>
+          <CButton 
+            color="secondary" 
+            type="submit"
+            @click="
+              () => {
+                visibleEnd = !visibleEnd
+              }
+            "
+          >Cancel </CButton>
         </CCol>
       </CForm>
       
