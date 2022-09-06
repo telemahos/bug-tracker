@@ -9,23 +9,49 @@
         </CCardHeader>
         <CCardBody>
           <CForm @submit.prevent="submitTicket">
-            <div class="mb-3">
+            <div class="mb-3 form-floating">
               <CFormLabel for="title"><b>Title:</b></CFormLabel>
               <CFormInput
                 id="title"
                 type="text"
+                floatingLabel="Ticket Title"
                 placeholder="Ticket Title"
                 name="title"
                 v-model="title"
               />
             </div>
-            <div class="mb-3">
-              <CFormLabel for="description"><b>Description:</b></CFormLabel>
+            <div class="mb-3 form-floating">
               <CFormTextarea
                 id="description"
+                floatingLabel="Description"
+                placeholder="Description"
                 rows="3"
+                style="height: 100px"
                 v-model="description"
               ></CFormTextarea>
+              <!-- <CFormLabel for="description"><b>Description:</b></CFormLabel> -->
+            </div>
+            <!-- Today and Due Date -->
+            <div class="mb-3  form-check-inline">
+              <label for="today">Today</label>
+              <CFormInput
+                id="today"
+                type="text"
+                placeholder="Today"
+                name="today"
+                v-model="today"
+                readonly
+              />
+              </div>
+              <div class="mb-3  form-check-inline">
+                <label for="duedate">Due Date</label>
+                <flat-pickr 
+                  v-model="duedate" 
+                  :config="config"
+                  class="form-control" 
+                  placeholder="Due Date"
+                  name="duedate">
+                </flat-pickr>
             </div>
             <div class="mb-3">
               <CFormLabel for="ticketType"><b>Ticket Type:</b></CFormLabel>
@@ -119,12 +145,31 @@
 
 <script>
 import axios from 'axios'
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
 
 export default {
   name: 'TicketNew',
-  components: {},
+  components: {
+    flatPickr
+  },
   data() {
     return {
+      // today: '16-10-2020',
+      duedate: null,
+      today: this.$store.state.today,
+      // today: "",
+      year: '',
+      month: '',
+      day: '',
+       // Get more form https://flatpickr.js.org/options/
+      config: {
+         wrap: true, // set wrap to true only when using 'input-group'
+         altFormat: 'd-m-Y',
+         altInput: true,
+         dateFormat: 'd-m-Y',
+        //  locale: Greek, // locale for this instance only          
+      },
       // Store
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
@@ -142,6 +187,11 @@ export default {
     }
   },
   mounted() {
+    this.year = (this.today.getFullYear());
+    this.day = (this.today.getDate());
+    this.month = (this.today.getMonth() + 1);
+    this.today = this.day + "-" + this.month + "-" + this.year;
+    console.log('TODAY:', this.day + "-" + this.month + "-" + this.year )
     const headers = {
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',

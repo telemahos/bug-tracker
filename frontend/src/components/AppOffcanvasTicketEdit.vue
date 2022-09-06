@@ -30,6 +30,7 @@
     </COffcanvasHeader>
     <COffcanvasBody>
     {{ the_case }}
+    <p>-------------------------------------</p>
       <CForm @submit.prevent="submitTicket">
         <div class="mb-3">
           <CFormLabel for="title">Title:</CFormLabel>
