@@ -29,7 +29,7 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-    <!-- {{ the_case }} -->
+    {{ the_case }}
       <CForm @submit.prevent="submitTicket">
         <div class="mb-3">
           <CFormLabel for="title">Title:</CFormLabel>
@@ -55,8 +55,10 @@
             aria-label="Ticket Type"
             id="ticketType"
             name="ticketType"
+            v-model="ticketType"
           >
-            <option v-for="(type_options,index) in case_type_options " :selected="the_case.case_type == index">
+            <option v-for="(type_options,index) in case_type_options " v-bind:key="index" v-bind:value="index"
+            :selected="the_case.case_type == index">
               {{ type_options }}
             </option>
 
@@ -71,9 +73,12 @@
             aria-label="Ticket Priority"
             id="ticketPriority"
             name="ticketPriority"
-            v-model="the_case.ticketPriority"
+            v-model="ticketPriority"
           >
-            <option v-for="(priority_option,index) in priority_options " :selected="the_case.priority == index">
+            <!-- v-model="the_case.priority" -->
+            <option v-for="(priority_option,index) in priority_options " 
+            v-bind:key="index" v-bind:value="index"
+            :selected="the_case.priority == index">
               {{ priority_option }}
             </option>
           </CFormSelect>
@@ -84,8 +89,12 @@
             aria-label="Ticket Status"
             id="ticketStatus"
             name="ticketStatus"
+            v-model="ticketStatus"
           >
-            <option v-for="(status_option,index) in status_options" :selected="the_case.status == index">
+          <!-- v-model="the_case.status" -->
+            <option v-for="(status_option,index) in status_options" 
+            v-bind:key="index" v-bind:value="index"
+            :selected="the_case.status == index">
               {{ status_option }}
             </option> 
           </CFormSelect>
@@ -143,14 +152,28 @@
   </COffcanvas>
 </template>
 <script>
+import axios from 'axios'
 export default {
   // inject: ['all_cases'],
   props: ['the_case'],
   data() {
     return {
+      // Store
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+      
       the_projects: JSON.parse(this.$store.state.all_projects),
       the_users: JSON.parse(this.$store.state.all_users),
       visibleEnd: false,
+      date: '',
+      title: '',
+      description: '',
+      ticketStatus: '',
+      ticketPriority: '',
+      ticketType: '',
+      projects: [],
+      users: [],
+      ticketType: '',
       case_type_options: {
         '1': 'Issue',
         '2': 'Bug',
@@ -173,16 +196,16 @@ export default {
   methods: {
     async submitTicket() {
       const case_data = {
-        id: 0,
+        id: this.the_case.id,
         date: '2022-08-21',
-        title: this.title,
-        description: this.description,
+        title: this.the_case.title,
+        description: this.the_case.description,
         tags: 'test Tag',
         status: this.ticketStatus,
         priority: this.ticketPriority,
         case_type: this.ticketType,
-        project_id: this.projectSelected.value,
-        owner_id: this.assigned.value,
+        // project_id: this.projectSelected.value,
+        // owner_id: this.assigned.value,
       }
       const headers = {
         Authorization: `Bearer ${this.token}`,
@@ -190,11 +213,11 @@ export default {
       }
       console.log('TICKET DATA: ', case_data)
       await axios
-        .post(`${this.apiURL}/case`, case_data, { headers })
-        .then((response) =>
-          console.log('New Case: ' + JSON.stringify(response.data)),
-        )
-        .catch((error) => console.log(`${error}`))
+         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
+         .then((response) =>
+           console.log('New Case: ' + JSON.stringify(response.data)),
+         )
+         .catch((error) => console.log(`${error}`))
     },
   },
 }
