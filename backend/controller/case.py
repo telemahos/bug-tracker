@@ -44,7 +44,8 @@ async def show_case(id: int, db: Session = Depends(get_db), current_user: schema
     return case.case_show(id, db)
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
-async def create_case(request: schemas.Case, db: Session=Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+async def create_case(request: schemas.Case, db: 
+Session=Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
     return case.case_create(request, db)
 
 @router.delete('/{id}', status_code=status.HTTP_404_NOT_FOUND)

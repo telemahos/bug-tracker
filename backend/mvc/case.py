@@ -61,7 +61,9 @@ def case_show(id: int, db: Session):
 
 # Create and Post a new Case
 def case_create(request: schemas.Case, db: Session):
+    print("+++++++++new_case: ")
     new_case = models.Case(today=request.today, due_date=request.due_date,title = request.title, description = request.description, tags = request.tags, status = request.status, priority = request.priority, case_type = request.case_type, project_id = request.project_id, owner_id = request.owner_id)
+    # print("new_case: " + new_case)
     db.add(new_case)
     db.commit()
     db.refresh(new_case)

@@ -158,7 +158,7 @@ export default {
       // today: '16-10-2020',
       duedate: null,
       today: this.$store.state.today,
-      // today: "",
+      db_today: '',
       year: '',
       month: '',
       day: '',
@@ -190,8 +190,17 @@ export default {
     this.year = (this.today.getFullYear());
     this.day = (this.today.getDate());
     this.month = (this.today.getMonth() + 1);
+    
+    console.log('TODAY:', this.day + "-" + this.month + "-" + this.year)
+    
+    if (parseInt(this.month) <= 9) {
+        this.month = "0"+this.month;
+    }
+    if (parseInt(this.day) <= 9) {
+        this.day = "0"+this.day;
+    }
     this.today = this.day + "-" + this.month + "-" + this.year;
-    console.log('TODAY:', this.day + "-" + this.month + "-" + this.year )
+    this.db_today = this.year + "-" + this.month + "-" + this.day
     const headers = {
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',
@@ -215,16 +224,17 @@ export default {
     async submitTicket() {
       const case_data = {
         id: 0,
-        today: this.today,
-        due_date: this.due_date,
+        // today: this.db_today,
+        today: "2022-09-13",
+        due_date: this.duedate,
         title: this.title,
         description: this.description,
         tags: 'test Tag',
         status: this.ticketStatus,
         priority: this.ticketPriority,
         case_type: this.ticketType,
-        project_id: this.projectSelected.value,
-        owner_id: this.assigned.value,
+        project_id: this.projectSelected,
+        owner_id: this.assigned,
       }
       const headers = {
         Authorization: `Bearer ${this.token}`,
