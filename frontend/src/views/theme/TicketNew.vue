@@ -224,8 +224,8 @@ export default {
     async submitTicket() {
       const case_data = {
         id: 0,
-        // today: this.db_today,
-        today: "2022-09-13",
+        today: this.db_today,
+        // today: "2022-09-13",
         due_date: this.duedate,
         title: this.title,
         description: this.description,

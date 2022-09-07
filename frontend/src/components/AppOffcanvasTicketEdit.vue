@@ -136,11 +136,11 @@
         <hr />
         <CCol :xs="12">
           <CButton color="primary" type="submit">Submit Ticket</CButton>
-          <div class="vr"></div>
+          <div class="vr"> </div>
           <CButton 
             color="secondary" 
             type="submit"
-            @click="
+            @click.prevent="
               () => {
                 visibleEnd = !visibleEnd
               }
@@ -148,7 +148,6 @@
           >Cancel </CButton>
         </CCol>
       </CForm>
-      
     </COffcanvasBody>
   </COffcanvas>
 </template>

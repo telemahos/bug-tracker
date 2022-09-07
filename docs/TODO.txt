@@ -1,7 +1,6 @@
 ############################# --- TODO --- ########################################
 
 *** GENERAL ***
-- Calender JS plugin
 - Correct date insertion
 - Logout correctly
 - Local or Session Storage?
@@ -18,12 +17,10 @@
 *** TICKETS ***
 - Pagination in tickets table 
 - Case title should be clickable as a link, to view the case 
-- Offcanvas: Save on edit button, to work
-- Offcanvas: Cancel button, to work 
-- Offcanvas: Add Calender for date
 - Offcanvas: Small changes in CSS to beautify it
 - Nice to have: Table Head should be sortable
 - Search Filter for tickets
+- Nice to Have: Write notes to each ticket
 
 
 *** BUG ***
@@ -39,9 +36,12 @@
 - Tickets can be listed in a Table
 - A single Ticket can be showed in an Offcanvas, for editing  
 - Tickets can be created 
+- Offcanvas: Save on edit button, to work
+- Offcanvas: Cancel button, to work 
+- Offcanvas: Add Calender for date
 
 *** GENERAL ***
-
+- Calender JS plugin
 
 *** USER ***
 

@@ -24,7 +24,7 @@
                 <CTableHead color="light">
                   <CTableRow>
                     <CTableHeaderCell class="text-center">
-                      <!--<CIcon name="cil-people" />-->Date
+                      <!--<CIcon name="cil-people" />-->Due Date
                     </CTableHeaderCell>
                     <CTableHeaderCell>Title</CTableHeaderCell>
                     <CTableHeaderCell class="text-center"
@@ -47,10 +47,10 @@
                   <CTableRow
                     v-for="(the_case, index) in cases"
                     v-bind:value="the_case.id"
-                    v-bind:key="the_case.date"
+                    v-bind:key="the_case.due_date"
                   >
                     <CTableDataCell class="text-center">
-                      <div>{{ the_case.date }}</div>
+                      <div>{{ the_case.due_date }}</div>
                       <!-- <CAvatar
                        :key="case.name"
                         size="md"
