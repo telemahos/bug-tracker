@@ -56,6 +56,11 @@ export default [
       },
       {
         component: 'CNavItem',
+        name: 'TicketDetails',
+        to: '/theme/ticketdetails',
+      },
+      {
+        component: 'CNavItem',
         name: 'Cards',
         to: '/base/cards',
       },

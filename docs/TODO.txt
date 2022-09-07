@@ -21,6 +21,8 @@
 - Nice to have: Table Head should be sortable
 - Search Filter for tickets
 - Nice to Have: Write notes to each ticket
+- BUG: On Ticket edit dates, projects and Owner isn't captured
+
 
 
 *** BUG ***

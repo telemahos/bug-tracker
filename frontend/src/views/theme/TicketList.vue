@@ -1,7 +1,7 @@
 <template>
   <div>
     <CRow>
-      <CCol :md="4">
+      <CCol :md="12">
         <h2>Tickets in Projects</h2>
         <CLink href="#/theme/ticketnew"
           ><h5><CBadge color="info">New Ticket +</CBadge></h5></CLink
@@ -59,7 +59,7 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>{{ the_case.title }} {{ ticketStatus[index] }}</div>
+                      <div><a href="#" target="_blank" rel="noopener noreferrer">{{ the_case.title }}</a> </div>
                       <div class="small text-medium-emphasis">
                         {{ the_case.description }}
                       </div>
