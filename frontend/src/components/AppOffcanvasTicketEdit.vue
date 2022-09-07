@@ -29,8 +29,8 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-    {{ the_case }}
-    <p>-------------------------------------</p>
+      {{ the_case }}
+      <p>-------------------------------------</p>
       <CForm @submit.prevent="submitTicket">
         <div class="mb-3">
           <CFormLabel for="title">Title:</CFormLabel>
@@ -58,8 +58,12 @@
             name="ticketType"
             v-model="ticketType"
           >
-            <option v-for="(type_options,index) in case_type_options " v-bind:key="index" v-bind:value="index"
-            :selected="the_case.case_type == index">
+            <option
+              v-for="(type_options, index) in case_type_options"
+              v-bind:key="index"
+              v-bind:value="index"
+              :selected="the_case.case_type == index"
+            >
               {{ type_options }}
             </option>
 
@@ -67,9 +71,7 @@
           </CFormSelect>
         </div>
         <div class="mb-3">
-          <CFormLabel for="ticketPriority"
-            ><b>Ticket Priority:</b></CFormLabel
-          >
+          <CFormLabel for="ticketPriority"><b>Ticket Priority:</b></CFormLabel>
           <CFormSelect
             aria-label="Ticket Priority"
             id="ticketPriority"
@@ -77,9 +79,12 @@
             v-model="ticketPriority"
           >
             <!-- v-model="the_case.priority" -->
-            <option v-for="(priority_option,index) in priority_options " 
-            v-bind:key="index" v-bind:value="index"
-            :selected="the_case.priority == index">
+            <option
+              v-for="(priority_option, index) in priority_options"
+              v-bind:key="index"
+              v-bind:value="index"
+              :selected="the_case.priority == index"
+            >
               {{ priority_option }}
             </option>
           </CFormSelect>
@@ -92,12 +97,15 @@
             name="ticketStatus"
             v-model="ticketStatus"
           >
-          <!-- v-model="the_case.status" -->
-            <option v-for="(status_option,index) in status_options" 
-            v-bind:key="index" v-bind:value="index"
-            :selected="the_case.status == index">
+            <!-- v-model="the_case.status" -->
+            <option
+              v-for="(status_option, index) in status_options"
+              v-bind:key="index"
+              v-bind:value="index"
+              :selected="the_case.status == index"
+            >
               {{ status_option }}
-            </option> 
+            </option>
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -106,11 +114,13 @@
             aria-label="Project Selected"
             id="projectSelected"
             name="projectSelected"
-            
           >
-            <option v-for="(projects ,index) in the_projects" :selected="the_case.project_id === projects.id">
+            <option
+              v-for="(projects, index) in the_projects"
+              :selected="the_case.project_id === projects.id"
+            >
               {{ projects.title }}
-            </option> 
+            </option>
 
             <option
               v-for="project in projects"
@@ -120,32 +130,32 @@
               {{ project.title }}
             </option>
           </CFormSelect>
-        </div> 
+        </div>
         <div class="mb-3">
           <CFormLabel for="assigned"><b>Assign to:</b></CFormLabel>
-          <CFormSelect
-            aria-label="Assign"
-            id="assigned"
-            name="assigned"
-          >
-          <option v-for="(users ,index) in the_users" :selected="the_case.owner_id == users.id">
+          <CFormSelect aria-label="Assign" id="assigned" name="assigned">
+            <option
+              v-for="(users, index) in the_users"
+              :selected="the_case.owner_id == users.id"
+            >
               {{ users.name }}
-            </option> 
+            </option>
           </CFormSelect>
-        </div> 
+        </div>
         <hr />
         <CCol :xs="12">
           <CButton color="primary" type="submit">Submit Ticket</CButton>
-          <div class="vr"> </div>
-          <CButton 
-            color="secondary" 
+          <div class="vr"></div>
+          <CButton
+            color="secondary"
             type="submit"
             @click.prevent="
               () => {
                 visibleEnd = !visibleEnd
               }
             "
-          >Cancel </CButton>
+            >Cancel
+          </CButton>
         </CCol>
       </CForm>
     </COffcanvasBody>
@@ -161,7 +171,7 @@ export default {
       // Store
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
-      
+
       the_projects: JSON.parse(this.$store.state.all_projects),
       the_users: JSON.parse(this.$store.state.all_users),
       visibleEnd: false,
@@ -176,22 +186,22 @@ export default {
       users: [],
       ticketType: '',
       case_type_options: {
-        '1': 'Issue',
-        '2': 'Bug',
-        '3': 'Note'      
+        1: 'Issue',
+        2: 'Bug',
+        3: 'Note',
       },
       status_options: {
-        '1': 'New',
-        '2': 'In Progress',
-        '3': 'On Hold',
-        '4': 'Solved'
+        1: 'New',
+        2: 'In Progress',
+        3: 'On Hold',
+        4: 'Solved',
       },
       priority_options: {
-        '1': 'Normal',
-        '2': 'Medium',
-        '3': 'High',
-        '4': 'Critical'
-      }
+        1: 'Normal',
+        2: 'Medium',
+        3: 'High',
+        4: 'Critical',
+      },
     }
   },
   methods: {
@@ -215,11 +225,11 @@ export default {
       }
       console.log('TICKET DATA: ', case_data)
       await axios
-         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
-         .then((response) =>
-           console.log('New Case: ' + JSON.stringify(response.data)),
-         )
-         .catch((error) => console.log(`${error}`))
+        .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
+        .then((response) =>
+          console.log('New Case: ' + JSON.stringify(response.data)),
+        )
+        .catch((error) => console.log(`${error}`))
     },
   },
 }

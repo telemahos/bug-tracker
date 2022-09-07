@@ -32,7 +32,7 @@
               <!-- <CFormLabel for="description"><b>Description:</b></CFormLabel> -->
             </div>
             <!-- Today and Due Date -->
-            <div class="mb-3  form-check-inline">
+            <div class="mb-3 form-check-inline">
               <label for="today">Today</label>
               <CFormInput
                 id="today"
@@ -42,16 +42,17 @@
                 v-model="today"
                 readonly
               />
-              </div>
-              <div class="mb-3  form-check-inline">
-                <label for="duedate">Due Date</label>
-                <flat-pickr 
-                  v-model="duedate" 
-                  :config="config"
-                  class="form-control" 
-                  placeholder="Due Date"
-                  name="duedate">
-                </flat-pickr>
+            </div>
+            <div class="mb-3 form-check-inline">
+              <label for="duedate">Due Date</label>
+              <flat-pickr
+                v-model="duedate"
+                :config="config"
+                class="form-control"
+                placeholder="Due Date"
+                name="duedate"
+              >
+              </flat-pickr>
             </div>
             <div class="mb-3">
               <CFormLabel for="ticketType"><b>Ticket Type:</b></CFormLabel>
@@ -145,13 +146,13 @@
 
 <script>
 import axios from 'axios'
-import flatPickr from 'vue-flatpickr-component';
-import 'flatpickr/dist/flatpickr.css';
+import flatPickr from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
 
 export default {
   name: 'TicketNew',
   components: {
-    flatPickr
+    flatPickr,
   },
   data() {
     return {
@@ -162,13 +163,13 @@ export default {
       year: '',
       month: '',
       day: '',
-       // Get more form https://flatpickr.js.org/options/
+      // Get more form https://flatpickr.js.org/options/
       config: {
-         wrap: true, // set wrap to true only when using 'input-group'
-         altFormat: 'd-m-Y',
-         altInput: true,
-         dateFormat: 'Y-m-d',
-        //  locale: Greek, // locale for this instance only          
+        wrap: true, // set wrap to true only when using 'input-group'
+        altFormat: 'd-m-Y',
+        altInput: true,
+        dateFormat: 'Y-m-d',
+        //  locale: Greek, // locale for this instance only
       },
       // Store
       token: this.$store.state.token,
@@ -186,21 +187,20 @@ export default {
     }
   },
   mounted() {
-    
-    this.year = (this.today.getFullYear());
-    this.day = (this.today.getDate());
-    this.month = (this.today.getMonth() + 1);
-    
-    console.log('TODAY:', this.day + "-" + this.month + "-" + this.year)
-    
+    this.year = this.today.getFullYear()
+    this.day = this.today.getDate()
+    this.month = this.today.getMonth() + 1
+
+    console.log('TODAY:', this.day + '-' + this.month + '-' + this.year)
+
     if (parseInt(this.month) <= 9) {
-        this.month = "0"+this.month;
+      this.month = '0' + this.month
     }
     if (parseInt(this.day) <= 9) {
-        this.day = "0"+this.day;
+      this.day = '0' + this.day
     }
-    this.today = this.day + "-" + this.month + "-" + this.year;
-    this.db_today = this.year + "-" + this.month + "-" + this.day
+    this.today = this.day + '-' + this.month + '-' + this.year
+    this.db_today = this.year + '-' + this.month + '-' + this.day
     const headers = {
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',

@@ -59,8 +59,12 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div><a href="#" target="_blank" rel="noopener noreferrer">{{ the_case.title }}</a> </div>
-                      <div class="small text-medium-emphasis">
+                      <div>
+                        <a href="#" target="_blank" rel="noopener noreferrer">{{
+                          the_case.title
+                        }}</a>
+                      </div>
+                      <div class="small text-medium-emphasis text-truncate" style="max-width: 150px;">
                         {{ the_case.description }}
                       </div>
                     </CTableDataCell>
@@ -172,7 +176,7 @@
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <AppOffcanvasTicketEdit v-bind:the_case="the_case"/>
+                        <AppOffcanvasTicketEdit v-bind:the_case="the_case" />
                       </div>
                     </CTableDataCell>
                   </CTableRow>
