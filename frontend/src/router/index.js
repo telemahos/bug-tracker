@@ -45,14 +45,19 @@ const routes = [
         component: () => import('@/views/theme/Project.vue'),
       },
       {
+        path: '/theme/projectlist',
+        name: 'ProjectList',
+        component: () => import('@/views/theme/ProjectList.vue'),
+      },
+      {
         path: '/theme/ticketlist',
         name: 'TicketList',
         component: () => import('@/views/theme/TicketList.vue'),
       },
       {
-        path: '/theme/inbox',
-        name: 'Inbox',
-        component: () => import('@/views/theme/Inbox.vue'),
+        path: '/theme/members',
+        name: 'Members',
+        component: () => import('@/views/theme/Members.vue'),
       },
       {
         path: '/theme/ticketnew',

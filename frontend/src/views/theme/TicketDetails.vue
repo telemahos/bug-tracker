@@ -1,10 +1,8 @@
 <template>
-  
   <h1 class="mb-8">
     Ticket details!
     <small class="text-muted">Bugs</small>
   </h1>
-  
 
   <CRow>
     <CCol :xs="12">
@@ -67,7 +65,9 @@
         <CCardBody>
           <CListGroup>
             <CListGroupItem>
-              <div class="d-flex w-100 justify-content-between align-items-center">
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
                 <h6 class="mb-1">Owner</h6>
                 <!-- <CAvatar 
                   size="md" 
@@ -104,13 +104,20 @@
       <CCard class="mb-4">
         <CCardHeader> <strong></strong> <small>COMMENTS</small> </CCardHeader>
         <CCardBody>
-          
           <CCard class="">
             <CCardBody>
               <!-- <CCardTitle>Card title</CCardTitle> w-75-->
-              <CCardSubtitle>Kakoulis Kostas <small class="text-muted">20 Dec 2021 - 05:47AM</small></CCardSubtitle>
+              <CCardSubtitle
+                >Kakoulis Kostas
+                <small class="text-muted"
+                  >20 Dec 2021 - 05:47AM</small
+                ></CCardSubtitle
+              >
               <CCardText>
-                <p class="text-medium-emphasis small">I am getting message from customers that when they place order always get error message .</p>
+                <p class="text-medium-emphasis small">
+                  I am getting message from customers that when they place order
+                  always get error message .
+                </p>
                 <!-- <p><CCardLink>Edit</CCardLink></p> -->
               </CCardText>
               <!-- <CButton href="#">Go somewhere</CButton> -->
@@ -119,16 +126,22 @@
           <CCard class="">
             <CCardBody>
               <!-- <CCardTitle>Card title</CCardTitle> w-75-->
-              <CCardSubtitle>Panagiotidou Noula <small class="text-muted">20 Dec 2021 - 05:47AM</small></CCardSubtitle>
+              <CCardSubtitle
+                >Panagiotidou Noula
+                <small class="text-muted"
+                  >20 Dec 2021 - 05:47AM</small
+                ></CCardSubtitle
+              >
               <CCardText>
-                <p class="text-medium-emphasis small">I am getting message from customers that when they place order always get error message .</p>
+                <p class="text-medium-emphasis small">
+                  I am getting message from customers that when they place order
+                  always get error message .
+                </p>
                 <p><CCardLink>Edit</CCardLink></p>
               </CCardText>
               <!-- <CButton href="#">Go somewhere</CButton> -->
             </CCardBody>
           </CCard>
-
-
         </CCardBody>
       </CCard>
     </CCol>

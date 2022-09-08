@@ -2,9 +2,9 @@
   <div>
     <CRow>
       <CCol :md="12">
-        <h2>Tickets in Projects</h2>
-        <CLink href="#/theme/ticketnew"
-          ><h5><CBadge color="info">New Ticket +</CBadge></h5></CLink
+        <h2>Projects</h2>
+        <CLink href="#/theme/projectnew"
+          ><h5><CBadge color="info">New Project +</CBadge></h5></CLink
         >
         <br /><br /><br />
       </CCol>
@@ -17,8 +17,8 @@
           <CCardBody>
             <CRow>
               <CCol :sm="5">
-                <h4 id="traffic" class="card-title mb-0">Tickets</h4>
-                <div class="small text-medium-emphasis">August 2022</div>
+                <h4 id="traffic" class="card-title mb-0">Projects</h4>
+                <div class="small text-medium-emphasis">September 2022</div>
               </CCol>
               <CTable align="middle" class="mb-0 border" hover responsive>
                 <CTableHead color="light">
@@ -196,96 +196,15 @@
 
 <script>
 // import provide from 'vue'
-import axios from 'axios'
-import AppOffcanvasTicketEdit from '../../components/AppOffcanvasTicketEdit.vue'
+// import axios from 'axios'
+// import AppOffcanvasTicketEdit from '../../components/AppOffcanvasTicketEdit.vue'
 
 export default {
-  name: 'TicketList',
-  components: {
-    AppOffcanvasTicketEdit,
-  },
+  name: 'ProjectList',
+  components: {},
   data() {
-    return {
-      token: this.$store.state.token,
-      apiURL: this.$store.state.apiURL,
-      cases: [],
-      date: '',
-      title: '',
-      description: '',
-      ticketStatus: '',
-      ticketPriority: '',
-      ticketType: '',
-      projects: [],
-      users: [],
-      userNames: [],
-      projectTitle: [],
-      all_cases: [],
-    }
+    return {}
   },
-  mounted() {
-    const headers = {
-      Authorization: `Bearer ${this.token}`,
-      'Content-Type': 'application/json',
-    }
-    axios
-      .get(`${this.apiURL}/project`, { headers })
-      .then((response) => {
-        this.projects = response.data
-        this.$store.commit('setProjects', this.projects)
-        // console.log('projects: ', this.projects)
-      })
-      .catch((error) => console.log(`${error}`))
-    axios
-      .get(`${this.apiURL}/user`, { headers })
-      .then((response) => {
-        this.users = response.data
-        this.$store.commit('setUsers', this.users)
-        // console.log('User Names: ', this.users)
-      })
-      .catch((error) => console.log(`${error}`))
-    axios
-      .get(`${this.apiURL}/case`, { headers })
-      .then((response) => {
-        this.cases = response.data
-        console.log('Cases: ', this.cases)
-      })
-      .finally(() => {
-        let y = 0,
-          z = 0
-        for (let i = 0; i < this.cases.length; i++) {
-          // Find the project title of each case
-          for (let e = 0; e < this.projects.length; e++) {
-            if (this.cases[i].project_id === this.projects[e].id) {
-              this.projectTitle[y] = this.projects[e].title
-              y++
-            }
-          }
-          // Find the owners name of each case
-          for (let f = 0; f < this.users.length; f++) {
-            if (this.cases[i].owner_id === this.users[f].id) {
-              this.userNames[z] = this.users[f].name
-              z++
-            }
-          }
-          // Find the status of each case
-          // if (this.cases[i].status === 1) {
-          //   this.ticketStatus[i] = "Issue";
-          //   x++;
-          // }
-          // else if (this.cases[i].status === 2) {
-          //   this.ticketStatus[x] = "Bug";
-          //   x++;
-          // }
-          // else if (this.cases[i].status === 3) {
-          //   this.ticketStatus[x] = "Note";
-          //   x++;
-          // }
-        }
-      })
-      .catch((error) => console.log(`${error}`))
-  },
-  // provide: {
-  //   all_cases: this.cases,
-  // },
+  mounted() {},
 }
 </script>

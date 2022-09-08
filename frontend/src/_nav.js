@@ -22,15 +22,16 @@ export default [
   },
   {
     component: 'CNavItem',
-    name: 'Inbox',
-    to: '/theme/inbox',
-    icon: 'cil-envelope-open',
-  },
-  {
-    component: 'CNavItem',
     name: 'Projects',
     to: '/theme/project',
     icon: 'cil-puzzle',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Projects List',
+        to: '/theme/projectList',
+      },
+    ],
   },
   // {
   //   component: 'CNavItem',
@@ -65,6 +66,12 @@ export default [
         to: '/base/cards',
       },
     ],
+  },
+  {
+    component: 'CNavItem',
+    name: 'Members',
+    to: '/theme/members',
+    icon: 'cil-people',
   },
   // End Bug Traker
   {
