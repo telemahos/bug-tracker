@@ -25,14 +25,14 @@ def project_show(id: int, db: Session):
     return project
 
 def project_create(request: schemas.Project, db: Session):
-    new_project = models.Project(date=request.date, end_date=request.end_date, title = request.title, description = request.description, tags = request.tags, active = request.active, priority = request.priority, team_id = request.team_id, owner_id = request.owner_id)
+    new_project = models.Project(date=request.date, end_date=request.end_date, title = request.title, description = request.description, tags = request.tags, active = request.active, status=request.status, priority = request.priority, team_id = request.team_id, owner_id = request.owner_id)
     db.add(new_project)
     db.commit()
     db.refresh(new_project)
     return new_project
 
 def project_update(id: int, request: schemas.Project, db: Session):
-    db.query(models.Project).filter(models.Project.id == id).update({'date': request.date,"end_date": request.end_date,'title': request.title, 'description': request.description, 'tags': request.tags, 'active': request.active, 'priority': request.priority, "team_id": request.team_id, 'owner_id': request.owner_id})
+    db.query(models.Project).filter(models.Project.id == id).update({'date': request.date,"end_date": request.end_date,'title': request.title, 'description': request.description, 'tags': request.tags, 'active': request.active, 'status': request.status,  'priority': request.priority, "team_id": request.team_id, 'owner_id': request.owner_id})
     db.commit()
     return "Project updated!"
     

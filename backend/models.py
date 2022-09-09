@@ -47,6 +47,7 @@ class Project(Base):
     description = Column(String) 
     tags = Column(String)
     active = Column(Boolean, default=False)
+    status = Column(Integer, default=0)
     priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
     team_id = Column(Integer)
     owner_id = Column(Integer)
