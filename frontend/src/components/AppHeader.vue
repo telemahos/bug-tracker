@@ -19,7 +19,7 @@
           <CNavLink href="#/theme/ticketlist">Tickets</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#/theme/inbox">Inbox</CNavLink>
+          <CNavLink href="#/theme/members">Members</CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink

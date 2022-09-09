@@ -1,9 +1,9 @@
 <template>
-  <h1>This is Inbox Page!</h1>
+  <h1>This is Members Page!</h1>
 </template>
 
 <script>
 export default {
-  name: 'Inbox',
+  name: 'Members',
 }
 </script>

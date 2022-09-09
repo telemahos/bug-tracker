@@ -7,6 +7,8 @@
 - pip install -r requirements.txt
 - uvicorn backend.main:app --reload
 - npm run serve
+- npm run 
+
 
 - pip install fastapi-pagination[all]
 - https://www.learmoreseekmore.com/2021/02/vue3-vue-tailwind-pagination.html
