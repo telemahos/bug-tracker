@@ -12,7 +12,7 @@ export default [
   // Bug Traker
   {
     component: 'CNavTitle',
-    name: 'Bug Traker',
+    name: 'Bug Tracker',
   },
   {
     component: 'CNavItem',

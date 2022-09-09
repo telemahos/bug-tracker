@@ -284,8 +284,5 @@ export default {
       })
       .catch((error) => console.log(`${error}`))
   },
-  // provide: {
-  //   all_cases: this.cases,
-  // },
 }
 </script>

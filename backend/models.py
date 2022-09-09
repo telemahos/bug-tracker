@@ -41,8 +41,8 @@ class Case(Base):
 class Project(Base):
     __tablename__ = 'projects'
     id = Column(Integer, primary_key=True, index=True)
-    date = Column(Date)
-    end_date = Column(Date)
+    start_date = Column(Date)
+    due_date = Column(Date)
     title = Column(String, index = True)
     description = Column(String) 
     tags = Column(String)

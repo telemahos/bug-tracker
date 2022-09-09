@@ -75,8 +75,8 @@ class ShowCase(CaseBase):
 # ------------------------------------
 class ProjectBase(BaseModel):
     id: int
-    date: date
-    end_date : date
+    start_date: date
+    due_date : date
     title: Optional[str] = None
     description: Optional[str] = None
     tags:  Optional[str] = None
@@ -92,8 +92,8 @@ class Project(ProjectBase):
 
 class ShowProject(ProjectBase):
     id: int
-    date: date
-    end_date: date
+    start_date: date
+    due_date : date
     title: Optional[str] = None
     description: Optional[str] = None
     tags:  Optional[str] = None
