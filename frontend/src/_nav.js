@@ -31,6 +31,16 @@ export default [
         name: 'Projects List',
         to: '/theme/projectList',
       },
+      {
+        component: 'CNavItem',
+        name: 'Projects Details',
+        to: '/theme/projectDetails',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Projects New',
+        to: '/theme/projectNew',
+      },
     ],
   },
   // {
@@ -60,11 +70,6 @@ export default [
         name: 'TicketDetails',
         to: '/theme/ticketdetails',
       },
-      {
-        component: 'CNavItem',
-        name: 'Cards',
-        to: '/base/cards',
-      },
     ],
   },
   {
@@ -72,6 +77,23 @@ export default [
     name: 'Members',
     to: '/theme/members',
     icon: 'cil-people',
+    items: [
+      {
+        component: 'CNavItem',
+        name: 'Members List',
+        to: '/theme/memberList',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Member Profile',
+        to: '/theme/memberprofile',
+      },
+      {
+        component: 'CNavItem',
+        name: 'Member New',
+        to: '/theme/memberNew',
+      },
+    ],
   },
   // End Bug Traker
   {

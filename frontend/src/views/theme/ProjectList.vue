@@ -127,8 +127,11 @@
                       /> -->
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      <div><!-- <AppOffcanvasTicketEdit v-bind:the_case="project" /> -->
-                        <CButton color="dark" variant="ghost" size="sm">Edit</CButton>
+                      <div>
+                        <!-- <AppOffcanvasTicketEdit v-bind:the_case="project" /> -->
+                        <CButton color="dark" variant="ghost" size="sm"
+                          >Edit</CButton
+                        >
                       </div>
                     </CTableDataCell>
                   </CTableRow>

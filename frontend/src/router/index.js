@@ -40,9 +40,15 @@ const routes = [
         component: () => import('@/views/theme/Mydashboard.vue'),
       },
       {
-        path: '/theme/project',
-        name: 'Project',
-        component: () => import('@/views/theme/Project.vue'),
+        path: '/theme/projectdetails',
+        name: 'ProjectDetails',
+        component: () => import('@/views/theme/ProjectDetails.vue'),
+      },
+
+      {
+        path: '/theme/projectnew',
+        name: 'ProjectNew',
+        component: () => import('@/views/theme/ProjectNew.vue'),
       },
       {
         path: '/theme/projectlist',
@@ -55,9 +61,19 @@ const routes = [
         component: () => import('@/views/theme/TicketList.vue'),
       },
       {
-        path: '/theme/members',
-        name: 'Members',
-        component: () => import('@/views/theme/Members.vue'),
+        path: '/theme/memberlist',
+        name: 'MemberList',
+        component: () => import('@/views/theme/MemberList.vue'),
+      },
+      {
+        path: '/theme/memberNew',
+        name: 'MemberNew',
+        component: () => import('@/views/theme/MemberNew.vue'),
+      },
+      {
+        path: '/theme/memberprofile',
+        name: 'MemberProfile',
+        component: () => import('@/views/theme/MemberProfile.vue'),
       },
       {
         path: '/theme/ticketnew',

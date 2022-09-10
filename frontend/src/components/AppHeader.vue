@@ -12,14 +12,14 @@
           <CNavLink href="/dashboard"> Dashboard </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#/theme/project">Projects</CNavLink>
+          <CNavLink href="#/theme/projectlist">Projects</CNavLink>
         </CNavItem>
         <CNavItem>
           <!-- <router-link to="/theme/ticket">Tickets</router-link> -->
           <CNavLink href="#/theme/ticketlist">Tickets</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#/theme/members">Members</CNavLink>
+          <CNavLink href="#/theme/memberlist">Members</CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink
