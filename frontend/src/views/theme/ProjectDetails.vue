@@ -1,15 +1,16 @@
 <template>
   <CRow>
     <CCol :xs="12">
-      <CCallout color="secondary" class="bg-white border-top border-top-primary border-end border-end-primary border-bottom border-bottom-primary">
+      <CCallout color="secondary" class="bg-white">
+        <!-- border-top border-top-primary border-end border-end-primary border-bottom border-bottom-primary -->
         <h4>This is Project Overview or Project Title</h4>
         <div class="">
           <dl class="row">
             <dd
               class="col-sm-12 d-flex w-75 justify-content-between align-items-center"
             >
-              Create Date :<em> 15 Sep, 2021</em
-              ><span class="text-muted">|</span>Due Date :<em> 29 Dec, 2021</em
+              Create Date :<em> Sep 12, 2022</em
+              ><span class="text-muted">|</span>Due Date :<em> Dec 29, 2022</em
               ><span class="text-muted">|</span><span>Priority:</span
               ><CBadge color="danger">Critical</CBadge
               ><span class="text-muted">|</span><span>Status:</span
@@ -27,7 +28,7 @@
             <CListGroupItem
               class="d-flex justify-content-between align-items-center"
             >
-              Case No.
+              Project No.
               <small>070922-N073</small>
             </CListGroupItem>
             <CListGroupItem>
@@ -36,7 +37,7 @@
                 <small>Bug in Login and Logout</small>
               </div>
             </CListGroupItem>
-            <CListGroupItem>
+            <!-- <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Project</h6>
                 <small>Project Title 3</small>
@@ -47,7 +48,7 @@
                 <h6 class="mb-1">Type</h6>
                 <small class="text-dark">Bug</small>
               </div>
-            </CListGroupItem>
+            </CListGroupItem> -->
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Priority</h6>
@@ -62,8 +63,14 @@
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">Start Date</h6>
+                <small>Sep 12, 2022</small>
+              </div>
+            </CListGroupItem>
+            <CListGroupItem>
+              <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Due Date</h6>
-                <small>Sep 28, 2022</small>
+                <small>Dec 29, 2022</small>
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -71,7 +78,12 @@
       </CCard>
       <CCard class="mb-4">
         <CCardHeader>
-          <strong></strong> <small>TEAM MEMBERS</small>
+          <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+          <small class="">TEAM MEMBERS</small> 
+          <span class=" text-end"><button>Test</button></span>
+          </div>
         </CCardHeader>
         <CCardBody>
           <CListGroup>
@@ -79,15 +91,37 @@
               <div
                 class="d-flex w-100 justify-content-between align-items-center"
               >
-                <h6 class="mb-1">Owner</h6>
+                <p class="mb-1">Daniel Canales</p>
                 <!-- <CAvatar 
                   size="md" 
                   :src="avatar.src"
                   :status="avatar.status"/>         -->
+                <small> <span class="text-muted">UI / UX</span></small>
+              </div>
+            </CListGroupItem>
+            <CListGroupItem>
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+                <p class="mb-1">Konstantinos Kakoulis</p>
+                <small> <span class="text-muted">Web Developer</span></small>
+              </div>
+            </CListGroupItem>
+            <CListGroupItem>
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+                <p class="mb-1">Jennifer Walker</p>
+                <small> <span class="text-muted">Backend Developer</span></small>
+              </div>
+            </CListGroupItem>
+            <CListGroupItem>
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+                <p class="mb-1">Tony Brafford</p>
                 <small>
-                  Konstantinos Kakoulis<br /><span class="text-muted"
-                    >Web Devloper</span
-                  ></small
+                  <span class="text-muted">Frontend Devloper</span></small
                 >
               </div>
             </CListGroupItem>
@@ -97,9 +131,7 @@
     </CCol>
     <CCol :lg="8">
       <CCard class="mb-4">
-        <CCardHeader>
-          <strong></strong> <small>DESCRIPTION</small>
-        </CCardHeader>
+        <CCardHeader> <strong></strong> <small>OVERVIEW</small> </CCardHeader>
         <CCardBody>
           <p class="text-medium-emphasis small">
             It will be as simple as occidental in fact, it will be Occidental.
