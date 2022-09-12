@@ -9,8 +9,8 @@
             <dd
               class="col-sm-12 d-flex w-75 justify-content-between align-items-center"
             >
-              Create Date :<em> Sep 12, 2022</em
-              ><span class="text-muted">|</span>Due Date :<em> Dec 29, 2022</em
+              Create Date :<em class="text-muted"> Sep 12, 2022</em
+              ><span class="text-muted">|</span>Due Date :<em class="text-muted"> Dec 29, 2022</em
               ><span class="text-muted">|</span><span>Priority:</span
               ><CBadge color="danger">Critical</CBadge
               ><span class="text-muted">|</span><span>Status:</span
@@ -82,7 +82,7 @@
                 class="d-flex w-100 justify-content-between align-items-center"
               >
           <small class="">TEAM MEMBERS</small> 
-          <span class=" text-end"><button>Test</button></span>
+          <span class=" text-end"><CButton color="primary" variant="ghost" class="btn-sm">Invite+</CButton></span>
           </div>
         </CCardHeader>
         <CCardBody>
@@ -131,7 +131,9 @@
     </CCol>
     <CCol :lg="8">
       <CCard class="mb-4">
-        <CCardHeader> <strong></strong> <small>OVERVIEW</small> </CCardHeader>
+        <CCardHeader> 
+          <strong></strong> <small>OVERVIEW</small>    
+        </CCardHeader>
         <CCardBody>
           <p class="text-medium-emphasis small">
             It will be as simple as occidental in fact, it will be Occidental.
@@ -145,7 +147,14 @@
         </CCardBody>
       </CCard>
       <CCard class="mb-4">
-        <CCardHeader> <strong></strong> <small>COMMENTS</small> </CCardHeader>
+        <CCardHeader> 
+          <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+            <small>COMMENTS</small>
+            <span class=" text-end"><CButton color="primary" variant="ghost" class="btn-sm">Add Comment</CButton></span> 
+          </div>  
+        </CCardHeader>
         <CCardBody>
           <CCard class="">
             <CCardBody>
