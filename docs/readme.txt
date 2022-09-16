@@ -14,6 +14,7 @@
 - https://www.learmoreseekmore.com/2021/02/vue3-vue-tailwind-pagination.html
     npm install --save @ocrv/vue-tailwind-pagination
 - npm install vue-chartjs chart.js@2.9.4
+- npm install @vueform/multiselect
 
 - VS Theme: "Noctis Azureus", 'Bluloco Dark theme', 'NoctisUva', 'Viow Flat', "Adapta Nikto"
 - requirements => fastapi==0.66.0 αν θέλουμε μια συξκερκιμένη έκδοση
