@@ -12,6 +12,12 @@
 
 
 *** PROJECTS ***
+- comments for projects
+- edit projects
+- add/remove members from project
+
+
+*** MEMBERS ***
 
 
 *** TICKETS ***
@@ -49,6 +55,12 @@
 
 
 *** PROJECT ***
+- Project List is ready
+- Creating a project is ready
+
+
+*** MEMBERS ***
+
 
 
 *** BUG ***
