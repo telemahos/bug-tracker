@@ -80,6 +80,7 @@
                 name="projectStatus"
                 v-model="projectStatus"
               >
+                <option selected disabled>Status</option>
                 <option value="1">New</option>
                 <option value="2">In Progress</option>
                 <option value="3">On Hold</option>
@@ -175,13 +176,16 @@ export default {
       apiURL: this.$store.state.apiURL,
       title: '',
       description: '',
+      tags:['tag1', 'tag2'],
       active: '1',
       projectStatus: '',
       projectPriority: '',
-      team_id: '',
+      // team_id: '',
       owner_id: '',
       allUsers: [],
       theUser: {},
+      new_project_id: '',
+      team_members: this.value,
     }
   },
   mounted() {
@@ -217,7 +221,69 @@ export default {
         this.theUser[i] = { value: this.users[i].id, label: this.users[i].name }
         this.allUsers[i] = this.theUser[i]
       }
-    }
+    },
+
+    async submitProject(event) {
+      const project_data = {
+        id: 0,
+        start_date: this.startDate,
+        due_date: this.duedate,
+        title: this.title,
+        description: this.description,
+        tags: 'test Tag',
+        active: 1,
+        status: this.projectStatus,
+        priority: this.projectPriority,
+        owner_id: 1,
+      }
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      console.log('Project DATA: ', project_data)
+
+      await axios
+        .post(`${this.apiURL}/project`, project_data, { headers })
+        .then((response) =>
+          this.new_project_id = response.data.id,
+          // console.log('New Project ID: ' + this.new_project_id),
+        )
+        .catch((error) => console.log(`${error}`))
+        .finally(() => 
+          console.log('New Project ID: ' + this.new_project_id), 
+        );
+
+      console.log("Nr of MEMBERS: ", this.value.length)
+      console.log("MEMBERS: ", this.value)
+
+      for (let x = 0; x < this.value.length; x++) {
+        this.setTeamMembers(this.new_project_id, this.value[x])
+      }
+      event.target.reset()
+    },
+
+    async setTeamMembers(projectID, userID) {
+      let team_member_data = {
+        id: 0,
+        project_id: projectID,
+        user_id: userID,
+        team_role: 0,
+        assign_date: '2022-09-18',
+        active: 'false',
+        note: '',
+      }
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      console.log('New Team Member: ' , team_member_data)
+      await axios
+        .post(`${this.apiURL}/team_member`, team_member_data, { headers })
+        .then((response) =>
+          console.log('New Member: ' + JSON.stringify(response.data)),
+        )
+        .catch((error) => console.log(`${error}`))
+    },
   },
 }
 </script>

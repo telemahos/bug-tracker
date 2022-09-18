@@ -83,7 +83,7 @@ class ProjectBase(BaseModel):
     active:  Optional[bool] = False
     status:  Optional[int] = 0
     priority: Optional[int] = 0
-    team_id: Optional[int] = 0
+    # team_id: Optional[int] = 0
     owner_id: Optional[int] = None
 
 class Project(ProjectBase):
@@ -100,42 +100,42 @@ class ShowProject(ProjectBase):
     active:  Optional[bool] = False
     status:  Optional[int] = 0
     priority: Optional[int] = 0
-    team_id: Optional[int] = 0
-    owner_id: Optional[int] = None
+    # team_id: Optional[int] = 0
+    owner_id: Optional[int] = 0
 
     class Config():
         orm_mode = True
 
 # Team
 # ------------------------------------
-class TeamBase(BaseModel):
-    id: int
-    project_id: Optional[str] = 0
-    active:  Optional[bool] = False
-    note:  Optional[str] = None
+# class TeamBase(BaseModel):
+#     id: int
+#     project_id: Optional[str] = 0
+#     active:  Optional[bool] = False
+#     note:  Optional[str] = None
 
-class Team(TeamBase):
-    class Config():
-        orm_mode = True
+# class Team(TeamBase):
+#     class Config():
+#         orm_mode = True
 
-class ShowTeam(TeamBase):
-    id: int
-    project_id: Optional[str] = 0
-    active:  Optional[bool] = False
-    note:  Optional[str] = None
-    the_team_members: Optional[Team] 
-    class Config():
-        orm_mode = True
+# class ShowTeam(TeamBase):
+#     id: int
+#     project_id: Optional[str] = 0
+#     active:  Optional[bool] = False
+#     note:  Optional[str] = None
+#     the_team_members: Optional[Team] 
+#     class Config():
+#         orm_mode = True
         
 # Team
 # ------------------------------------
 class TeamMemberBase(BaseModel):
     id: int
-    team_id: int 
+    project_id: int 
     user_id: int
     team_role: Optional[int] = 0
     assign_date: date
-    active:  Optional[bool] = False
+    active:  Optional[bool] = True
     note:  Optional[str] = None
     
 class TeamMember(TeamMemberBase):
@@ -144,11 +144,11 @@ class TeamMember(TeamMemberBase):
         
 class ShowTeamMember(TeamMemberBase):
     id: int
-    team_id: int 
+    project_id: int 
     user_id: int
     team_role: Optional[int] = 0
     assign_date: date
-    active:  Optional[bool] = False
+    active:  Optional[bool] = True
     note:  Optional[str] = None
 
     class Config():

@@ -49,33 +49,33 @@ class Project(Base):
     active = Column(Boolean, default=False)
     status = Column(Integer, default=0)
     priority = Column(Integer) # Low=0, Medium=1, High=2, Critical=3
-    team_id = Column(Integer)
+    # team_id = Column(Integer)
     owner_id = Column(Integer)
     
     # project_owner = relationship("User", back_populates="the_project")
     # the_team = relationship("Team", back_populates="the_project_team")
 
-#---------------------------------------
-class Team(Base):
-    __tablename__ = 'teams'
-    id = Column(Integer, primary_key=True, index=True)
-    project_id = Column(String, ForeignKey("projects.id"))
-    active = Column(Boolean, default=False)
-    note = Column(String)
+# #---------------------------------------
+# class Team(Base):
+#     __tablename__ = 'teams'
+#     id = Column(Integer, primary_key=True, index=True)
+#     project_id = Column(String, ForeignKey("projects.id"))
+#     active = Column(Boolean, default=False)
+#     note = Column(String)
     
-    the_members = relationship("TeamMember", back_populates="the_team")
-    # the_project_team = relationship("Project", back_populates="the_team")
+#     the_members = relationship("TeamMember", back_populates="the_team")
+#     # the_project_team = relationship("Project", back_populates="the_team")
     
 #---------------------------------------
 class TeamMember(Base):
     __tablename__ = 'team_members'
     id = Column(Integer, primary_key=True, index=True)
-    team_id = Column(Integer, ForeignKey("teams.id"))
+    # project_id = Column(Integer, ForeignKey("projects.id"))
+    project_id = Column(Integer)
     user_id = Column(Integer)
     team_role = Column(Integer)
     assign_date = Column(Date)
     active = Column(Boolean, default=False)
     note = Column(String)
     
-    the_team = relationship("Team", back_populates="the_members")
-    # team_member = relationship("User", back_populates="the_team_member")
+    # the_project = relationship("Project", back_populates="the_members")

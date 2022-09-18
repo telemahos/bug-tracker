@@ -68,7 +68,7 @@
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
-                        style="max-width: 150px"
+                        style="max-width: 250px"
                       >
                         {{ project.description }}
                       </div>

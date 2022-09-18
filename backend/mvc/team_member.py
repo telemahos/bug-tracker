@@ -36,7 +36,7 @@ def team_member_show(id: int, db: Session):
 
 # Create and Post a new Team Member
 def team_member_create(request: schemas.TeamMember, db: Session):
-    new_team_member = models.TeamMember(team_id=request.team_id, user_id=request.user_id, team_role = request.team_role, assign_date = request.assign_date, active = request.active, note = request.note)
+    new_team_member = models.TeamMember(project_id=request.project_id, user_id=request.user_id, team_role = request.team_role, assign_date = request.assign_date, active = request.active, note = request.note)
     db.add(new_team_member)
     db.commit()
     db.refresh(new_team_member)

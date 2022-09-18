@@ -3,7 +3,7 @@ from typing import List
 from fastapi import APIRouter, Depends, status
 from .. import schemas, database, models, oauth2
 from sqlalchemy.orm import Session
-from ..mvc import case, user, project, team, team_member
+from ..mvc import case, user, project, team_member
 
 router = APIRouter(
     prefix="/api/team_member",
