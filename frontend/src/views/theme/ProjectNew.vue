@@ -260,6 +260,8 @@ export default {
         this.setTeamMembers(this.new_project_id, this.value[x])
       }
       event.target.reset()
+      const toPath = this.$route.query.to || '/theme/projectlist'
+      this.$router.push(toPath)
     },
 
     async setTeamMembers(projectID, userID) {
