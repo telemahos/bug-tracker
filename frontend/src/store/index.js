@@ -11,6 +11,15 @@ export default createStore({
     today: '',
     all_projects: '',
     all_users: '',
+    userRoles: [
+      'No Role',
+      'Admin',
+      'Developer',
+      'QA Analyst',
+      'Business Analyst',
+      'Product Manager',
+      'Technology Manager',
+    ],
   },
   mutations: {
     toggleSidebar(state) {

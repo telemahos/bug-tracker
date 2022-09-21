@@ -106,20 +106,18 @@
             </div>
 
             <div class="mb-3">
-              <CFormLabel for="team"
-                ><b>Team:</b></CFormLabel
-              >
+              <CFormLabel for="team"><b>Team:</b></CFormLabel>
               <!-- name="team"
                 id="team" trackBy= 'role' label="label" :object="true" :searchable="true" -->
               <Multiselect
                 v-model="value"
                 placeholder="Choose your team"
                 mode="tags"
-                trackBy= 'value'
-                label= "label"
+                trackBy="value"
+                label="label"
                 :close-on-select="false"
                 :create-option="true"
-                :options= "allUsers"
+                :options="allUsers"
               />
             </div>
 
@@ -155,11 +153,7 @@ export default {
   data() {
     return {
       value: null,
-      options: [
-        'Batman',
-        'Robin',
-        'Joker',
-      ],
+      options: ['Batman', 'Robin', 'Joker'],
       duedate: '',
       startDate: '',
       today: this.$store.state.today,
@@ -176,7 +170,7 @@ export default {
       apiURL: this.$store.state.apiURL,
       title: '',
       description: '',
-      tags:['tag1', 'tag2'],
+      tags: ['tag1', 'tag2'],
       active: '1',
       projectStatus: '',
       projectPriority: '',
@@ -244,17 +238,15 @@ export default {
 
       await axios
         .post(`${this.apiURL}/project`, project_data, { headers })
-        .then((response) =>
-          this.new_project_id = response.data.id,
+        .then(
+          (response) => (this.new_project_id = response.data.id),
           // console.log('New Project ID: ' + this.new_project_id),
         )
         .catch((error) => console.log(`${error}`))
-        .finally(() => 
-          console.log('New Project ID: ' + this.new_project_id), 
-        );
+        .finally(() => console.log('New Project ID: ' + this.new_project_id))
 
-      console.log("Nr of MEMBERS: ", this.value.length)
-      console.log("MEMBERS: ", this.value)
+      console.log('Nr of MEMBERS: ', this.value.length)
+      console.log('MEMBERS: ', this.value)
 
       for (let x = 0; x < this.value.length; x++) {
         this.setTeamMembers(this.new_project_id, this.value[x])
@@ -278,7 +270,7 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('New Team Member: ' , team_member_data)
+      console.log('New Team Member: ', team_member_data)
       await axios
         .post(`${this.apiURL}/team_member`, team_member_data, { headers })
         .then((response) =>

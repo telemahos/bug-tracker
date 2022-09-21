@@ -163,6 +163,7 @@
     </COffcanvasBody>
   </COffcanvas>
 </template>
+
 <script>
 import axios from 'axios'
 export default {

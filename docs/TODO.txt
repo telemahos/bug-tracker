@@ -6,7 +6,10 @@
 - Local or Session Storage?
 
 *** USER ***
-
+- My projects
+- My Tickets
+- User Profile
+- Header-> Logged in as: Admin/User etc.
 
 *** DASHBOARD ***
 
@@ -15,7 +18,9 @@
 - comments for projects
 - edit projects
 - add/remove members from project
-
+- Overview: Show tickets for this project
+- Project History
+- Add Attachmend files
 
 *** MEMBERS ***
 
@@ -28,11 +33,17 @@
 - Search Filter for tickets
 - Nice to Have: Write notes to each ticket
 - BUG: On Ticket edit dates, projects and Owner isn't captured
+- Ticket History
+- Add Attachmend files
 
 
 
 *** BUG ***
-
+Kategories:
+- bug/error
+- Feature request
+- training
+- Other comments
 
 *** NOTES ***
 

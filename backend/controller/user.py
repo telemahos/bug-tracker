@@ -21,6 +21,10 @@ async def all_users(db: Session = Depends(get_db), current_user: schemas.User = 
 async def create_user(request: schemas.User, db: Session = Depends(get_db)):
     return user.create(request, db)
 
+@router.put('/{id}', status_code=status.HTTP_202_ACCEPTED)
+async def update_user(id:int , request: schemas.User, db: Session = Depends(get_db), current_user: schemas.User = Depends(oauth2.get_current_user)):
+    return user.user_update(id, request, db) 
+
 @router.get('/{id}', response_model=schemas.ShowUser)
 async def get_user(id: int, db: Session = Depends(get_db)):
     return user.show(id, db)

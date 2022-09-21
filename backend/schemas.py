@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 from datetime import date
 # datetime, time
 from pydantic import BaseModel
@@ -17,16 +17,14 @@ class User(BaseModel):
     id: int
     name: str
     email: str
-    password: str
+    password: Union[str, None] = None
     user_role: int
 
 class ShowUser(BaseModel):
     id: int
-    name: str
-    email: str
-    user_role: int
-    # Refers to the first class Blog
-    # the_blogs: List[Blog] = []
+    name: Union[str, None] = None 
+    email: Union[str, None] = None
+    user_role: Union[int, None] = None
     class Config():
         orm_mode = True
 

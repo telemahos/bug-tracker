@@ -17,6 +17,11 @@ def create(request: schemas.User, db:Session):
     db.refresh(new_user)
     return new_user
 
+def user_update(id: int, request: schemas.ShowUser, db: Session):
+    db.query(models.User).filter(models.User.id == id).update({'name': request.name,"email": request.email,'user_role': request.user_role})
+    db.commit()
+    return "User updated!"
+
 def show(id:int, db:Session):
     user = db.query(models.User).filter(models.User.id == id).first()
     if not user:

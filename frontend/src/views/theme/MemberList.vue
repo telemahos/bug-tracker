@@ -1,5 +1,5 @@
 <template>
-  <h1>This is MemberList Page!</h1>
+  <h1>Members List!</h1>
 
   <div>
     <CRow>
@@ -14,17 +14,17 @@
               <CTable align="middle" class="mb-0 border" hover responsive>
                 <CTableHead color="light">
                   <CTableRow>
-                    <CTableHeaderCell class="text-center">
-                      #
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>
-                      Name / Role
-                    </CTableHeaderCell>
+                    <CTableHeaderCell class="text-center"> # </CTableHeaderCell>
+                    <CTableHeaderCell> Name / Role </CTableHeaderCell>
                     <CTableHeaderCell class="text-center"
                       >Email</CTableHeaderCell
                     >
-                    <CTableHeaderCell>Projects</CTableHeaderCell>
-                    <CTableHeaderCell>Tickets</CTableHeaderCell>
+                    <CTableHeaderCell class="text-center"
+                      >Projects</CTableHeaderCell
+                    >
+                    <CTableHeaderCell class="text-center"
+                      >Tickets</CTableHeaderCell
+                    >
                     <CTableHeaderCell class="text-center"
                       >Action</CTableHeaderCell
                     >
@@ -55,33 +55,29 @@
                         class="small text-medium-emphasis text-truncate"
                         style="max-width: 250px"
                       >
-                        {{ role[user.user_role -1] }}
+                        {{ userRoles[user.user_role] }}
                       </div>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>{{ user.email }}</div>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      <div class="small text-medium-emphasis">
-                        <CBadge color="success">{{ getProjectsByUser(user.id) }}</CBadge>
+                      <div class="text-medium-emphasis">
+                        <CBadge color="success">{{
+                          getProjectsByUser(user.id)
+                        }}</CBadge>
                       </div>
                     </CTableDataCell>
-                    <CTableDataCell>
-                      <div
-                        class="small text-secondary"
-                        color="text-secondary"
-                      >
-                      ROLE: {{ user.user_role - 1 }}
-                        {{ role[user.user_role - 1] }}
+                    <CTableDataCell class="text-center">
+                      <div class="text-medium-emphasis">
+                        <CBadge color="info">{{
+                          getCasesByUser(user.id)
+                        }}</CBadge>
                       </div>
-                      
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <!-- <AppOffcanvasTicketEdit v-bind:the_case="project" /> -->
-                        <CButton color="dark" variant="ghost" size="sm"
-                          >Edit</CButton
-                        >
+                        <AppOffcanvasMemberEdit v-bind:user="user" />
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -97,13 +93,14 @@
 </template>
 
 <script>
-
 import axios from 'axios'
-// import AppOffcanvasTicketEdit from '../../components/AppOffcanvasTicketEdit.vue'
+import AppOffcanvasMemberEdit from '../../components/AppOffcanvasMemberEdit.vue'
 
 export default {
   name: 'MemberList',
-  components: {},
+  components: {
+    AppOffcanvasMemberEdit,
+  },
   data() {
     return {
       token: this.$store.state.token,
@@ -118,8 +115,8 @@ export default {
       projects: [],
       users: [],
       team_members: [],
-      role: ['Admin', 'Developer', 'QA Analyst', 'Business Analyst', 'Product Manager', 'Technology Manager'],
-      // projectsByUser: '',
+      cases: [],
+      userRoles: this.$store.state.userRoles,
     }
   },
   mounted() {
@@ -131,37 +128,46 @@ export default {
       .get(`${this.apiURL}/project`, { headers })
       .then((response) => {
         this.projects = response.data
-        // this.$store.commit('setProjects', this.projects)
-        // console.log('Projects: ', this.projects)
       })
       .catch((error) => console.log(`${error}`))
     axios
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
-        // this.$store.commit('setUsers', this.users)
-        // console.log('Users: ', this.users)
       })
       .catch((error) => console.log(`${error}`))
     axios
       .get(`${this.apiURL}/team_member`, { headers })
       .then((response) => {
         this.team_members = response.data
-        // this.$store.commit('setProjects', this.projects)
-        // console.log('Team Members: ', this.team_members)
-    })
-    .catch((error) => console.log(`${error}`))
+      })
+      .catch((error) => console.log(`${error}`))
+    axios
+      .get(`${this.apiURL}/case`, { headers })
+      .then((response) => {
+        this.cases = response.data
+      })
+      .catch((error) => console.log(`${error}`))
   },
   methods: {
     getProjectsByUser(userID) {
-      let projectsByUser = 0 
+      let projectsByUser = 0
       for (let x = 0; x < this.team_members.length; x++) {
         if (this.team_members[x].user_id === userID) {
           projectsByUser++
         }
       }
       return projectsByUser
-    }
+    },
+    getCasesByUser(userID) {
+      let casesByUser = 0
+      for (let x = 0; x < this.cases.length; x++) {
+        if (this.cases[x].owner_id === userID) {
+          casesByUser++
+        }
+      }
+      return casesByUser
+    },
   },
 }
 </script>
