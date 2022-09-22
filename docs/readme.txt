@@ -27,11 +27,14 @@ repository -> model
 --------------
 User Roles:
 Admin -> 1
-Developer -> 2
-QA Analyst -> 3
-Business Analyst -> 4
-Product Manager -> 5
-Technology Manager -> 6
+Frontend Developer -> 2
+Backend Developer -> 3
+Full Stack Developer -> 4
+UI/UX Designer -> 5
+QA Analyst -> 6
+Business Analyst -> 7
+Product Manager -> 8
+Technology Manager -> 9
 --------------
 Issue, Bug, Priority:
 Low -> 1

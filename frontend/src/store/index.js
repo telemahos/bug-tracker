@@ -14,7 +14,10 @@ export default createStore({
     userRoles: [
       'No Role',
       'Admin',
-      'Developer',
+      'Frontend Developer',
+      'Backend Developer',
+      'Full Stack Developer',
+      'UI/UX Designer',
       'QA Analyst',
       'Business Analyst',
       'Product Manager',
