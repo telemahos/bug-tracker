@@ -19,6 +19,7 @@ class User(Base):
 class Case(Base):
     __tablename__ = 'cases'
     id = Column(Integer, primary_key=True, index=True)
+    case_nr = Column(String, index = True)
     start_date = Column(Date, index=True)
     due_date = Column(Date, index=True)
     title = Column(String, index = True)

@@ -158,7 +158,8 @@ export default {
     return {
       // today: '16-10-2020',
       duedate: null,
-      start_date: this.$store.state.today,
+      start_date: '',
+      today: this.$store.state.today,
       db_today: '',
       year: '',
       month: '',
@@ -187,9 +188,9 @@ export default {
     }
   },
   mounted() {
-    this.year = this.start_date.getFullYear()
-    this.day = this.start_date.getDate()
-    this.month = this.start_date.getMonth() + 1
+    this.year = this.today.getFullYear()
+    this.day = this.today.getDate()
+    this.month = this.today.getMonth() + 1
 
     console.log('TODAY:', this.day + '-' + this.month + '-' + this.year)
 
@@ -225,6 +226,7 @@ export default {
       const case_data = {
         id: 0,
         start_date: this.db_today,
+        // start_date: "2022-09-13",
         // today: "2022-09-13",
         due_date: this.duedate,
         title: this.title,
@@ -235,6 +237,8 @@ export default {
         case_type: this.ticketType,
         project_id: this.projectSelected,
         owner_id: this.assigned,
+        // project_id: 1,
+        // owner_id: 2,
       }
       const headers = {
         Authorization: `Bearer ${this.token}`,

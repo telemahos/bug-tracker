@@ -159,6 +159,7 @@ export default {
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
       today: '',
+      start_date: '',
       due_date: '',
       title: '',
       description: '',

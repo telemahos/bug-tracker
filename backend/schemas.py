@@ -33,6 +33,7 @@ class ShowUser(BaseModel):
 # ------------------------------------
 class CaseBase(BaseModel):
     id: int
+    case_nr: Optional[str] = None
     start_date: Optional[date]
     due_date: Optional[date]
     title: Optional[str] = None
@@ -50,6 +51,7 @@ class Case(CaseBase):
 
 class ShowCase(CaseBase):
     id: int
+    case_nr: Optional[str] = None
     start_date: Optional[date]
     due_date: Optional[date]
     title: Optional[str] = None

@@ -120,9 +120,9 @@ export default {
       console.log('USER DATA: ', user_data)
       await axios
         .put(`${this.apiURL}/user/` + this.user.id, user_data, { headers })
-        .then((response) =>
-          console.log('USER: ' + JSON.stringify(response.data)),
-          this.visibleEnd = !this.visibleEnd
+        .then(
+          (response) => console.log('USER: ' + JSON.stringify(response.data)),
+          (this.visibleEnd = !this.visibleEnd),
         )
         .catch((error) => console.log(`${error}`))
     },

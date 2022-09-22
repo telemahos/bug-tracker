@@ -149,23 +149,23 @@
 </template>
 
 <script>
-import avatar from '@/assets/images/avatars/2.jpg'
+// import avatar from '@/assets/images/avatars/2.jpg'
 export default {
   name: 'ticketdetails',
   setup() {
     return {
       // avatar: avatar,
-      avatar: { src: avatar, status: 'success' },
-      token: this.$store.state.token,
-      apiURL: this.$store.state.apiURL,
-      start_date: '',
-      due_date: '',
-      title: '',
-      description: '',
-      ticketStatus: '',
-      ticketPriority: '',
-      projects: [],
-      users: [],
+      // avatar: { src: avatar, status: 'success' },
+      // token: this.$store.state.token,
+      // apiURL: this.$store.state.apiURL,
+      // start_date: '',
+      // due_date: '',
+      // title: '',
+      // description: '',
+      // ticketStatus: '',
+      // ticketPriority: '',
+      // projects: [],
+      // users: [],
     }
   },
 }
