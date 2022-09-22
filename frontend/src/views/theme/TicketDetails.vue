@@ -156,6 +156,16 @@ export default {
     return {
       // avatar: avatar,
       avatar: { src: avatar, status: 'success' },
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+      start_date: '',
+      due_date: '',
+      title: '',
+      description: '',
+      ticketStatus: '',
+      ticketPriority: '',
+      projects: [],
+      users: [],
     }
   },
 }

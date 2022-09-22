@@ -177,7 +177,7 @@ export default {
       the_projects: JSON.parse(this.$store.state.all_projects),
       the_users: JSON.parse(this.$store.state.all_users),
       visibleEnd: false,
-      today: '',
+      start_date: '',
       due_date: '',
       title: '',
       description: '',
@@ -209,7 +209,7 @@ export default {
     async submitTicket() {
       const case_data = {
         id: this.the_case.id,
-        today: this.the_case.today,
+        start_date: this.the_case.start_date,
         due_date: this.the_case.due_date,
         title: this.the_case.title,
         description: this.the_case.description,

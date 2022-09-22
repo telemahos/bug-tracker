@@ -33,13 +33,13 @@
             </div>
             <!-- Today and Due Date -->
             <div class="mb-3 form-check-inline">
-              <label for="today">Today</label>
+              <label for="start_date">Today</label>
               <CFormInput
-                id="today"
+                id="start_date"
                 type="text"
                 placeholder="Today"
-                name="today"
-                v-model="today"
+                name="start_date"
+                v-model="start_date"
                 readonly
               />
             </div>
@@ -158,7 +158,7 @@ export default {
     return {
       // today: '16-10-2020',
       duedate: null,
-      today: this.$store.state.today,
+      start_date: this.$store.state.today,
       db_today: '',
       year: '',
       month: '',
@@ -187,9 +187,9 @@ export default {
     }
   },
   mounted() {
-    this.year = this.today.getFullYear()
-    this.day = this.today.getDate()
-    this.month = this.today.getMonth() + 1
+    this.year = this.start_date.getFullYear()
+    this.day = this.start_date.getDate()
+    this.month = this.start_date.getMonth() + 1
 
     console.log('TODAY:', this.day + '-' + this.month + '-' + this.year)
 
@@ -199,7 +199,7 @@ export default {
     if (parseInt(this.day) <= 9) {
       this.day = '0' + this.day
     }
-    this.today = this.day + '-' + this.month + '-' + this.year
+    this.start_date = this.day + '-' + this.month + '-' + this.year
     this.db_today = this.year + '-' + this.month + '-' + this.day
     const headers = {
       Authorization: `Bearer ${this.token}`,
@@ -224,7 +224,7 @@ export default {
     async submitTicket() {
       const case_data = {
         id: 0,
-        today: this.db_today,
+        start_date: this.db_today,
         // today: "2022-09-13",
         due_date: this.duedate,
         title: this.title,

@@ -23,6 +23,23 @@ export default createStore({
       'Product Manager',
       'Technology Manager',
     ],
+    case_type: [
+      'Issue',
+      'Bug',
+      'Note',
+    ],
+    status: [
+      'New',
+      'In Progress',
+      'On Hold',
+      'Solved',
+    ],
+    priority: [
+      'Normal',
+      'Medium',
+      'High',
+      'Critical',
+    ]
   },
   mutations: {
     toggleSidebar(state) {
