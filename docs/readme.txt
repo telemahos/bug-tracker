@@ -1,10 +1,10 @@
-- python3 -m venv env_078 
+- python3 -m venv env_079 
 - ./ngrok http 8000 
 - ngrok http 8000 (on Windows)
-- .\env_078\Scripts\activate.bat (On windows)
-- source env_078/bin/activate
-- pip install --upgrade pip
-- pip install -r requirements.txt
+- .\env_079\Scripts\activate.bat (On windows)
+- source env_079/bin/activate
+- pip3 install --upgrade pip
+- pip3 install -r docs/requirements.txt
 - uvicorn backend.main:app --reload
 - npm run serve
 - npm run 
@@ -59,5 +59,8 @@ eslint Fehlemeldung -> Loesung fuer Windows:
 -> Loesung fuer Mac:
 npm run lint -- --fix
 --------------
-
+Python3 Switch Version
+brew unlink python@3.9
+brew unlink python@3.8
+brew link --force python@3.9
 --------------

@@ -4,6 +4,7 @@
 - Correct date insertion
 - Logout correctly
 - Local or Session Storage?
+- Get full year correction
 
 *** USER ***
 - My projects
