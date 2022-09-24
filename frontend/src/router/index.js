@@ -81,9 +81,10 @@ const routes = [
         component: () => import('@/views/theme/TicketNew.vue'),
       },
       {
-        path: '/theme/ticketdetails',
+        path: '/theme/ticketdetails/:id',
         name: 'TicketDetails',
         component: () => import('@/views/theme/TicketDetails.vue'),
+        props: true,
       },
       // {
       //   path: '/theme/main',

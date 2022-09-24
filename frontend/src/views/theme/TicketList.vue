@@ -60,9 +60,14 @@
                     </CTableDataCell>
                     <CTableDataCell>
                       <div>
-                        <a href="#" target="_blank" rel="noopener noreferrer">{{
+                        <CLink :href="link_to + the_case.id">{{the_case.title}}</CLink>
+                        <!-- <router-link :to="the_case.id">{{the_case.title}}</router-link> -->
+
+                        <!-- <router-link :to="{ name: 'TicketDetails', params:{id: the_case.id} }">{{the_case.title}}</router-link> -->
+
+                        <!-- <a :href='#/theme/ticketlist/ticketdetails/the_case.id' target="_blank" rel="noopener noreferrer">{{ 
                           the_case.title
-                        }}</a>
+                        }}</a> -->
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
@@ -179,7 +184,7 @@
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <AppOffcanvasTicketEdit v-bind:the_case="the_case" />
+                        <!-- <AppOffcanvasTicketEdit v-bind:the_case="the_case" /> -->
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -208,6 +213,7 @@ export default {
     return {
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
+      link_to: '#/theme/ticketdetails/',
       cases: [],
       date: '',
       title: '',
@@ -231,16 +237,16 @@ export default {
       .get(`${this.apiURL}/project`, { headers })
       .then((response) => {
         this.projects = response.data
-        this.$store.commit('setProjects', this.projects)
-        // console.log('projects: ', this.projects)
+        // this.$store.commit('setProjects', this.projects)
+        console.log('projects: ', this.projects)
       })
       .catch((error) => console.log(`${error}`))
     axios
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
-        this.$store.commit('setUsers', this.users)
-        // console.log('User Names: ', this.users)
+        // this.$store.commit('setUsers', this.users)
+        console.log('User Names: ', this.users)
       })
       .catch((error) => console.log(`${error}`))
     axios

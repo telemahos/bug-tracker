@@ -1,7 +1,7 @@
 <template>
   <h1 class="mb-8">
-    Ticket details!
-    <small class="text-muted">Bugs</small>
+    {{ this.case.title }}:  
+    <small class="text-muted">{{caseID}}</small>
   </h1>
 
   <CRow>
@@ -17,42 +17,43 @@
               class="d-flex justify-content-between align-items-center"
             >
               Case No.
-              <small>070922-N073</small>
+              <small>{{ this.case.case_nr }}</small>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Title</h6>
-                <small>Bug in Login and Logout</small>
+                <small>{{ this.case.title }}</small>
               </div>
             </CListGroupItem>
-            <CListGroupItem>
+            <CListGroupItem> <!-- his.projects[this.projects.id]  this.case.project_id -->
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Project</h6>
-                <small>Project Title 3</small>
+                <small>{{project.title}}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Type</h6>
-                <small class="text-dark">Bug</small>
+                <small class="text-dark">{{ ticketType[this.case.case_type] }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Priority</h6>
-                <CBadge color="danger">Critical</CBadge>
+                <CBadge color="danger">{{ ticketPriority[this.case.priority] }}</CBadge>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Status</h6>
-                <small class="text-info">In Progress</small>
+                <small class="text-info">{{ ticketStatus[this.case.status] }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Due Date</h6>
-                <small>Sep 28, 2022</small>
+                <!-- <small>Sep 28, 2022</small> -->
+                <small>{{ this.case.due_date }}</small>
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -91,13 +92,7 @@
         </CCardHeader>
         <CCardBody>
           <p class="text-medium-emphasis small">
-            It will be as simple as occidental in fact, it will be Occidental.
-            To an English person, it will seem like simplified English, as a
-            skeptical Cambridge friend of mine told me what Occidental is. The
-            European languages are members of the same family. Their separate
-            existence is a myth. For science, music, sport, etc, Europe uses the
-            same vocabulary. The languages only differ in their grammar, their
-            pronunciation and their most common words.
+            {{ this.case.description }}
           </p>
         </CCardBody>
       </CCard>
@@ -150,23 +145,82 @@
 
 <script>
 // import avatar from '@/assets/images/avatars/2.jpg'
+import axios from 'axios'
 export default {
   name: 'ticketdetails',
-  setup() {
+  props: ['id'],
+  data() {
     return {
       // avatar: avatar,
       // avatar: { src: avatar, status: 'success' },
-      // token: this.$store.state.token,
-      // apiURL: this.$store.state.apiURL,
-      // start_date: '',
-      // due_date: '',
-      // title: '',
-      // description: '',
-      // ticketStatus: '',
-      // ticketPriority: '',
-      // projects: [],
-      // users: [],
+      caseID: this.id,
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+      case: '',
+      case_nr: '',
+      start_date: '',
+      due_date: '',
+      title: '',
+      description: '',
+      ticketStatus: this.$store.state.status,
+      ticketPriority: this.$store.state.priority,
+      ticketType: this.$store.state.case_type,
+      projects: '',
+      users: [],
+      project: '',
     }
   },
+  beforeMount() {
+    this.loadCase()
+    this.loadUsersAndProjects() 
+  },
+  mounted() {
+    
+  },
+  methods: {
+    async loadCase() {
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      await axios
+      .get(`${this.apiURL}/case/` + this.caseID, { headers })
+      .then((response) => {
+        this.case = response.data
+        console.log('This CASE: ', this.case)
+      })
+      .catch((error) => console.log(`${error}`))
+    },
+    async loadUsersAndProjects() {
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      await axios
+      .get(`${this.apiURL}/project/`, { headers })
+      .then((response) => {
+        this.projects = response.data
+        // this.$store.commit('setProjects', this.projects)
+        console.log('projects77: ', this.projects)
+      })
+      .finally(() => {
+        for( let x = 0; x < this.projects.length; x++ ) {
+          if ( this.case.project_id == this.projects[x].id ){
+            // console.log('PID: ', this.projects[x].id)
+            this.project = this.projects[x]
+          }
+        }
+      })
+      .catch((error) => console.log(`${error}`))
+      await axios
+      .get(`${this.apiURL}/user`, { headers })
+      .then((response) => {
+        this.users = response.data
+        // this.$store.commit('setUsers', this.users)
+        // console.log('User Names: ', this.users)
+      })
+      .catch((error) => console.log(`${error}`)) 
+      }
+  }
 }
 </script>

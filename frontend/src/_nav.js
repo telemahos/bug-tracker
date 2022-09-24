@@ -68,7 +68,8 @@ export default [
       {
         component: 'CNavItem',
         name: 'TicketDetails',
-        to: '/theme/ticketdetails',
+        to: '/theme/ticketdetails/:id',
+        props: true
       },
     ],
   },
