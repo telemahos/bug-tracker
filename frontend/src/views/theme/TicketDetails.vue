@@ -1,7 +1,7 @@
 <template>
   <h1 class="mb-8">
-    {{ this.case.title }}:  
-    <small class="text-muted">{{caseID}}</small>
+    {{ this.case.title }}  
+    <small class="text-muted"></small>
   </h1>
 
   <CRow>
@@ -66,19 +66,19 @@
         <CCardBody>
           <CListGroup>
             <CListGroupItem>
-              <div
-                class="d-flex w-100 justify-content-between align-items-center"
-              >
-                <h6 class="mb-1">Owner</h6>
-                <!-- <CAvatar 
-                  size="md" 
-                  :src="avatar.src"
-                  :status="avatar.status"/>         -->
-                <small>
-                  Konstantinos Kakoulis<br /><span class="text-muted"
-                    >Web Devloper</span
-                  ></small
+              <div class="row row-cols-2">
+                <div
+                  class="d-flex w-100 justify-content-between align-items-center"
+                  v-for="(team_member, index) in team_members"
                 >
+                  <h6 class="col mb-1">{{ team_member.name }}</h6>
+                  <small>
+                    <span class="col text-muted text-right"
+                      >{{ userRoles[team_member.user_role] }}</span
+                    ></small
+                  >
+                  <hr>
+                </div>
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -91,7 +91,7 @@
           <strong></strong> <small>DESCRIPTION</small>
         </CCardHeader>
         <CCardBody>
-          <p class="text-medium-emphasis small">
+          <p class="text-medium-emphasis">
             {{ this.case.description }}
           </p>
         </CCardBody>
@@ -151,8 +151,6 @@ export default {
   props: ['id'],
   data() {
     return {
-      // avatar: avatar,
-      // avatar: { src: avatar, status: 'success' },
       caseID: this.id,
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
@@ -165,8 +163,11 @@ export default {
       ticketStatus: this.$store.state.status,
       ticketPriority: this.$store.state.priority,
       ticketType: this.$store.state.case_type,
+      userRoles: this.$store.state.userRoles,
       projects: '',
       users: [],
+      members: [],
+      team_members: [],
       project: '',
     }
   },
@@ -187,7 +188,7 @@ export default {
       .get(`${this.apiURL}/case/` + this.caseID, { headers })
       .then((response) => {
         this.case = response.data
-        console.log('This CASE: ', this.case)
+        // console.log('This CASE: ', this.case)
       })
       .catch((error) => console.log(`${error}`))
     },
@@ -196,12 +197,11 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      await axios
+    await axios
       .get(`${this.apiURL}/project/`, { headers })
       .then((response) => {
         this.projects = response.data
-        // this.$store.commit('setProjects', this.projects)
-        console.log('projects77: ', this.projects)
+        // console.log('projects77: ', this.projects)
       })
       .finally(() => {
         for( let x = 0; x < this.projects.length; x++ ) {
@@ -212,15 +212,31 @@ export default {
         }
       })
       .catch((error) => console.log(`${error}`))
-      await axios
+    await axios
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
-        // this.$store.commit('setUsers', this.users)
         // console.log('User Names: ', this.users)
       })
       .catch((error) => console.log(`${error}`)) 
-      }
+    await axios
+      .get(`${this.apiURL}/team_member`, { headers })
+      .then((response) => {
+        this.members = response.data
+        console.log('MEMBER Names: ', this.members)
+      })
+      .finally(() => {
+        let z = 0;
+        for( let x = 0; x < this.members.length; x++ ) {
+          if ( this.case.project_id == this.members[x].project_id ){
+            this.team_members[z] = this.users[this.members[x].id]
+            console.log('TEAM: ',  this.team_members[z])
+            z++
+          }
+        }
+      })
+      .catch((error) => console.log(`${error}`)) 
+    },
   }
 }
 </script>

@@ -61,13 +61,6 @@
                     <CTableDataCell>
                       <div>
                         <CLink :href="link_to + the_case.id">{{the_case.title}}</CLink>
-                        <!-- <router-link :to="the_case.id">{{the_case.title}}</router-link> -->
-
-                        <!-- <router-link :to="{ name: 'TicketDetails', params:{id: the_case.id} }">{{the_case.title}}</router-link> -->
-
-                        <!-- <a :href='#/theme/ticketlist/ticketdetails/the_case.id' target="_blank" rel="noopener noreferrer">{{ 
-                          the_case.title
-                        }}</a> -->
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
