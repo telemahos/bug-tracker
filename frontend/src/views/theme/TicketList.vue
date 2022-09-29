@@ -35,9 +35,7 @@
                       >Type</CTableHeaderCell
                     >
                     <CTableHeaderCell>Project</CTableHeaderCell>
-                    <CTableHeaderCell class="text-center"
-                      >Owner</CTableHeaderCell
-                    >
+                    <CTableHeaderCell class="text-left">Owner</CTableHeaderCell>
                     <CTableHeaderCell class="text-center"
                       >ToDo</CTableHeaderCell
                     >
@@ -60,7 +58,9 @@
                     </CTableDataCell>
                     <CTableDataCell>
                       <div>
-                        <CLink :href="link_to + the_case.id">{{the_case.title}}</CLink>
+                        <CLink :href="link_to + the_case.id">{{
+                          the_case.title
+                        }}</CLink>
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
@@ -70,35 +70,11 @@
                       </div>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      <div
-                        class="small text-medium-emphasis"
-                        v-if="the_case.status === 1"
-                      >
-                        <CBadge color="success">New</CBadge>
+                      <div class="small text-medium-emphasis">
+                        <CBadge color="success">{{
+                          caseStatus[the_case.status]
+                        }}</CBadge>
                       </div>
-                      <div
-                        class="small text-medium-emphasis"
-                        v-if="the_case.status === 2"
-                      >
-                        <CBadge color="info">In Progress</CBadge>
-                      </div>
-                      <div
-                        class="small text-medium-emphasis"
-                        v-if="the_case.status === 3"
-                      >
-                        <CBadge color="warning">On Hold</CBadge>
-                      </div>
-                      <div
-                        class="small text-medium-emphasis"
-                        v-if="the_case.status === 4"
-                      >
-                        <CBadge color="dark">Solved</CBadge>
-                      </div>
-                      <!-- <CIcon
-                        size="xl"
-                        :name="item.country.flag"
-                        :title="item.country.name"
-                      /> -->
                     </CTableDataCell>
                     <CTableDataCell>
                       <div
@@ -129,21 +105,6 @@
                       >
                         Critical
                       </div>
-                      <!-- <div class="clearfix">
-                        <div class="float-start">
-                          <strong>{{ item.usage.value }}%</strong>
-                        </div>
-                        <div class="float-end">
-                          <small class="text-medium-emphasis">
-                            {{ item.usage.period }}
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress
-                        thin
-                        :color="item.usage.color"
-                        :value="item.usage.value"
-                      /> -->
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div
@@ -164,20 +125,34 @@
                       >
                         Note
                       </div>
-                      <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
                     </CTableDataCell>
                     <CTableDataCell>
-                      <div>{{ projectTitle[index] }}</div>
-                      <!-- <div class="small text-medium-emphasis">Last login</div>
-                      <strong>{{ item.activity }}</strong> {{ projectNames.title }}-->
+                      <div
+                        v-bind:the_case="
+                          (the_case.projectName = projectTitle[index])
+                        "
+                      >
+                        {{ projectTitle[index] }}
+                      </div>
+                      <div
+                        v-bind:the_case="(the_case.all_projects = projects)"
+                      ></div>
                     </CTableDataCell>
-                    <CTableDataCell class="text-center">
-                      <div>{{ userNames[index] }}</div>
-                      <!-- <CIcon size="xl" :name="item.payment.icon" /> -->
+                    <CTableDataCell class="text-right text-muted small">
+                      <div
+                        style="max-width: 100px"
+                        v-bind:the_case="
+                          (the_case.projectOwner = userNames[index])
+                        "
+                      >
+                        {{ userNames[index] }}
+                      </div>
+                      <div v-bind:the_case="(the_case.all_users = users)"></div>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <!-- <AppOffcanvasTicketEdit v-bind:the_case="the_case" /> -->
+                        <AppOffcanvasTicketEdit 
+                        @updateTicketList="(event) => loadTicket()" v-bind:the_case="the_case" />
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -207,6 +182,9 @@ export default {
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
       link_to: '#/theme/ticketdetails/',
+      caseStatus: this.$store.state.status,
+      casePriority: this.$store.state.priority,
+      caseType: this.$store.state.case_type,
       cases: [],
       date: '',
       title: '',
@@ -219,14 +197,30 @@ export default {
       userNames: [],
       projectTitle: [],
       all_cases: [],
+      all_projects: [],
+      all_users: [],
+      projectName: '',
+      projectOwner: '',
     }
   },
+  // updated() {
+  //   this.testingMe()
+  // },
   mounted() {
-    const headers = {
-      Authorization: `Bearer ${this.token}`,
-      'Content-Type': 'application/json',
-    }
-    axios
+    this.loadTicket()
+    // this.testingMe()
+  },
+  methods: {
+    testingMe() {
+      console.log("TEST 1")
+      alert("Hallo TEST 2")
+    },
+    async loadTicket() {
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      await axios
       .get(`${this.apiURL}/project`, { headers })
       .then((response) => {
         this.projects = response.data
@@ -234,7 +228,7 @@ export default {
         console.log('projects: ', this.projects)
       })
       .catch((error) => console.log(`${error}`))
-    axios
+      await axios
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
@@ -242,7 +236,7 @@ export default {
         console.log('User Names: ', this.users)
       })
       .catch((error) => console.log(`${error}`))
-    axios
+      await axios
       .get(`${this.apiURL}/case`, { headers })
       .then((response) => {
         this.cases = response.data
@@ -266,22 +260,10 @@ export default {
               z++
             }
           }
-          // Find the status of each case
-          // if (this.cases[i].status === 1) {
-          //   this.ticketStatus[i] = "Issue";
-          //   x++;
-          // }
-          // else if (this.cases[i].status === 2) {
-          //   this.ticketStatus[x] = "Bug";
-          //   x++;
-          // }
-          // else if (this.cases[i].status === 3) {
-          //   this.ticketStatus[x] = "Note";
-          //   x++;
-          // }
         }
       })
       .catch((error) => console.log(`${error}`))
+    },
   },
 }
 </script>

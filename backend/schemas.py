@@ -65,16 +65,12 @@ class ShowCase(CaseBase):
 
     class Config():
         orm_mode = True
-
-    # bar_income_2: Optional[float] = None
-    # pos: float = 0
-    # shift_id: Optional[str]
-    # the_shift: Optional[Shift] 
     
 # Project
 # ------------------------------------
 class ProjectBase(BaseModel):
     id: int
+    project_nr: Optional[str] = None
     start_date: date
     due_date : date
     title: Optional[str] = None
@@ -83,7 +79,6 @@ class ProjectBase(BaseModel):
     active:  Optional[bool] = False
     status:  Optional[int] = 0
     priority: Optional[int] = 0
-    # team_id: Optional[int] = 0
     owner_id: Optional[int] = None
 
 class Project(ProjectBase):
@@ -92,6 +87,7 @@ class Project(ProjectBase):
 
 class ShowProject(ProjectBase):
     id: int
+    project_nr: Optional[str] = None
     start_date: date
     due_date : date
     title: Optional[str] = None
@@ -100,34 +96,12 @@ class ShowProject(ProjectBase):
     active:  Optional[bool] = False
     status:  Optional[int] = 0
     priority: Optional[int] = 0
-    # team_id: Optional[int] = 0
     owner_id: Optional[int] = 0
 
     class Config():
         orm_mode = True
-
-# Team
-# ------------------------------------
-# class TeamBase(BaseModel):
-#     id: int
-#     project_id: Optional[str] = 0
-#     active:  Optional[bool] = False
-#     note:  Optional[str] = None
-
-# class Team(TeamBase):
-#     class Config():
-#         orm_mode = True
-
-# class ShowTeam(TeamBase):
-#     id: int
-#     project_id: Optional[str] = 0
-#     active:  Optional[bool] = False
-#     note:  Optional[str] = None
-#     the_team_members: Optional[Team] 
-#     class Config():
-#         orm_mode = True
         
-# Team
+# TeamMembers
 # ------------------------------------
 class TeamMemberBase(BaseModel):
     id: int

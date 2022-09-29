@@ -39,8 +39,8 @@
             type="text"
             placeholder="Member Name"
             name="name"
-            v-model="this.user.name"
           />
+          <!-- v-model="user.name" -->
         </div>
         <div class="mb-3">
           <CFormLabel for="email"><b>E-mail:</b></CFormLabel>
@@ -49,8 +49,8 @@
             name="email"
             type="email"
             placeholder="Member Name"
-            v-model="this.user.email"
           ></CFormInput>
+          <!-- v-model="user.email" -->
         </div>
         <div>
           <CFormLabel for="role"><b>User Role:</b></CFormLabel>
@@ -102,6 +102,9 @@ export default {
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
       selectedRole: '',
+      // name: '',
+      // email: '',
+      // user_role: '',
     }
   },
   methods: {

@@ -10,7 +10,7 @@ from sqlalchemy.sql import text
 from sqlalchemy import desc
 
 
-# Create the Case Number
+# Create random Case Number
 def get_case_nr():
   the_number=random.randint(10121, 89999)
   letters = string.ascii_uppercase
@@ -84,7 +84,7 @@ def case_create(request: schemas.Case, db: Session):
     return new_case
 
 def case_update(id: int, request: schemas.Case, db: Session):
-    db.query(models.Case).filter(models.Case.id == id).update({'case_nr': get_case_nr(), 'start_date': request.start_date, 'due_date': request.due_date, 'title': request.title, 'description': request.description, 'tags': request.tags, 'status': request.status, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id})
+    db.query(models.Case).filter(models.Case.id == id).update({ 'start_date': request.start_date, 'due_date': request.due_date, 'title': request.title, 'description': request.description, 'tags': request.tags, 'status': request.status, 'priority': request.priority, 'case_type': request.case_type, 'project_id': request.project_id, 'owner_id': request.owner_id })
     db.commit()
     return "Case updated!"
 

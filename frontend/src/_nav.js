@@ -34,7 +34,8 @@ export default [
       {
         component: 'CNavItem',
         name: 'Projects Details',
-        to: '/theme/projectDetails',
+        to: '/theme/projectDetails/:id',
+        props: true,
       },
       {
         component: 'CNavItem',
@@ -69,7 +70,7 @@ export default [
         component: 'CNavItem',
         name: 'TicketDetails',
         to: '/theme/ticketdetails/:id',
-        props: true
+        props: true,
       },
     ],
   },

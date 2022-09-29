@@ -99,7 +99,7 @@
           >
             <!-- v-model="the_case.status" -->
             <option
-              v-for="(status_option, index) in status_options"
+              v-for="(status_option, index) in caseStatus"
               v-bind:key="index"
               v-bind:value="index"
               :selected="this.case.status == index"
@@ -113,32 +113,35 @@
           <CFormSelect
             aria-label="Project Selected"
             id="projectSelected"
-            name="projectSelected"
+            name="projectSelected" 
+            v-model="ticketProject"
           >
             <option
-              v-for="(projects, index) in the_projects"
-              v-bind:key="index"
+              v-for="(projects, index) in this.case.all_projects"
               :selected="this.case.project_id === projects.id"
+              v-bind:key="projects.id"
+              v-bind:value="projects.id"
             >
               {{ projects.title }}
             </option>
 
-            <option
+            <!-- <option
               v-for="project in projects"
               v-bind:key="project.title"
               v-bind:value="project.id"
             >
               {{ project.title }}
-            </option>
+            </option> -->
           </CFormSelect>
         </div>
         <div class="mb-3">
           <CFormLabel for="assigned"><b>Assign to:</b></CFormLabel>
-          <CFormSelect aria-label="Assign" id="assigned" name="assigned">
+          <CFormSelect id="assigned" name="assigned" v-model="ticketOwner">
             <option
-              v-for="(users, index) in the_users"
-              v-bind:key="index"
+              v-for="(users, index) in this.case.all_users"
               :selected="this.case.owner_id == users.id"
+              v-bind:key="users.id"
+              v-bind:value="users.id"
             >
               {{ users.name }}
             </option>
@@ -146,18 +149,31 @@
         </div>
         <hr />
         <CCol :xs="12">
-          <CButton color="primary" type="submit">Submit Ticket</CButton>
+          <CButton color="primary" type="submit" 
+            :visible="visibleEnd"
+            @click="$emit('updateTicketList')"
+            @hide="
+              () => {
+                visibleEnd = !visibleEnd;
+              }
+            "
+          >Edit Ticket</CButton>
           <div class="vr"></div>
           <CButton
             color="secondary"
             type="submit"
             @click.prevent="
               () => {
-                visibleEnd = !visibleEnd
+                visibleEnd = !visibleEnd;
               }
             "
             >Cancel
           </CButton>
+          <!-- <CButton
+            color="secondary"
+            @click="$emit('updateTicketList')"
+            >Cancel
+          </CButton> -->
         </CCol>
       </CForm>
     </COffcanvasBody>
@@ -174,8 +190,9 @@ export default {
       // Store
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
-      the_projects: JSON.parse(this.$store.state.all_projects),
-      the_users: JSON.parse(this.$store.state.all_users),
+      caseStatus: this.$store.state.status,
+      casePriority: this.$store.state.priority,
+      caseType: this.$store.state.case_type,
       visibleEnd: false,
       start_date: '',
       due_date: '',
@@ -183,8 +200,12 @@ export default {
       description: '',
       ticketStatus: '',
       ticketPriority: '',
+      ticketProject: '',
+      ticketOwner: '',
       projects: [],
       users: [],
+      all_projects: [],
+      all_users: [],
       ticketType: '',
       case_type_options: {
         1: 'Issue',
@@ -217,8 +238,8 @@ export default {
         status: this.ticketStatus,
         priority: this.ticketPriority,
         case_type: this.ticketType,
-        // project_id: this.projectSelected.value,
-        // owner_id: this.assigned.value,
+        project_id: this.ticketProject,
+        owner_id: this.ticketOwner,
       }
       const headers = {
         Authorization: `Bearer ${this.token}`,
@@ -229,8 +250,27 @@ export default {
         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
         .then((response) =>
           console.log('New Case: ' + JSON.stringify(response.data)),
+          // this.$parent.$options.methods.testingMe(),
+          this.visibleEnd = !this.visibleEnd,
         )
         .catch((error) => console.log(`${error}`))
+      await axios
+        .get(`${this.apiURL}/project`, { headers })
+        .then((response) => {
+          this.projects = response.data
+          // this.$store.commit('setProjects', this.projects)
+          console.log('projects: ', this.projects)
+        })
+        .catch((error) => console.log(`${error}`))
+      await axios
+        .get(`${this.apiURL}/user`, { headers })
+        .then((response) => {
+          this.users = response.data
+          // this.$store.commit('setUsers', this.users)
+          console.log('User Names: ', this.users)
+        })
+        .catch((error) => console.log(`${error}`))
+      return
     },
   },
 }

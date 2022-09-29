@@ -1,6 +1,6 @@
 <template>
   <h1 class="mb-8">
-    {{ this.case.title }}  
+    {{ this.case.title }}
     <small class="text-muted"></small>
   </h1>
 
@@ -25,28 +25,35 @@
                 <small>{{ this.case.title }}</small>
               </div>
             </CListGroupItem>
-            <CListGroupItem> <!-- his.projects[this.projects.id]  this.case.project_id -->
+            <CListGroupItem>
+              <!-- his.projects[this.projects.id]  this.case.project_id -->
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Project</h6>
-                <small>{{project.title}}</small>
+                <small>{{ project.title }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Type</h6>
-                <small class="text-dark">{{ ticketType[this.case.case_type] }}</small>
+                <small class="text-dark">{{
+                  ticketType[this.case.case_type]
+                }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Priority</h6>
-                <CBadge color="danger">{{ ticketPriority[this.case.priority] }}</CBadge>
+                <CBadge color="danger">{{
+                  ticketPriority[this.case.priority]
+                }}</CBadge>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Status</h6>
-                <small class="text-info">{{ ticketStatus[this.case.status] }}</small>
+                <small class="text-info">{{
+                  ticketStatus[this.case.status]
+                }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
@@ -65,20 +72,17 @@
         </CCardHeader>
         <CCardBody>
           <CListGroup>
-            <CListGroupItem>
-              <div class="row row-cols-2">
-                <div
-                  class="d-flex w-100 justify-content-between align-items-center"
-                  v-for="(team_member, index) in team_members"
+            <CListGroupItem class="row row-cols-2">
+              <div
+                class="d-flex w-100 justify-content-between align-items-center"
+              >
+                <p class="col mb-1">{{ user.name }}</p>
+                <small>
+                  <span class="col text-muted">{{
+                    userRoles[user.user_role]
+                  }}</span></small
                 >
-                  <h6 class="col mb-1">{{ team_member.name }}</h6>
-                  <small>
-                    <span class="col text-muted text-right"
-                      >{{ userRoles[team_member.user_role] }}</span
-                    ></small
-                  >
-                  <hr>
-                </div>
+                <hr />
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -166,18 +170,15 @@ export default {
       userRoles: this.$store.state.userRoles,
       projects: '',
       users: [],
-      members: [],
-      team_members: [],
+      user: '',
       project: '',
     }
   },
   beforeMount() {
     this.loadCase()
-    this.loadUsersAndProjects() 
+    this.loadUsersAndProjects()
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     async loadCase() {
       const headers = {
@@ -185,58 +186,49 @@ export default {
         'Content-Type': 'application/json',
       }
       await axios
-      .get(`${this.apiURL}/case/` + this.caseID, { headers })
-      .then((response) => {
-        this.case = response.data
-        // console.log('This CASE: ', this.case)
-      })
-      .catch((error) => console.log(`${error}`))
+        .get(`${this.apiURL}/case/` + this.caseID, { headers })
+        .then((response) => {
+          this.case = response.data
+          // console.log('This CASE: ', this.case)
+        })
+        .catch((error) => console.log(`${error}`))
     },
     async loadUsersAndProjects() {
       const headers = {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-    await axios
-      .get(`${this.apiURL}/project/`, { headers })
-      .then((response) => {
-        this.projects = response.data
-        // console.log('projects77: ', this.projects)
-      })
-      .finally(() => {
-        for( let x = 0; x < this.projects.length; x++ ) {
-          if ( this.case.project_id == this.projects[x].id ){
-            // console.log('PID: ', this.projects[x].id)
-            this.project = this.projects[x]
+      await axios
+        .get(`${this.apiURL}/project/`, { headers })
+        .then((response) => {
+          this.projects = response.data
+          // console.log('projects77: ', this.projects)
+        })
+        .finally(() => {
+          for (let x = 0; x < this.projects.length; x++) {
+            if (this.case.project_id == this.projects[x].id) {
+              // console.log('PID: ', this.projects[x].id)
+              this.project = this.projects[x]
+            }
           }
-        }
-      })
-      .catch((error) => console.log(`${error}`))
-    await axios
-      .get(`${this.apiURL}/user`, { headers })
-      .then((response) => {
-        this.users = response.data
-        // console.log('User Names: ', this.users)
-      })
-      .catch((error) => console.log(`${error}`)) 
-    await axios
-      .get(`${this.apiURL}/team_member`, { headers })
-      .then((response) => {
-        this.members = response.data
-        console.log('MEMBER Names: ', this.members)
-      })
-      .finally(() => {
-        let z = 0;
-        for( let x = 0; x < this.members.length; x++ ) {
-          if ( this.case.project_id == this.members[x].project_id ){
-            this.team_members[z] = this.users[this.members[x].id]
-            console.log('TEAM: ',  this.team_members[z])
-            z++
+        })
+        .catch((error) => console.log(`${error}`))
+      await axios
+        .get(`${this.apiURL}/user`, { headers })
+        .then((response) => {
+          this.users = response.data
+          // console.log('User Names: ', this.users)
+        })
+        .finally(() => {
+          for (let x = 0; x < this.users.length; x++) {
+            if (this.case.owner_id == this.users[x].id) {
+              console.log('OWNERID: ', this.users[x].id)
+              this.user = this.users[x]
+            }
           }
-        }
-      })
-      .catch((error) => console.log(`${error}`)) 
+        })
+        .catch((error) => console.log(`${error}`))
     },
-  }
+  },
 }
 </script>

@@ -1,4 +1,7 @@
 import re
+import string
+import random
+from datetime import date
 import json
 from sqlalchemy.orm import Session
 from .. import schemas, models
@@ -6,6 +9,16 @@ from fastapi import HTTPException, status
 from sqlalchemy.sql import text
 from sqlalchemy import desc
 
+# Create random Project Number
+def get_project_nr():
+  the_number=random.randint(101, 999)
+  letters = string.ascii_uppercase
+  the_letter = ''.join(random.choice(letters) for i in range(1))
+  today = date.today()
+  the_day = today.strftime("%d%m%y-")
+  project_nr = str(the_day) + str(the_letter) + str(the_number)
+  print("project_nr:", project_nr)
+  return project_nr
 
 # Show All Projects ##.order_by(desc('date'))
 def project_get_all(db: Session, limit: int = 10, offset: int = 0 ):
@@ -25,14 +38,14 @@ def project_show(id: int, db: Session):
     return project
 
 def project_create(request: schemas.Project, db: Session):
-    new_project = models.Project(start_date=request.start_date, due_date=request.due_date, title = request.title, description = request.description, tags = request.tags, active = request.active, status=request.status, priority = request.priority,  owner_id = request.owner_id)
+    new_project = models.Project(project_nr=get_project_nr(),start_date=request.start_date, due_date=request.due_date, title = request.title, description = request.description, tags = request.tags, active = request.active, status=request.status, priority = request.priority,  owner_id = request.owner_id)
     db.add(new_project)
     db.commit()
     db.refresh(new_project)
     return new_project
 
 def project_update(id: int, request: schemas.Project, db: Session):
-    db.query(models.Project).filter(models.Project.id == id).update({'start_date': request.start_date,"due_date": request.due_date,'title': request.title, 'description': request.description, 'tags': request.tags, 'active': request.active, 'status': request.status,  'priority': request.priority, 'owner_id': request.owner_id})
+    db.query(models.Project).filter(models.Project.id == id).update({ 'start_date': request.start_date,"due_date": request.due_date,'title': request.title, 'description': request.description, 'tags': request.tags, 'active': request.active, 'status': request.status,  'priority': request.priority, 'owner_id': request.owner_id })
     db.commit()
     return "Project updated!"
     

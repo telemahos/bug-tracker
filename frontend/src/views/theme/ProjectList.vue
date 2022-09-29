@@ -34,12 +34,6 @@
                       >Status</CTableHeaderCell
                     >
                     <CTableHeaderCell>Priority</CTableHeaderCell>
-                    <!-- <CTableHeaderCell class="text-left"
-                      >Progress</CTableHeaderCell
-                    > -->
-                    <!-- <CTableHeaderCell class="text-center"
-                      ><CIcon name="cil-people" /> Team</CTableHeaderCell
-                    > -->
                     <CTableHeaderCell class="text-center"
                       >Action</CTableHeaderCell
                     >
@@ -53,18 +47,12 @@
                   >
                     <CTableDataCell class="text-center">
                       <div>{{ project.start_date }}</div>
-                      <!-- <CAvatar
-                       :key="case.name"
-                        size="md"
-                        :src="item.avatar.src"
-                        :status="item.avatar.status"
-                      /> -->
                     </CTableDataCell>
                     <CTableDataCell>
                       <div>
-                        <a href="#" target="_blank" rel="noopener noreferrer">{{
+                        <CLink :href="link_to + project.id">{{
                           project.title
-                        }}</a>
+                        }}</CLink>
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
@@ -110,21 +98,6 @@
                       >
                         Critical
                       </div>
-                      <!-- <div class="clearfix">
-                        <div class="float-start">
-                          <strong>{{ item.usage.value }}%</strong>
-                        </div>
-                        <div class="float-end">
-                          <small class="text-medium-emphasis">
-                            {{ item.usage.period }}
-                          </small>
-                        </div>
-                      </div>
-                      <CProgress
-                        thin
-                        :color="item.usage.color"
-                        :value="item.usage.value"
-                      /> -->
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
@@ -158,6 +131,7 @@ export default {
     return {
       token: this.$store.state.token,
       apiURL: this.$store.state.apiURL,
+      link_to: '#/theme/projectdetails/',
       today: '',
       start_date: '',
       due_date: '',
@@ -178,7 +152,6 @@ export default {
       .get(`${this.apiURL}/project`, { headers })
       .then((response) => {
         this.projects = response.data
-        this.$store.commit('setProjects', this.projects)
         // console.log('projects: ', this.projects)
       })
       .catch((error) => console.log(`${error}`))
@@ -186,7 +159,6 @@ export default {
       .get(`${this.apiURL}/user`, { headers })
       .then((response) => {
         this.users = response.data
-        this.$store.commit('setUsers', this.users)
         // console.log('User Names: ', this.users)
       })
       .catch((error) => console.log(`${error}`))

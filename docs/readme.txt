@@ -8,6 +8,7 @@
 - uvicorn backend.main:app --reload
 - npm run serve
 - npm run 
+- To deploy install node.js server: sudo npm install -g serve --AND THEN-- serve -s dist 
 
 
 - pip install fastapi-pagination[all]
@@ -18,7 +19,7 @@
 - More info on(https://github.com/vueform/multiselect#styling)
 
 
-- VS Theme: "Noctis Azureus", 'Bluloco Dark theme', 'NoctisUva', 'Viow Flat', "Adapta Nikto"
+- VS Theme: "One Dark Pro Darker", "Noctis Azureus", 'Bluloco Dark theme', 'NoctisUva', 'Viow Flat', "Adapta Nikto"
 - requirements => fastapi==0.66.0 αν θέλουμε μια συξκερκιμένη έκδοση
 
 --------------
@@ -26,6 +27,7 @@ routers -> controller
 repository -> model
 --------------
 User Roles:
+no Role -> 0
 Admin -> 1
 Frontend Developer -> 2
 Backend Developer -> 3
@@ -37,15 +39,15 @@ Product Manager -> 8
 Technology Manager -> 9
 --------------
 Issue, Bug, Priority:
-Low -> 1
-Medium -> 2
-High -> 3
-Critical -> 4
+Low -> 0
+Medium -> 1
+High -> 2
+Critical -> 3
 --------------
 Cases:
-Issue -> 1
-Bug -> 2
-Note -> 3
+Issue -> 0
+Bug -> 1
+Note -> 2
 --------------
 Team:
 id, user_id, project_id, team_role, assign_date, active, note

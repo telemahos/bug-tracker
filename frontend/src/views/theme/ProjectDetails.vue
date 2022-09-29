@@ -2,22 +2,25 @@
   <CRow>
     <CCol :xs="12">
       <CCallout color="secondary" class="bg-white">
-        <!-- border-top border-top-primary border-end border-end-primary border-bottom border-bottom-primary -->
-        <h4>This is Project Overview or Project Title</h4>
+        <h4>{{ project.title }}</h4>
         <div class="">
           <dl class="row">
             <dd
               class="col-sm-12 d-flex w-75 justify-content-between align-items-center"
             >
-              Create Date :<em class="text-muted"> Sep 12, 2022</em
+              Create Date :<em class="text-muted"> {{ project.start_date }}</em
               ><span class="text-muted">|</span>Due Date :<em
                 class="text-muted"
               >
-                Dec 29, 2022</em
+                {{ project.due_date }}</em
               ><span class="text-muted">|</span><span>Priority:</span
-              ><CBadge color="danger">Critical</CBadge
+              ><CBadge color="danger">{{
+                projectPriority[project.priority]
+              }}</CBadge
               ><span class="text-muted">|</span><span>Status:</span
-              ><span class="text-success"><em>New</em></span>
+              ><span class="text-success"
+                ><em>{{ projectStatus[project.status] }}</em></span
+              >
             </dd>
           </dl>
         </div>
@@ -32,48 +35,40 @@
               class="d-flex justify-content-between align-items-center"
             >
               Project No.
-              <small>070922-N073</small>
+              <small>{{ project.project_nr }}</small>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Title</h6>
-                <small>Bug in Login and Logout</small>
+                <small>{{ project.title }}</small>
               </div>
             </CListGroupItem>
-            <!-- <CListGroupItem>
-              <div class="d-flex w-100 justify-content-between">
-                <h6 class="mb-1">Project</h6>
-                <small>Project Title 3</small>
-              </div>
-            </CListGroupItem>
-            <CListGroupItem>
-              <div class="d-flex w-100 justify-content-between">
-                <h6 class="mb-1">Type</h6>
-                <small class="text-dark">Bug</small>
-              </div>
-            </CListGroupItem> -->
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Priority</h6>
-                <CBadge color="danger">Critical</CBadge>
+                <CBadge color="danger">{{
+                  projectPriority[project.priority]
+                }}</CBadge>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Status</h6>
-                <small class="text-info">In Progress</small>
+                <small class="text-info">{{
+                  projectStatus[project.status]
+                }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Start Date</h6>
-                <small>Sep 12, 2022</small>
+                <small>{{ project.start_date }}</small>
               </div>
             </CListGroupItem>
             <CListGroupItem>
               <div class="d-flex w-100 justify-content-between">
                 <h6 class="mb-1">Due Date</h6>
-                <small>Dec 29, 2022</small>
+                <small>{{ project.due_date }}</small>
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -92,44 +87,21 @@
         </CCardHeader>
         <CCardBody>
           <CListGroup>
-            <CListGroupItem>
+            <CListGroupItem
+              class="row row-cols-2"
+              v-for="team_member in team_members"
+              v-bind:key="team_member.id"
+            >
               <div
                 class="d-flex w-100 justify-content-between align-items-center"
               >
-                <p class="mb-1">Daniel Canales</p>
-                <!-- <CAvatar 
-                  size="md" 
-                  :src="avatar.src"
-                  :status="avatar.status"/>         -->
-                <small> <span class="text-muted">UI / UX</span></small>
-              </div>
-            </CListGroupItem>
-            <CListGroupItem>
-              <div
-                class="d-flex w-100 justify-content-between align-items-center"
-              >
-                <p class="mb-1">Konstantinos Kakoulis</p>
-                <small> <span class="text-muted">Web Developer</span></small>
-              </div>
-            </CListGroupItem>
-            <CListGroupItem>
-              <div
-                class="d-flex w-100 justify-content-between align-items-center"
-              >
-                <p class="mb-1">Jennifer Walker</p>
+                <h6 class="col mb-1">{{ team_member.name }}</h6>
                 <small>
-                  <span class="text-muted">Backend Developer</span></small
+                  <span class="col text-muted text-right">{{
+                    userRoles[team_member.user_role]
+                  }}</span></small
                 >
-              </div>
-            </CListGroupItem>
-            <CListGroupItem>
-              <div
-                class="d-flex w-100 justify-content-between align-items-center"
-              >
-                <p class="mb-1">Tony Brafford</p>
-                <small>
-                  <span class="text-muted">Frontend Devloper</span></small
-                >
+                <hr />
               </div>
             </CListGroupItem>
           </CListGroup>
@@ -140,14 +112,8 @@
       <CCard class="mb-4">
         <CCardHeader> <strong></strong> <small>OVERVIEW</small> </CCardHeader>
         <CCardBody>
-          <p class="text-medium-emphasis small">
-            It will be as simple as occidental in fact, it will be Occidental.
-            To an English person, it will seem like simplified English, as a
-            skeptical Cambridge friend of mine told me what Occidental is. The
-            European languages are members of the same family. Their separate
-            existence is a myth. For science, music, sport, etc, Europe uses the
-            same vocabulary. The languages only differ in their grammar, their
-            pronunciation and their most common words.
+          <p class="text-medium-emphasis">
+            {{ project.description }}
           </p>
         </CCardBody>
       </CCard>
@@ -208,7 +174,94 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ProjectDetails',
+  props: ['id'],
+  data() {
+    return {
+      projectID: this.id,
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+      project: '',
+      project_nr: '',
+      start_date: '',
+      due_date: '',
+      title: '',
+      description: '',
+      projectStatus: this.$store.state.status,
+      projectPriority: this.$store.state.priority,
+      projectType: this.$store.state.case_type,
+      userRoles: this.$store.state.userRoles,
+      users: [],
+      members: [],
+      team_members: [],
+    }
+  },
+  beforeMount() {
+    this.loadProject()
+    this.loadUsersAndProjects()
+  },
+  mounted() {},
+  methods: {
+    async loadProject() {
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      await axios
+        .get(`${this.apiURL}/project/` + this.projectID, { headers })
+        .then((response) => {
+          this.project = response.data
+          console.log('This PROJECT: ', this.project)
+        })
+        .catch((error) => console.log(`${error}`))
+    },
+    async loadUsersAndProjects() {
+      const headers = {
+        Authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      }
+      // await axios
+      //   .get(`${this.apiURL}/project/`, { headers })
+      //   .then((response) => {
+      //     this.projects = response.data
+      //     // console.log('projects77: ', this.projects)
+      //   })
+      //   .finally(() => {
+      //     for( let x = 0; x < this.projects.length; x++ ) {
+      //       if ( this.case.project_id == this.projects[x].id ){
+      //         // console.log('PID: ', this.projects[x].id)
+      //         this.project = this.projects[x]
+      //       }
+      //     }
+      //   })
+      //   .catch((error) => console.log(`${error}`))
+      await axios
+        .get(`${this.apiURL}/user`, { headers })
+        .then((response) => {
+          this.users = response.data
+          // console.log('User Names: ', this.users)
+        })
+        .catch((error) => console.log(`${error}`))
+      await axios
+        .get(`${this.apiURL}/team_member`, { headers })
+        .then((response) => {
+          this.members = response.data
+          console.log('MEMBER Names: ', this.members)
+        })
+        .finally(() => {
+          let z = 0
+          for (let x = 0; x < this.members.length; x++) {
+            if (this.project.id == this.members[x].project_id) {
+              this.team_members[z] = this.users[this.members[x].id]
+              console.log('TEAM: ', this.team_members[z])
+              z++
+            }
+          }
+        })
+        .catch((error) => console.log(`${error}`))
+    },
+  },
 }
 </script>
