@@ -1,6 +1,6 @@
 # Bug Tracker Project #
 
-This Project is based on **Python FASTAPI** as backend framework, **SQLlite** for data storage and **Vue.js** as frontend framework!
+This Project is based on **Python FASTAPI** as backend framework, **SQLite** for data storage and **Vue.js** as frontend framework!
 
 ### About ###
 

@@ -49,12 +49,6 @@
                   >
                     <CTableDataCell class="text-center">
                       <div>{{ the_case.due_date }}</div>
-                      <!-- <CAvatar
-                       :key="case.name"
-                        size="md"
-                        :src="item.avatar.src"
-                        :status="item.avatar.status"
-                      /> -->
                     </CTableDataCell>
                     <CTableDataCell>
                       <div>
@@ -151,8 +145,10 @@
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div>
-                        <AppOffcanvasTicketEdit 
-                        @updateTicketList="(event) => loadTicket()" v-bind:the_case="the_case" />
+                        <AppOffcanvasTicketEdit
+                          @updateTicketList="(event) => loadTicket()"
+                          v-bind:the_case="the_case"
+                        />
                       </div>
                     </CTableDataCell>
                   </CTableRow>
@@ -168,7 +164,6 @@
 </template>
 
 <script>
-// import provide from 'vue'
 import axios from 'axios'
 import AppOffcanvasTicketEdit from '../../components/AppOffcanvasTicketEdit.vue'
 
@@ -203,66 +198,58 @@ export default {
       projectOwner: '',
     }
   },
-  // updated() {
-  //   this.testingMe()
-  // },
   mounted() {
     this.loadTicket()
-    // this.testingMe()
   },
   methods: {
-    testingMe() {
-      console.log("TEST 1")
-      alert("Hallo TEST 2")
-    },
     async loadTicket() {
       const headers = {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
       await axios
-      .get(`${this.apiURL}/project`, { headers })
-      .then((response) => {
-        this.projects = response.data
-        // this.$store.commit('setProjects', this.projects)
-        console.log('projects: ', this.projects)
-      })
-      .catch((error) => console.log(`${error}`))
+        .get(`${this.apiURL}/project`, { headers })
+        .then((response) => {
+          this.projects = response.data
+          // this.$store.commit('setProjects', this.projects)
+          console.log('projects: ', this.projects)
+        })
+        .catch((error) => console.log(`${error}`))
       await axios
-      .get(`${this.apiURL}/user`, { headers })
-      .then((response) => {
-        this.users = response.data
-        // this.$store.commit('setUsers', this.users)
-        console.log('User Names: ', this.users)
-      })
-      .catch((error) => console.log(`${error}`))
+        .get(`${this.apiURL}/user`, { headers })
+        .then((response) => {
+          this.users = response.data
+          // this.$store.commit('setUsers', this.users)
+          console.log('User Names: ', this.users)
+        })
+        .catch((error) => console.log(`${error}`))
       await axios
-      .get(`${this.apiURL}/case`, { headers })
-      .then((response) => {
-        this.cases = response.data
-        console.log('Cases: ', this.cases)
-      })
-      .finally(() => {
-        let y = 0,
-          z = 0
-        for (let i = 0; i < this.cases.length; i++) {
-          // Find the project title of each case
-          for (let e = 0; e < this.projects.length; e++) {
-            if (this.cases[i].project_id === this.projects[e].id) {
-              this.projectTitle[y] = this.projects[e].title
-              y++
+        .get(`${this.apiURL}/case`, { headers })
+        .then((response) => {
+          this.cases = response.data
+          console.log('Cases: ', this.cases)
+        })
+        .finally(() => {
+          let y = 0,
+            z = 0
+          for (let i = 0; i < this.cases.length; i++) {
+            // Find the project title of each case
+            for (let e = 0; e < this.projects.length; e++) {
+              if (this.cases[i].project_id === this.projects[e].id) {
+                this.projectTitle[y] = this.projects[e].title
+                y++
+              }
+            }
+            // Find the owners name of each case
+            for (let f = 0; f < this.users.length; f++) {
+              if (this.cases[i].owner_id === this.users[f].id) {
+                this.userNames[z] = this.users[f].name
+                z++
+              }
             }
           }
-          // Find the owners name of each case
-          for (let f = 0; f < this.users.length; f++) {
-            if (this.cases[i].owner_id === this.users[f].id) {
-              this.userNames[z] = this.users[f].name
-              z++
-            }
-          }
-        }
-      })
-      .catch((error) => console.log(`${error}`))
+        })
+        .catch((error) => console.log(`${error}`))
     },
   },
 }

@@ -66,8 +66,6 @@
             >
               {{ type_options }}
             </option>
-
-            <!-- v-model="the_case.case_type"-->
           </CFormSelect>
         </div>
         <div class="mb-3">
@@ -78,7 +76,6 @@
             name="ticketPriority"
             v-model="ticketPriority"
           >
-            <!-- v-model="the_case.priority" -->
             <option
               v-for="(priority_option, index) in priority_options"
               v-bind:key="index"
@@ -97,7 +94,6 @@
             name="ticketStatus"
             v-model="ticketStatus"
           >
-            <!-- v-model="the_case.status" -->
             <option
               v-for="(status_option, index) in caseStatus"
               v-bind:key="index"
@@ -113,32 +109,24 @@
           <CFormSelect
             aria-label="Project Selected"
             id="projectSelected"
-            name="projectSelected" 
+            name="projectSelected"
             v-model="ticketProject"
           >
             <option
-              v-for="(projects, index) in this.case.all_projects"
+              v-for="projects in this.case.all_projects"
               :selected="this.case.project_id === projects.id"
               v-bind:key="projects.id"
               v-bind:value="projects.id"
             >
               {{ projects.title }}
             </option>
-
-            <!-- <option
-              v-for="project in projects"
-              v-bind:key="project.title"
-              v-bind:value="project.id"
-            >
-              {{ project.title }}
-            </option> -->
           </CFormSelect>
         </div>
         <div class="mb-3">
           <CFormLabel for="assigned"><b>Assign to:</b></CFormLabel>
           <CFormSelect id="assigned" name="assigned" v-model="ticketOwner">
             <option
-              v-for="(users, index) in this.case.all_users"
+              v-for="users in this.case.all_users"
               :selected="this.case.owner_id == users.id"
               v-bind:key="users.id"
               v-bind:value="users.id"
@@ -149,31 +137,29 @@
         </div>
         <hr />
         <CCol :xs="12">
-          <CButton color="primary" type="submit" 
+          <CButton
+            color="primary"
+            type="submit"
             :visible="visibleEnd"
             @click="$emit('updateTicketList')"
             @hide="
               () => {
-                visibleEnd = !visibleEnd;
+                visibleEnd = !visibleEnd
               }
             "
-          >Edit Ticket</CButton>
+            >Edit Ticket</CButton
+          >
           <div class="vr"></div>
           <CButton
             color="secondary"
             type="submit"
             @click.prevent="
               () => {
-                visibleEnd = !visibleEnd;
+                visibleEnd = !visibleEnd
               }
             "
             >Cancel
           </CButton>
-          <!-- <CButton
-            color="secondary"
-            @click="$emit('updateTicketList')"
-            >Cancel
-          </CButton> -->
         </CCol>
       </CForm>
     </COffcanvasBody>
@@ -248,9 +234,9 @@ export default {
       console.log('TICKET DATA: ', case_data)
       await axios
         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
-        .then((response) =>
-          console.log('New Case: ' + JSON.stringify(response.data)),
-          // this.$parent.$options.methods.testingMe(),
+        .then(
+          (response) =>
+            console.log('New Case: ' + JSON.stringify(response.data)),
           this.visibleEnd = !this.visibleEnd,
         )
         .catch((error) => console.log(`${error}`))
@@ -258,7 +244,6 @@ export default {
         .get(`${this.apiURL}/project`, { headers })
         .then((response) => {
           this.projects = response.data
-          // this.$store.commit('setProjects', this.projects)
           console.log('projects: ', this.projects)
         })
         .catch((error) => console.log(`${error}`))
@@ -266,7 +251,6 @@ export default {
         .get(`${this.apiURL}/user`, { headers })
         .then((response) => {
           this.users = response.data
-          // this.$store.commit('setUsers', this.users)
           console.log('User Names: ', this.users)
         })
         .catch((error) => console.log(`${error}`))
