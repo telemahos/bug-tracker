@@ -6,3 +6,4 @@ python-jose==3.3.0
 python-multipart==0.0.5
 fastapi-pagination[all]==0.9.3
 bcrypt
+supervisor==4.2.4

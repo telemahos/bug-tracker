@@ -6,9 +6,21 @@
 - pip3 install --upgrade pip
 - pip3 install -r docs/requirements.txt
 - uvicorn backend.main:app --reload
+- npm install
 - npm run serve
 - npm run 
-- To deploy install node.js server: sudo npm install -g serve --AND THEN-- serve -s dist 
+- npm run build
+- To deploy install node.js server: sudo npm install -g serve 
+--- AND THEN --- 
+serve -s dist --OR--
+serve -s dist -l 3001
+
+- pip install supervisor AND THEN START: supervisord -n
+- uvicorn backend.main:app --host 185.237.15.246 --port 8000
+--- Clean NPM: ---
+npm cache clean --force
+rm -rf node_modules
+npm install
 
 
 - pip install fastapi-pagination[all]
@@ -16,7 +28,9 @@
     npm install --save @ocrv/vue-tailwind-pagination
 - npm install vue-chartjs chart.js@2.9.4
 - npm install @vueform/multiselect 
-- More info on(https://github.com/vueform/multiselect#styling)
+More info on(https://github.com/vueform/multiselect#styling)
+- npm install cors
+
 
 
 - VS Theme: "One Dark Pro Darker", "Noctis Azureus", 'Bluloco Dark theme', 'NoctisUva', 'Viow Flat', "Adapta Nikto"

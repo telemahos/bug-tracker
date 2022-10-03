@@ -7,4 +7,5 @@
 --- Call a parent function from child component: 
 Parent: <AppOffcanvasTicketEdit @updateTicketList="(event) => loadTicket()" />
 Child:  <CButton color="primary" type="submit" @click="$emit('updateTicketList')">Submit</CButton
---- 
+--- Change npm versions:
+https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04

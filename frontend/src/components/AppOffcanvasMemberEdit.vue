@@ -29,7 +29,7 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-      {{ this.user }}
+      {{ this.this_user }}
       <p>-------------------------------------</p>
       <CForm @submit.prevent="submitMember">
         <div class="mb-3">
@@ -39,8 +39,9 @@
             type="text"
             placeholder="Member Name"
             name="name"
+            v-model="this_user.name"
           />
-          <!-- v-model="user.name" -->
+          <!--  -->
         </div>
         <div class="mb-3">
           <CFormLabel for="email"><b>E-mail:</b></CFormLabel>
@@ -49,8 +50,9 @@
             name="email"
             type="email"
             placeholder="Member Name"
+            v-model="this_user.email"
           ></CFormInput>
-          <!-- v-model="user.email" -->
+          <!--  -->
         </div>
         <div>
           <CFormLabel for="role"><b>User Role:</b></CFormLabel>
@@ -64,7 +66,7 @@
               v-for="(roles, index) in userRoles"
               v-bind:key="index"
               v-bind:value="index"
-              :selected="user.user_role == index"
+              :selected="this_user.user_role == index"
             >
               {{ roles }}
             </option>
@@ -96,7 +98,7 @@ export default {
   data() {
     return {
       visibleEnd: false,
-
+      this_user: this.user,
       // Store
       userRoles: this.$store.state.userRoles,
       token: this.$store.state.token,

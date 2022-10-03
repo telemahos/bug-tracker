@@ -25,15 +25,19 @@ app.include_router(team_member.router)
 
 # app.router.redirect_slashes = False
 
-origins = ["*"]
-# origins = [
-#     "http://localhost.tiangolo.com",
-#     "https://localhost.tiangolo.com",
-#     "http://localhost",
-#     "http://localhost:8080",
-#     "http://localhost:8000",
-#     "http://localhost:5500/frontend/",
-# ]
+# origins = ["*"]
+origins = [
+  "http://localhost:3000",
+  "https://localhost:3000",
+  "http://localhost:3001",
+  "https://localhost:3001",
+  "http://www.bugflix.eu:3001",
+  "https://www.bugflix.eu:3001",
+  "http://www.bugflix.eu:8000",
+  "https://www.bugflix.eu:8000",
+  "http://185.237.15.246:3001",
+  "https://185.237.15.246:3001",
+]
 
 app.add_middleware(
     CORSMiddleware,

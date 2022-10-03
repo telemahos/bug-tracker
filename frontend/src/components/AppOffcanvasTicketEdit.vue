@@ -237,7 +237,7 @@ export default {
         .then(
           (response) =>
             console.log('New Case: ' + JSON.stringify(response.data)),
-          this.visibleEnd = !this.visibleEnd,
+          (this.visibleEnd = !this.visibleEnd),
         )
         .catch((error) => console.log(`${error}`))
       await axios
