@@ -47,6 +47,19 @@
                       </CButton>
                     </CCol>
                   </CRow>
+                  <CRow>
+                    <hr />
+                    <CCol :xs="6" class="text-right">
+                      <CButton color="info" class="px-4" type="submit">
+                        Admin
+                      </CButton>
+                    </CCol>
+                    <CCol :xs="6" class="text-right">
+                      <CButton color="dark" class="px-4" type="submit">
+                        TestUser
+                      </CButton>
+                    </CCol>
+                  </CRow>
                 </CForm>
               </CCardBody>
             </CCard>

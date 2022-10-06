@@ -25,19 +25,23 @@ app.include_router(team_member.router)
 
 # app.router.redirect_slashes = False
 
-# origins = ["*"]
-origins = [
-  "http://localhost:3000",
-  "https://localhost:3000",
-  "http://localhost:3001",
-  "https://localhost:3001",
-  "http://www.bugflix.eu:3001",
-  "https://www.bugflix.eu:3001",
-  "http://www.bugflix.eu:8000",
-  "https://www.bugflix.eu:8000",
-  "http://185.237.15.246:3001",
-  "https://185.237.15.246:3001",
-]
+origins = ["*"]
+# origins = [
+#   "http://localhost:3000",
+#   "https://localhost:3000",
+#   "http://localhost:3001",
+#   "https://localhost:3001",
+#   "http://www.bugflix.eu:3001",
+#   "https://www.bugflix.eu:3001",
+#   "http://www.bugflix.eu:8000",
+#   "https://www.bugflix.eu:8000",
+#   "http://127.0.0.1:8000",
+#   "https://127.0.0.1:8000",
+#   "http://localhost:8000",
+#   "https://localhost:8000",
+#   "http://185.237.15.246:3001",
+#   "https://185.237.15.246:3001",
+# ]
 
 app.add_middleware(
     CORSMiddleware,

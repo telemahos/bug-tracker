@@ -7,6 +7,7 @@ export default createStore({
     isAuthenticated: false,
     token: '',
     isLoading: false,
+    username: '',
     // apiURL: 'http://127.0.0.1:8000/api',
     // apiURL: 'https://www.bugflix.eu:8000/api',
     apiURL: 'http://185.237.15.246:8000/api',

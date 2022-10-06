@@ -15,6 +15,30 @@
 serve -s dist --OR--
 serve -s dist -l 3001
 
+--- Run on server in background--- 
+https://www.dev2qa.com/how-to-run-node-js-server-in-background/?fbclid=IwAR2JS1SkAlFbhsak4csMYuVkuFRpxiGzi1wYKos_QZurQMxcQRbcWSkZpTM
+npm install --global http-server
+npm install pm2 -g
+pm2 start http-server -p 3001 > output6.log
+for reboot pm2: pm2 startup systemd
+or simple server:
+http-server -p 3001 > output.log &
+check proccess: ps -ef
+or: forever start http-server -p 3001 > output.log
+or THISSS: pm2 serve dist 3001
+
+---
+from https://www.dev2qa.com/how-to-run-node-js-server-in-background/?fbclid=IwAR2JS1SkAlFbhsak4csMYuVkuFRpxiGzi1wYKos_QZurQMxcQRbcWSkZpTM
+in /etc/systemd/system
+node-app-service-name.service
+
+npm install -g @vue/cli
+npm i @vue/cli-service
+
+--- PRODUCTION OR DEV ---
+- npm install --production --force
+https://www.digitalocean.com/community/tutorials/how-to-use-vue-js-environment-modes-with-a-node-js-mock-data-layer
+
 - pip install supervisor AND THEN START: supervisord -n
 - uvicorn backend.main:app --host 185.237.15.246 --port 8000
 --- Clean NPM: ---

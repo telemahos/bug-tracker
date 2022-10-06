@@ -12,7 +12,8 @@
     "
   >
     <CSidebarBrand>
-      <CIcon
+      <h3>BugFlix</h3>
+      <!-- <CIcon
         custom-class-name="sidebar-brand-full"
         :icon="logoNegative"
         :height="35"
@@ -21,7 +22,7 @@
         custom-class-name="sidebar-brand-narrow"
         :icon="sygnet"
         :height="35"
-      />
+      /> -->
     </CSidebarBrand>
     <AppSidebarNav />
     <CSidebarToggler

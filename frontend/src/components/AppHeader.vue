@@ -9,7 +9,10 @@
       </CHeaderBrand>
       <CHeaderNav class="d-none d-md-flex me-auto">
         <CNavItem>
-          <CNavLink href="/dashboard"> Dashboard </CNavLink>
+          <CNavLink href="#/dashboard"> Dashboard </CNavLink>
+        </CNavItem>
+        <CNavItem>
+          <CNavLink href="#/dashboard"> Dashboard </CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink href="#/theme/projectlist">Projects</CNavLink>
@@ -36,10 +39,10 @@
           >
         </CNavItem>
         <!-- <Logout /> -->
-        <AppHeaderDropdownNew />
+        <!-- <AppHeaderDropdownNew /> -->
       </CHeaderNav>
-      <CHeaderNav>
-        <CNavItem>
+      <!-- <CHeaderNav>
+         <CNavItem>
           <CNavLink href="#">
             <CIcon class="mx-2" icon="cil-bell" size="lg" />
           </CNavLink>
@@ -53,9 +56,8 @@
           <CNavLink href="#">
             <CIcon class="mx-2" icon="cil-envelope-open" size="lg" />
           </CNavLink>
-        </CNavItem>
-        <AppHeaderDropdownAccnt />
-      </CHeaderNav>
+        </CNavItem> <AppHeaderDropdownAccnt /> 
+      </CHeaderNav>-->
     </CContainer>
     <CHeaderDivider />
     <CContainer fluid>
@@ -66,16 +68,16 @@
 
 <script>
 import AppBreadcrumb from './AppBreadcrumb'
-import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
-import AppHeaderDropdownNew from './AppHeaderDropdownNew'
+// import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
+// import AppHeaderDropdownNew from './AppHeaderDropdownNew'
 import { logo } from '@/assets/brand/logo'
 // import Logout from '@/components/Logout'
 export default {
   name: 'AppHeader',
   components: {
     AppBreadcrumb,
-    AppHeaderDropdownAccnt,
-    AppHeaderDropdownNew,
+    // AppHeaderDropdownAccnt,
+    // AppHeaderDropdownNew,
     // Logout,
   },
   setup() {
