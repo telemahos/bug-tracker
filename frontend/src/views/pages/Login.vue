@@ -35,28 +35,25 @@
                       autocomplete="current-password"
                     />
                   </CInputGroup>
+                  <!-- type="submit" -->
                   <CRow>
-                    <CCol :xs="6">
-                      <CButton color="primary" class="px-4" type="submit"
+                    <CCol :xs="4">
+                      <CButton color="primary" class="px-4" @click="submitForm" 
                         >Login</CButton
                       >
                     </CCol>
-                    <CCol :xs="6" class="text-right">
+                    <CCol :xs="8" class="text-right">
                       <CButton color="link" class="px-0">
                         Forgot password?
                       </CButton>
                     </CCol>
                   </CRow>
+                  <br><br>
                   <CRow>
                     <hr />
-                    <CCol :xs="6" class="text-right">
-                      <CButton color="info" class="px-4" type="submit">
-                        Admin
-                      </CButton>
-                    </CCol>
-                    <CCol :xs="6" class="text-right">
-                      <CButton color="dark" class="px-4" type="submit">
-                        TestUser
+                    <CCol :xs="12" class="d-grid gap-2 text-right">
+                      <CButton color="dark" class="px-4" @click="demoLogin">
+                        Demo User
                       </CButton>
                     </CCol>
                   </CRow>
@@ -164,21 +161,39 @@ export default {
       const formData = new FormData()
       formData.append('username', this.username)
       formData.append('password', this.password)
-      console.log('this.username: ' + this.username)
-      console.log('this.password: ' + this.password)
-      console.log('this.apiURL: ' + this.apiURL)
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
-        console.log(response)
+        console.log("LOGIN DATA: ", response)
         // handle success
         const token = response.data.access_token
         this.$store.commit('setToken', token)
         axios.defaults.headers.common['Authorization'] = 'Token ' + token
         localStorage.setItem('token', token)
-        const toPath = this.$route.query.to || '/'
+        const toPath = this.$route.query.to || '/theme/mydashboard'
         this.$router.push(toPath)
         console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
+        this.$store.commit('setUsername', response.data.the_user.name)
+        this.$store.commit('setUserID', response.data.the_user.id)
       })
     },
+    demoLogin() {
+      console.log('Demo')
+      const formData = new FormData()
+      formData.append('username', 'demo@demo.com')
+      formData.append('password', 'abc')
+      axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
+        console.log("LOGIN DATA: ", response)
+        // handle success
+        const token = response.data.access_token
+        this.$store.commit('setToken', token)
+        axios.defaults.headers.common['Authorization'] = 'Token ' + token
+        localStorage.setItem('token', token)
+        const toPath = this.$route.query.to || '/theme/mydashboard'
+        this.$router.push(toPath)
+        console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
+        this.$store.commit('setUsername', response.data.the_user.name)
+        this.$store.commit('setUserID', response.data.the_user.id)
+      })
+    }
   },
 }
 </script>

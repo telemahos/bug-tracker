@@ -7,10 +7,11 @@ export default createStore({
     isAuthenticated: false,
     token: '',
     isLoading: false,
-    username: '',
-    // apiURL: 'http://127.0.0.1:8000/api',
+    me: '',
+    userID: '',
+    apiURL: 'http://127.0.0.1:8000/api',
     // apiURL: 'https://www.bugflix.eu:8000/api',
-    apiURL: 'http://185.237.15.246:8000/api',
+    // apiURL: 'http://185.237.15.246:8000/api',
     today: '',
     all_projects: '',
     all_users: '',
@@ -25,6 +26,7 @@ export default createStore({
       'Business Analyst',
       'Product Manager',
       'Technology Manager',
+      'Demo'
     ],
     case_type: ['Issue', 'Bug', 'Note'],
     status: ['New', 'In Progress', 'On Hold', 'Solved'],
@@ -45,6 +47,8 @@ export default createStore({
         state.token = localStorage.getItem('token')
         state.isAuthenticated = true
         state.today = new Date()
+        state.me = localStorage.getItem('me')
+        state.userID = localStorage.getItem('userID')
         console.log('initializeApp Token', state.token)
         console.log('initializeApp TODAY: ', state.today)
         console.log('initializeApp isAuthenticated', state.isAuthenticated)
@@ -61,6 +65,7 @@ export default createStore({
     },
     setToken(state, token) {
       state.token = token
+      localStorage.setItem('token', 'token')
       state.isAuthenticated = true
       // state.today = new Date()
       // console.log("initializeApp TODAY22: ", state.token)
@@ -72,6 +77,22 @@ export default createStore({
       state.isAuthenticated = false
       console.log('removeToken')
     },
+    setUsername(state, username) {
+      state.me = username
+      localStorage.setItem('me', state.me)
+    },
+    removeUsername(state) {
+      localStorage.setItem('me', '')
+      state.me = ''
+    },
+    setUserID(state, userID) {
+      state.userID = userID
+      localStorage.setItem('userID', 'userID')
+    },
+    removeUserID(state) {
+      localStorage.setItem('userID', '')
+      state.userID = ''
+    }
     // setProjects(state, projects) {
     //   state.all_projects = JSON.stringify(projects)
     //   console.log('STORE: all_projects' + state.all_projects)

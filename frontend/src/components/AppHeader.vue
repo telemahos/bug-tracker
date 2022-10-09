@@ -5,12 +5,9 @@
         <CIcon icon="cil-menu" size="lg" />
       </CHeaderToggler>
       <CHeaderBrand class="mx-auto d-lg-none" to="/">
-        <CIcon :icon="logo" height="48" alt="Logo" />
+        <!-- <CIcon :icon="logo" height="48" alt="Logo" /> -->
       </CHeaderBrand>
       <CHeaderNav class="d-none d-md-flex me-auto">
-        <CNavItem>
-          <CNavLink href="#/dashboard"> Dashboard </CNavLink>
-        </CNavItem>
         <CNavItem>
           <CNavLink href="#/dashboard"> Dashboard </CNavLink>
         </CNavItem>
@@ -40,6 +37,12 @@
         </CNavItem>
         <!-- <Logout /> -->
         <!-- <AppHeaderDropdownNew /> -->
+        
+      </CHeaderNav>
+      <CHeaderNav>
+        <CNavItem>
+          <CNavLink v-if="this.$store.state.me" href="#/theme/mydashboard">  {{ this.$store.state.me }} </CNavLink>
+        </CNavItem>
       </CHeaderNav>
       <!-- <CHeaderNav>
          <CNavItem>

@@ -75,6 +75,7 @@ QA Analyst -> 6
 Business Analyst -> 7
 Product Manager -> 8
 Technology Manager -> 9
+Demo -> 10
 --------------
 Issue, Bug, Priority:
 Low -> 0

@@ -29,8 +29,6 @@
       />
     </COffcanvasHeader>
     <COffcanvasBody>
-      {{ this.this_user }}
-      <p>-------------------------------------</p>
       <CForm @submit.prevent="submitMember">
         <div class="mb-3">
           <CFormLabel for="name">Name:</CFormLabel>
@@ -74,7 +72,8 @@
         </div>
         <hr />
         <CCol :xs="12">
-          <CButton color="primary" type="submit">Submit Member</CButton>
+          <CButton v-if="this.$store.state.me == 'demo' " color="primary" class="disabled" type="submit">Submit Member</CButton>
+          <CButton v-if="this.$store.state.me != 'demo' " color="primary" type="submit">Submit Member</CButton>
           <div class="vr"></div>
           <CButton
             color="secondary"

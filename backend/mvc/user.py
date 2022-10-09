@@ -27,3 +27,9 @@ def show(id:int, db:Session):
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The User with ID {id} is not found')
     return user
+
+def user_by_email(email:str, db:Session):
+    user = db.query(models.User).filter(models.User.email == request.email).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'The User with e-mail {email} is not found')
+    return user

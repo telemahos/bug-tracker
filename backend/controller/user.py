@@ -28,3 +28,7 @@ async def update_user(id:int , request: schemas.User, db: Session = Depends(get_
 @router.get('/{id}', response_model=schemas.ShowUser)
 async def get_user(id: int, db: Session = Depends(get_db)):
     return user.show(id, db)
+
+@router.get('/{email}', response_model=schemas.ShowUser)
+async def get_user_by_email(email: str, db: Session = Depends(get_db)):
+    return user.user_by_email(email, db)

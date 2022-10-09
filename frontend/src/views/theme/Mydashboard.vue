@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hallo Mydashboard!</h1>
+    <h1>My Dashboard</h1>
     <WidgetTypeColorA />
     <WidgetCardA />
     <WidgetsStatsA />
@@ -20,5 +20,17 @@ export default {
     WidgetsStatsD,
     WidgetTypeColorA,
   },
+  data() {
+    return {
+      // projectID: this.id,
+      token: this.$store.state.token,
+      apiURL: this.$store.state.apiURL,
+    }
+  },
+  beforeMount() {
+    // this.loadProject()
+    // this.loadUsersAndProjects()
+  },
+  
 }
 </script>

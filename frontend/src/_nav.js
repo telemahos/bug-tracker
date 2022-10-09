@@ -31,12 +31,12 @@ export default [
         name: 'Projects List',
         to: '/theme/projectList',
       },
-      {
-        component: 'CNavItem',
-        name: 'Projects Details',
-        to: '/theme/projectDetails/:id',
-        props: true,
-      },
+      // {
+      //   component: 'CNavItem',
+      //   name: 'Projects Details',
+      //   to: '/theme/projectDetails/:id',
+      //   props: true,
+      // },
       {
         component: 'CNavItem',
         name: 'Projects New',
@@ -66,12 +66,12 @@ export default [
         name: 'TicketNew',
         to: '/theme/ticketnew',
       },
-      {
-        component: 'CNavItem',
-        name: 'TicketDetails',
-        to: '/theme/ticketdetails/:id',
-        props: true,
-      },
+      // {
+      //   component: 'CNavItem',
+      //   name: 'TicketDetails',
+      //   to: '/theme/ticketdetails/:id',
+      //   props: true,
+      // },
     ],
   },
   {
@@ -85,16 +85,16 @@ export default [
         name: 'Members List',
         to: '/theme/memberList',
       },
-      {
-        component: 'CNavItem',
-        name: 'Member Profile',
-        to: '/theme/memberprofile',
-      },
-      {
-        component: 'CNavItem',
-        name: 'Member New',
-        to: '/theme/memberNew',
-      },
+      // {
+      //   component: 'CNavItem',
+      //   name: 'Member Profile',
+      //   to: '/theme/memberprofile',
+      // },
+      // {
+      //   component: 'CNavItem',
+      //   name: 'Member New',
+      //   to: '/theme/memberNew',
+      // },
     ],
   },
   // End Bug Traker

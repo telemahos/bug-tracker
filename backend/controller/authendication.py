@@ -21,10 +21,10 @@ async def login(request: OAuth2PasswordRequestForm = Depends(), db: Session = De
 
     # Generate a JWT Token
     access_token = JWTtoken.create_access_token(
-        # data={"sub": user.email} 
-        data={"sub": user.name} 
+        data={"sub": user.email} 
+        # data={"sub": user.name} 
     )
 
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer", 'the_user': user }
 
    
