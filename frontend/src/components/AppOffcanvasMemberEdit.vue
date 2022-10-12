@@ -72,8 +72,19 @@
         </div>
         <hr />
         <CCol :xs="12">
-          <CButton v-if="this.$store.state.me == 'demo' " color="primary" class="disabled" type="submit">Submit Member</CButton>
-          <CButton v-if="this.$store.state.me != 'demo' " color="primary" type="submit">Submit Member</CButton>
+          <CButton
+            v-if="this.$store.state.me == 'demo'"
+            color="primary"
+            class="disabled"
+            type="submit"
+            >Submit Member</CButton
+          >
+          <CButton
+            v-if="this.$store.state.me != 'demo'"
+            color="primary"
+            type="submit"
+            >Submit Member</CButton
+          >
           <div class="vr"></div>
           <CButton
             color="secondary"

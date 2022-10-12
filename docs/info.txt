@@ -6,6 +6,7 @@
 - pip3 install --upgrade pip
 - pip3 install -r docs/requirements.txt
 - uvicorn backend.main:app --reload
+- OR Online: supervisord -n 
 - npm install
 - npm run serve
 - npm run 
@@ -108,3 +109,5 @@ brew unlink python@3.9
 brew unlink python@3.8
 brew link --force python@3.9
 --------------
+- Manually Extending SSL to WWW:
+https://community.cyberpanel.net/t/3-manually-extending-ssl-to-www/89

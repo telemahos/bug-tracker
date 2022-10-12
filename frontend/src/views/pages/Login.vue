@@ -38,7 +38,7 @@
                   <!-- type="submit" -->
                   <CRow>
                     <CCol :xs="4">
-                      <CButton color="primary" class="px-4" @click="submitForm" 
+                      <CButton color="primary" class="px-4" @click="submitForm"
                         >Login</CButton
                       >
                     </CCol>
@@ -48,7 +48,7 @@
                       </CButton>
                     </CCol>
                   </CRow>
-                  <br><br>
+                  <br /><br />
                   <CRow>
                     <hr />
                     <CCol :xs="12" class="d-grid gap-2 text-right">
@@ -162,7 +162,7 @@ export default {
       formData.append('username', this.username)
       formData.append('password', this.password)
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
-        console.log("LOGIN DATA: ", response)
+        console.log('LOGIN DATA: ', response)
         // handle success
         const token = response.data.access_token
         this.$store.commit('setToken', token)
@@ -181,7 +181,7 @@ export default {
       formData.append('username', 'demo@demo.com')
       formData.append('password', 'abc')
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
-        console.log("LOGIN DATA: ", response)
+        console.log('LOGIN DATA: ', response)
         // handle success
         const token = response.data.access_token
         this.$store.commit('setToken', token)
@@ -193,7 +193,7 @@ export default {
         this.$store.commit('setUsername', response.data.the_user.name)
         this.$store.commit('setUserID', response.data.the_user.id)
       })
-    }
+    },
   },
 }
 </script>

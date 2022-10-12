@@ -37,11 +37,12 @@
         </CNavItem>
         <!-- <Logout /> -->
         <!-- <AppHeaderDropdownNew /> -->
-        
       </CHeaderNav>
       <CHeaderNav>
         <CNavItem>
-          <CNavLink v-if="this.$store.state.me" href="#/theme/mydashboard">  {{ this.$store.state.me }} </CNavLink>
+          <CNavLink v-if="this.$store.state.me" href="#/theme/mydashboard">
+            {{ this.$store.state.me }}
+          </CNavLink>
         </CNavItem>
       </CHeaderNav>
       <!-- <CHeaderNav>

@@ -11,7 +11,7 @@ export default createStore({
     userID: '',
     apiURL: 'http://127.0.0.1:8000/api',
     // apiURL: 'https://www.bugflix.eu:8000/api',
-    // apiURL: 'http://185.237.15.246:8000/api',
+    // apiURL: 'https://185.237.15.246:8000/api',
     today: '',
     all_projects: '',
     all_users: '',
@@ -26,7 +26,7 @@ export default createStore({
       'Business Analyst',
       'Product Manager',
       'Technology Manager',
-      'Demo'
+      'Demo',
     ],
     case_type: ['Issue', 'Bug', 'Note'],
     status: ['New', 'In Progress', 'On Hold', 'Solved'],
@@ -92,7 +92,7 @@ export default createStore({
     removeUserID(state) {
       localStorage.setItem('userID', '')
       state.userID = ''
-    }
+    },
     // setProjects(state, projects) {
     //   state.all_projects = JSON.stringify(projects)
     //   console.log('STORE: all_projects' + state.all_projects)

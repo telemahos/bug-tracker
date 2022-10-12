@@ -33,6 +33,8 @@ origins = ["*"]
 #   "https://localhost:3001",
 #   "http://www.bugflix.eu:3001",
 #   "https://www.bugflix.eu:3001",
+#   "http://bugflix.eu:3001",
+#   "https://bugflix.eu:3001",
 #   "http://www.bugflix.eu:8000",
 #   "https://www.bugflix.eu:8000",
 #   "http://127.0.0.1:8000",
@@ -41,6 +43,8 @@ origins = ["*"]
 #   "https://localhost:8000",
 #   "http://185.237.15.246:3001",
 #   "https://185.237.15.246:3001",
+#   "http://185.237.15.246:8000",
+#   "https://185.237.15.246:8000",
 # ]
 
 app.add_middleware(

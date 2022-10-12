@@ -6,6 +6,9 @@
     <WidgetsStatsA />
     <WidgetsStatsD />
   </div>
+  
+  
+  
 </template>
 
 <script>
@@ -31,6 +34,5 @@ export default {
     // this.loadProject()
     // this.loadUsersAndProjects()
   },
-  
 }
 </script>
