@@ -178,7 +178,9 @@ export default {
     this.loadCase()
     this.loadUsersAndProjects()
   },
-  mounted() {},
+  mounted() {
+    document.title = 'Ticket Overview | BugFlix'
+  },
   methods: {
     async loadCase() {
       const headers = {
@@ -222,7 +224,7 @@ export default {
         .finally(() => {
           for (let x = 0; x < this.users.length; x++) {
             if (this.case.owner_id == this.users[x].id) {
-              console.log('OWNERID: ', this.users[x].id)
+              // console.log('OWNERID: ', this.users[x].id)
               this.user = this.users[x]
             }
           }

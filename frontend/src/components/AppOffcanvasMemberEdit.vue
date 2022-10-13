@@ -73,14 +73,14 @@
         <hr />
         <CCol :xs="12">
           <CButton
-            v-if="this.$store.state.me == 'demo'"
+            v-if="this.$store.state.me == 'demoUser'"
             color="primary"
             class="disabled"
             type="submit"
             >Submit Member</CButton
           >
           <CButton
-            v-if="this.$store.state.me != 'demo'"
+            v-if="this.$store.state.me != 'demoUser'"
             color="primary"
             type="submit"
             >Submit Member</CButton
@@ -132,11 +132,11 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('USER DATA: ', user_data)
+      // console.log('USER DATA: ', user_data)
       await axios
         .put(`${this.apiURL}/user/` + this.user.id, user_data, { headers })
         .then(
-          (response) => console.log('USER: ' + JSON.stringify(response.data)),
+          // (response) => console.log('USER: ' + JSON.stringify(response.data)),
           (this.visibleEnd = !this.visibleEnd),
         )
         .catch((error) => console.log(`${error}`))

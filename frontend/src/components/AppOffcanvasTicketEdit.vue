@@ -229,12 +229,12 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('TICKET DATA: ', case_data)
+      // console.log('TICKET DATA: ', case_data)
       await axios
         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
         .then(
           (response) =>
-            console.log('New Case: ' + JSON.stringify(response.data)),
+            // console.log('New Case: ' + JSON.stringify(response.data)),
           (this.visibleEnd = !this.visibleEnd),
         )
         .catch((error) => console.log(`${error}`))
@@ -242,14 +242,14 @@ export default {
         .get(`${this.apiURL}/project`, { headers })
         .then((response) => {
           this.projects = response.data
-          console.log('projects: ', this.projects)
+          // console.log('projects: ', this.projects)
         })
         .catch((error) => console.log(`${error}`))
       await axios
         .get(`${this.apiURL}/user`, { headers })
         .then((response) => {
           this.users = response.data
-          console.log('User Names: ', this.users)
+          // console.log('User Names: ', this.users)
         })
         .catch((error) => console.log(`${error}`))
       return

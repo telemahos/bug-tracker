@@ -199,6 +199,7 @@ export default {
     }
   },
   mounted() {
+    document.title = 'Tickets | BugFlix'
     this.loadTicket()
   },
   methods: {
@@ -212,7 +213,7 @@ export default {
         .then((response) => {
           this.projects = response.data
           // this.$store.commit('setProjects', this.projects)
-          console.log('projects: ', this.projects)
+          // console.log('projects: ', this.projects)
         })
         .catch((error) => console.log(`${error}`))
       await axios
@@ -220,14 +221,14 @@ export default {
         .then((response) => {
           this.users = response.data
           // this.$store.commit('setUsers', this.users)
-          console.log('User Names: ', this.users)
+          // console.log('User Names: ', this.users)
         })
         .catch((error) => console.log(`${error}`))
       await axios
         .get(`${this.apiURL}/case`, { headers })
         .then((response) => {
           this.cases = response.data
-          console.log('Cases: ', this.cases)
+          // console.log('Cases: ', this.cases)
         })
         .finally(() => {
           let y = 0,

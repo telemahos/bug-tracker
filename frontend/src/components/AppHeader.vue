@@ -7,9 +7,13 @@
       <CHeaderBrand class="mx-auto d-lg-none" to="/">
         <!-- <CIcon :icon="logo" height="48" alt="Logo" /> -->
       </CHeaderBrand>
-      <CHeaderNav class="d-none d-md-flex me-auto">
+      <CHeaderNav
+        class="d-none d-md-flex me-auto"
+        v-if="this.$store.state.isAuthenticated"
+      >
         <CNavItem>
-          <CNavLink href="#/dashboard"> Dashboard </CNavLink>
+          <!-- <CNavLink href="#/dashboard"> Dashboard </CNavLink> -->
+          <CNavLink href="#/theme/mydashboard">My Dashboard </CNavLink>
         </CNavItem>
         <CNavItem>
           <CNavLink href="#/theme/projectlist">Projects</CNavLink>
@@ -21,28 +25,30 @@
         <CNavItem>
           <CNavLink href="#/theme/memberlist">Members</CNavLink>
         </CNavItem>
-        <CNavItem>
-          <CNavLink
-            href="#/pages/Logout"
-            v-if="this.$store.state.isAuthenticated"
-            >Logout</CNavLink
-          >
-        </CNavItem>
-        <CNavItem>
-          <CNavLink
-            href="#/pages/Login"
-            v-if="!this.$store.state.isAuthenticated"
-            >Login</CNavLink
-          >
-        </CNavItem>
-        <!-- <Logout /> -->
         <!-- <AppHeaderDropdownNew /> -->
       </CHeaderNav>
       <CHeaderNav>
         <CNavItem>
           <CNavLink v-if="this.$store.state.me" href="#/theme/mydashboard">
+            <span class="text-muted">Hi,</span>
             {{ this.$store.state.me }}
           </CNavLink>
+        </CNavItem>
+        <CNavItem>
+          <CNavLink
+            class="link-light"
+            href="#/pages/Logout"
+            v-if="this.$store.state.isAuthenticated"
+            ><small> Logout</small></CNavLink
+          >
+        </CNavItem>
+        <CNavItem>
+          <CNavLink
+            class="link-info"
+            href="#/pages/Login"
+            v-if="!this.$store.state.isAuthenticated"
+            >Login</CNavLink
+          >
         </CNavItem>
       </CHeaderNav>
       <!-- <CHeaderNav>

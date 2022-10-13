@@ -6,9 +6,6 @@
     <WidgetsStatsA />
     <WidgetsStatsD />
   </div>
-  
-  
-  
 </template>
 
 <script>
@@ -32,7 +29,10 @@ export default {
   },
   beforeMount() {
     // this.loadProject()
-    // this.loadUsersAndProjects()
+    // this.loadUsersAndProjects() 
   },
+  mounted() {
+    document.title = 'My Dashboard | BugFlix'
+  }
 }
 </script>

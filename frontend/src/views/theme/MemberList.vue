@@ -47,9 +47,8 @@
                     </CTableDataCell>
                     <CTableDataCell>
                       <div>
-                        <a href="#" target="_blank" rel="noopener noreferrer">{{
-                          user.name
-                        }}</a>
+                        <!-- <a href="/" target="_blank" rel="noopener noreferrer" class="disabled" aria-disabled="true"></a> -->
+                        {{ user.name }}
                       </div>
                       <div
                         class="small text-medium-emphasis text-truncate"
@@ -59,7 +58,7 @@
                       </div>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
-                      <div>{{ user.email }}</div>
+                      <small>{{ user.email }}</small>
                     </CTableDataCell>
                     <CTableDataCell class="text-center">
                       <div class="text-medium-emphasis">
@@ -120,6 +119,7 @@ export default {
     }
   },
   mounted() {
+    document.title = 'Members | BugFlix'
     const headers = {
       Authorization: `Bearer ${this.token}`,
       'Content-Type': 'application/json',

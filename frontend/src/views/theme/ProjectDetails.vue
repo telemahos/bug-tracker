@@ -202,7 +202,9 @@ export default {
     this.loadProject()
     this.loadUsersAndProjects()
   },
-  mounted() {},
+  mounted() {
+    document.title = 'Project Overview | BugFlix'
+  },
   methods: {
     async loadProject() {
       const headers = {
@@ -213,7 +215,7 @@ export default {
         .get(`${this.apiURL}/project/` + this.projectID, { headers })
         .then((response) => {
           this.project = response.data
-          console.log('This PROJECT: ', this.project)
+          // console.log('This PROJECT: ', this.project)
         })
         .catch((error) => console.log(`${error}`))
     },
@@ -248,14 +250,14 @@ export default {
         .get(`${this.apiURL}/team_member`, { headers })
         .then((response) => {
           this.members = response.data
-          console.log('MEMBER Names: ', this.members)
+          // console.log('MEMBER Names: ', this.members)
         })
         .finally(() => {
           let z = 0
           for (let x = 0; x < this.members.length; x++) {
             if (this.project.id == this.members[x].project_id) {
               this.team_members[z] = this.users[this.members[x].id]
-              console.log('TEAM: ', this.team_members[z])
+              // console.log('TEAM: ', this.team_members[z])
               z++
             }
           }

@@ -43,7 +43,7 @@
                       >
                     </CCol>
                     <CCol :xs="8" class="text-right">
-                      <CButton color="link" class="px-0">
+                      <CButton color="link" class="px-0 disabled ">
                         Forgot password?
                       </CButton>
                     </CCol>
@@ -60,7 +60,7 @@
                 </CForm>
               </CCardBody>
             </CCard>
-            <CCard class="text-white bg-primary py-5" style="width: 44%">
+            <!-- <CCard class="text-white bg-primary py-5" style="width: 44%">
               <CCardBody class="text-center">
                 <div>
                   <h2>Sign up</h2>
@@ -79,7 +79,7 @@
                   </CButton>
                 </div>
               </CCardBody>
-            </CCard>
+            </CCard> -->
           </CCardGroup>
         </CCol>
       </CRow>
@@ -105,13 +105,13 @@ export default {
     }
   },
   beforeMount() {
-    console.log('beforeMount')
+    // console.log('beforeMount')
     this.getCookie()
   },
   mounted() {
-    document.title = 'Log In | Djackets'
-    console.log('LOG:', document.title)
-    console.log('LOGin isAuthenticated:', this.$store.state.isAuthenticated)
+    document.title = 'Log In | BugFlix'
+    // console.log('LOG:', document.title)
+    // console.log('LOGin isAuthenticated:', this.$store.state.isAuthenticated)
 
     var togglePassword = document.getElementById('toggle-password')
     // var formContent = document.getElementsByClassName('form-content')[0]
@@ -138,7 +138,7 @@ export default {
       if (document.cookie != '') {
         // When cookie is available then disable Login button
         // document.getElementById('login-btn').disabled = true;
-        console.log('loadCookie: ' + document.cookie)
+        // console.log('loadCookie: ' + document.cookie)
         this.getCookieValue()
         return document.cookie
       } else {
@@ -152,7 +152,7 @@ export default {
       // token = cookieValue;
     },
     submitForm() {
-      console.log('test')
+      // console.log('test')
       // const form = event.currentTarget
 
       // form.preventDefault()
@@ -162,7 +162,7 @@ export default {
       formData.append('username', this.username)
       formData.append('password', this.password)
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
-        console.log('LOGIN DATA: ', response)
+        // console.log('LOGIN DATA: ', response)
         // handle success
         const token = response.data.access_token
         this.$store.commit('setToken', token)
@@ -170,26 +170,26 @@ export default {
         localStorage.setItem('token', token)
         const toPath = this.$route.query.to || '/theme/mydashboard'
         this.$router.push(toPath)
-        console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
+        // console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
         this.$store.commit('setUsername', response.data.the_user.name)
         this.$store.commit('setUserID', response.data.the_user.id)
       })
     },
     demoLogin() {
-      console.log('Demo')
+      // console.log('Demo')
       const formData = new FormData()
       formData.append('username', 'demo@demo.com')
       formData.append('password', 'abc')
       axios.post(`${this.apiURL}/login`, formData, {}).then((response) => {
-        console.log('LOGIN DATA: ', response)
+        // console.log('LOGIN DATA: ', response)
         // handle success
         const token = response.data.access_token
         this.$store.commit('setToken', token)
         axios.defaults.headers.common['Authorization'] = 'Token ' + token
         localStorage.setItem('token', token)
-        const toPath = this.$route.query.to || '/theme/mydashboard'
+        const toPath = this.$route.query.to || '/theme/projectlist'
         this.$router.push(toPath)
-        console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
+        // console.log('isAuthenticated: ', this.$store.state.isAuthenticated)
         this.$store.commit('setUsername', response.data.the_user.name)
         this.$store.commit('setUserID', response.data.the_user.id)
       })

@@ -188,6 +188,7 @@ export default {
     }
   },
   mounted() {
+    document.title = 'New Ticket | BugFlix'
     this.year = this.today.getFullYear()
     this.day = this.today.getDate()
     this.month = this.today.getMonth() + 1
@@ -244,7 +245,7 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('TICKET DATA: ', case_data)
+      // console.log('TICKET DATA: ', case_data)
       await axios
         .post(`${this.apiURL}/case`, case_data, { headers })
         .then((response) =>

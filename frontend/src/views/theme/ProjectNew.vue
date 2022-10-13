@@ -183,11 +183,12 @@ export default {
     }
   },
   mounted() {
+    document.title = 'New Project | BugFlix'
     this.year = this.today.getFullYear()
     this.day = this.today.getDate()
     this.month = this.today.getMonth() + 1
 
-    console.log('TODAY:', this.day + '-' + this.month + '-' + this.year)
+    // console.log('TODAY:', this.day + '-' + this.month + '-' + this.year)
 
     if (parseInt(this.month) <= 9) {
       this.month = '0' + this.month
@@ -234,7 +235,7 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('Project DATA: ', project_data)
+      // console.log('Project DATA: ', project_data)
 
       await axios
         .post(`${this.apiURL}/project`, project_data, { headers })
@@ -243,10 +244,10 @@ export default {
           // console.log('New Project ID: ' + this.new_project_id),
         )
         .catch((error) => console.log(`${error}`))
-        .finally(() => console.log('New Project ID: ' + this.new_project_id))
+        // .finally(() => console.log('New Project ID: ' + this.new_project_id))
 
-      console.log('Nr of MEMBERS: ', this.value.length)
-      console.log('MEMBERS: ', this.value)
+      // console.log('Nr of MEMBERS: ', this.value.length)
+      // console.log('MEMBERS: ', this.value)
 
       for (let x = 0; x < this.value.length; x++) {
         this.setTeamMembers(this.new_project_id, this.value[x])
@@ -270,7 +271,7 @@ export default {
         Authorization: `Bearer ${this.token}`,
         'Content-Type': 'application/json',
       }
-      console.log('New Team Member: ', team_member_data)
+      // console.log('New Team Member: ', team_member_data)
       await axios
         .post(`${this.apiURL}/team_member`, team_member_data, { headers })
         .then((response) =>
