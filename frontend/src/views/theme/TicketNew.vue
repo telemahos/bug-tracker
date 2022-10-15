@@ -127,7 +127,7 @@
               >
                 <option selected disabled>Unassigned</option>
                 <option v-for="user in users" :key="user.name" :value="user.id">
-                  {{ user.name }} | {{ user.id }}
+                  {{ user.name }}
                 </option>
               </CFormSelect>
             </div>

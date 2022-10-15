@@ -2,7 +2,7 @@
   <div class="bg-light min-vh-100 d-flex flex-row align-items-center">
     <CContainer>
       <CRow class="justify-content-center">
-        <CCol :md="8">
+        <CCol :md="6">
           <CCardGroup>
             <CCard class="p-4">
               <CCardBody>
@@ -37,13 +37,18 @@
                   </CInputGroup>
                   <!-- type="submit" -->
                   <CRow>
-                    <CCol :xs="4">
-                      <CButton color="primary" class="px-4" @click="submitForm"
-                        >Login</CButton
-                      >
+                    <CCol :xs="6">
+                      <div class="d-grid gap-2 col-12 mx-auto">
+                        <CButton
+                          color="primary"
+                          class="px-6"
+                          @click="submitForm"
+                          >Login</CButton
+                        >
+                      </div>
                     </CCol>
-                    <CCol :xs="8" class="text-right">
-                      <CButton color="link" class="px-0 disabled ">
+                    <CCol :xs="6" class="text-center">
+                      <CButton color="link" class="px-0 disabled">
                         Forgot password?
                       </CButton>
                     </CCol>

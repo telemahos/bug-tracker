@@ -2,11 +2,11 @@
   <div>
     <CRow>
       <CCol :md="12">
-        <h2>Projects</h2>
+        <!-- <h2>Projects</h2> -->
         <CLink href="#/theme/projectnew"
           ><h5><CBadge color="info">New Project +</CBadge></h5></CLink
         >
-        <br /><br /><br />
+        <!-- <br /><br /><br /> -->
       </CCol>
     </CRow>
   </div>
@@ -18,7 +18,7 @@
             <CRow>
               <CCol :sm="5">
                 <h4 id="traffic" class="card-title mb-0">Projects</h4>
-                <div class="small text-medium-emphasis">September 2022</div>
+                <!-- <div class="small text-medium-emphasis">October 2022</div> -->
               </CCol>
               <CTable align="middle" class="mb-0 border" hover responsive>
                 <CTableHead color="light">

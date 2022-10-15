@@ -234,7 +234,7 @@ export default {
         .put(`${this.apiURL}/case/` + this.the_case.id, case_data, { headers })
         .then(
           (response) =>
-            // console.log('New Case: ' + JSON.stringify(response.data)),
+            console.log('New Case: ' + JSON.stringify(response.data)),
           (this.visibleEnd = !this.visibleEnd),
         )
         .catch((error) => console.log(`${error}`))

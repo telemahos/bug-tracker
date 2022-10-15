@@ -244,7 +244,7 @@ export default {
           // console.log('New Project ID: ' + this.new_project_id),
         )
         .catch((error) => console.log(`${error}`))
-        // .finally(() => console.log('New Project ID: ' + this.new_project_id))
+      // .finally(() => console.log('New Project ID: ' + this.new_project_id))
 
       // console.log('Nr of MEMBERS: ', this.value.length)
       // console.log('MEMBERS: ', this.value)

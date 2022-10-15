@@ -37,7 +37,7 @@
         <CNavItem>
           <CNavLink
             class="link-light"
-            href="#/pages/Logout"
+            href="#/pages/Login"
             v-if="this.$store.state.isAuthenticated"
             ><small> Logout</small></CNavLink
           >

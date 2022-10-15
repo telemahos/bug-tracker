@@ -3,10 +3,11 @@
     <CCol>
       <CCard class="mb-4">
         <CCardHeader>
-          <strong>Vue Widgets</strong>
+          <strong>Data / Statistic:</strong>
         </CCardHeader>
         <CCardBody>
-          <h1>TEST</h1>
+          <!-- <h1>TEST</h1> -->
+
           <CRow>
             <CCol :sm="6" :lg="3">
               <CWidgetStatsB
