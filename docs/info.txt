@@ -15,6 +15,13 @@
 --- AND THEN --- 
 serve -s dist --OR--
 serve -s dist -l 3001
+ 
+-- GUVICORN -- 
+pip install "uvicorn[standard]" gunicorn
+gunicorn backend.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 185.237.97.166:8000
+
+uvicorn backend.main:app --host 185.237.97.166 --port 8000 --workers 4
+
 
 --- Run on server in background--- 
 https://www.dev2qa.com/how-to-run-node-js-server-in-background/?fbclid=IwAR2JS1SkAlFbhsak4csMYuVkuFRpxiGzi1wYKos_QZurQMxcQRbcWSkZpTM
@@ -27,6 +34,8 @@ http-server -p 3001 > output.log &
 check proccess: ps -ef
 or: forever start http-server -p 3001 > output.log
 or THISSS: pm2 serve dist 3001
+185.237.97.166
+lsof -i :8000       --this check the port 8000
 
 ---
 from https://www.dev2qa.com/how-to-run-node-js-server-in-background/?fbclid=IwAR2JS1SkAlFbhsak4csMYuVkuFRpxiGzi1wYKos_QZurQMxcQRbcWSkZpTM
@@ -40,8 +49,8 @@ npm i @vue/cli-service
 - npm install --production --force
 https://www.digitalocean.com/community/tutorials/how-to-use-vue-js-environment-modes-with-a-node-js-mock-data-layer
 
-- pip install supervisor AND THEN START: supervisord -n
-- uvicorn backend.main:app --host 185.237.15.246 --port 8000
+- pip3 install supervisor AND THEN START: supervisord -n
+- uvicorn backend.main:app --host 185.237.97.166: --port 8000
 --- Clean NPM: ---
 npm cache clean --force
 rm -rf node_modules

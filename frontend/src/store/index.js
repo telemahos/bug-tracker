@@ -11,7 +11,7 @@ export default createStore({
     userID: '',
     // apiURL: 'http://127.0.0.1:8000/api',
     // apiURL: 'https://bugflix.eu:8000/api',
-    apiURL: 'http://185.237.15.246:8000/api',
+    apiURL: 'http://185.237.97.166:8000/api',
     today: '',
     all_projects: '',
     all_users: '',
