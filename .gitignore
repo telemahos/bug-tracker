@@ -9,6 +9,8 @@ __pycache__/
 /env_079
 /env_066
 /backup
+/docs/*
+/docs/info.txt
 # /frontend/
 /frontend/cork/*
 git config --global user.email "kakoulis@hotmail.com"

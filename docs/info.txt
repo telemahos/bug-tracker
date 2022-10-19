@@ -56,6 +56,9 @@ npm cache clean --force
 rm -rf node_modules
 npm install
 
+--- Server ---
+138.3.240.21
+ubuntu
 
 - pip install fastapi-pagination[all]
 - https://www.learmoreseekmore.com/2021/02/vue3-vue-tailwind-pagination.html
