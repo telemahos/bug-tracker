@@ -11,6 +11,7 @@ __pycache__/
 /backup
 /docs
 /docs/info.txt
+/docs1
 # /frontend/
 /frontend/cork/*
 git config --global user.email "kakoulis@hotmail.com"
