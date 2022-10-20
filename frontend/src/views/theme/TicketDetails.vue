@@ -126,7 +126,7 @@
             <CCardBody>
               <!-- <CCardTitle>Card title</CCardTitle> w-75-->
               <CCardSubtitle
-                >Panagiotidou Noula
+                >Paulie Durber
                 <small class="text-muted"
                   >20 Dec 2021 - 05:47AM</small
                 ></CCardSubtitle
