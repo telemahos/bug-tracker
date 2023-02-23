@@ -12,6 +12,7 @@ __pycache__/
 /docs
 /docs/info.txt
 /docs1
+.DS_Store
 # /frontend/
 /frontend/cork/*
 git config --global user.email "kakoulis@hotmail.com"
